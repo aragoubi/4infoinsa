@@ -1,0 +1,1 @@
+Les deux listes sont des membres statiques de la classe CommandA car ces deux lsites sont communes à toutes les instances de la classe CommandA. En effet l'historique ne dépend pas de la commande actuelle.
