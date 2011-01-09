@@ -1,0 +1,12 @@
+Grammaire:
+<Fichier>     --> <Expr> "/000"
+<Expr>        --> <Termb> <SuiteExpr> 
+<SuiteExpr>   --> "ou" <Termb> <SuiteExpr> | ε
+<Termb>       --> <Facteurb> <SuiteTermb>
+<SuiteTermb>  --> "et" <Facteurb> <SuiteTermb> | ε
+<Facteurb>    --> <Relation> | "(" <Expr> ")" |
+                  "si" <Expr> "alors" <Expr> "sinon" <Expr> "fsi"
+<Relation>    --> <Ident> <Op> <Ident>
+<Op>          --> "=" | "<>" | "<" | ">" | ">=" | "<="
+
+

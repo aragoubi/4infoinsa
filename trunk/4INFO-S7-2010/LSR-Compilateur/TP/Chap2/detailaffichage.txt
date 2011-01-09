@@ -1,0 +1,5 @@
+On fera dabord afficher fenetre pincipal que affichera une fenetre vide.
+Ensuite on affichera dans cette fenetre trois partie :
+- Une vue graphique ou il y aura soit la Vue de haut du plateau, soit la vue de combat.
+- Une partie "Information partie" avec a ki c le tour.
+- Une partie "De" avec un bouton pour lancer les dés et une image du rendu du lancer.
