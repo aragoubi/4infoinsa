@@ -1,3 +1,4 @@
-a2ps -o - --toc --left-footer="" --header="mes tp de c" --title="mon titre" --left-title="" cpoo/*/*|ps2pdf12 -sPAPERSIZE=a4 - resul.pdf
+a2ps -o - --toc --left-footer="" --header="TP 4info 2010" --title="TP 4info 2010" --left-title="" --file-align=fill cpoo/*/*|ps2pdf12 -sPAPERSIZE=a4 - resul.pdf
 
 voila un exemple d'utilisation de a2ps pour faire un pdf de tous vos tps situe dans tous les sous repertoires du repertoire cpoo, avec une table des matieres à la fin ...
+le parametre --file-align=fill permet de toujours avoir 2 minipages par pages
