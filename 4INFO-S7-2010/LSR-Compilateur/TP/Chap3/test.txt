@@ -1,0 +1,1 @@
+begin bool x ; begin int a ; a <- b + c end ; x <- (b and c) end

@@ -1,0 +1,16 @@
+Question 2.1
+
+Les commentaires peuvent être insérer à n'importe quel endroit du code et donc, ne relève pas de l'analyse syntaxique. C'est pour cela qu'ils sont ignorés lors de l'analyse lexicale.
+
+Question 2.2
+
+Le fait de construire un arbre et de tester la correspondance des types de chaque unité lexicale remplace la pile. Avec cette implémentation, on est aussi garanti d'avoir un bon parenthèsage.
+
+Question 2.3
+
+On utilise une grammaire LL(1) de manière à avoir une seule dérivation de règle possible lorsque l'on se place sur la première unité lexicale de celle-ci. Cela rend l'implémentation du compilateur beaucoup plus simple car il suffit de regarder la première unité lexicale de la liste fournit par l'analyseur lexical pour savoir comment dériver la règle courante.
+
+Question 2.4
+
+Un arbre abstrait est beaucoup plus simple et agréable à lire.
+En effet, dans un arbre concret, toutes les différentes dérivations apparaissent (même les dérivations en epsilon) ce qui rend celui-ci très pénible à lire, contrairement à un arbre abstrait qui ne fait apparaitre que les informations intéressantes.

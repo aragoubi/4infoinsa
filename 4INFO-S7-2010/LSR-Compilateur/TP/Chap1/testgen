@@ -1,0 +1,42 @@
+/************************ Test 1 ***********************/
+jojo et /*commentaire */ ) cheval = sinon (
+
+(* Test  
+
+- : etat * string = (Q_FIN_NON_CONS, "jojo")
+# parcours_automate mon_fichier a a.init "";;
+- : etat * string = (Q_FIN_NON_CONS, "et")
+# parcours_automate mon_fichier a a.init "";;
+- : etat * string = (Q_FIN_CONS, ")")
+# parcours_automate mon_fichier a a.init "";;
+
+- : unite_lexicale * lexeme = (UL_IDENT "jojo", "jojo")
+# get_token mon_fichier gram;;
+- : unite_lexicale * lexeme = (UL_ET, "et")
+# get_token mon_fichier gram;;
+- : unite_lexicale * lexeme = (UL_FERM, ")")
+
+
+# scanner mon_fichier gram;;
+- : (unite_lexicale * lexeme) list =
+[(UL_IDENT "jojo", "jojo"); (UL_ET, "et"); (UL_FERM, ")");
+ (UL_IDENT "cheval", "cheval"); (UL_EGAL, "="); (UL_IDENT "sinon", "sinon");
+ (UL_OUVR, "("); (UL_EOF, "\000")]
+*)
+
+/************************ Test 2 ***********************/
+yo = ( /*@==<*/ ou ) papa /*^@ comm pas fini 
+
+# scanner mon_fichier gram;;
+- : (unite_lexicale * lexeme) list =
+[(UL_IDENT "yo", "yo"); (UL_EGAL, "="); (UL_OUVR, "("); (UL_OU, "ou");
+ (UL_FERM, ")"); (UL_IDENT "papa", "papa"); (UL_EOF, "\000")]
+
+/************************ Test 3 ***********************/
+help = = /*=/** /****/ ( ) b10 
+
+# scanner mon_fichier gram;;
+- : (unite_lexicale * lexeme) list =
+[(UL_IDENT "yo", "yo"); (UL_EGAL, "="); (UL_OUVR, "("); (UL_OU, "ou");
+ (UL_FERM, ")"); (UL_IDENT "papa", "papa"); (UL_EOF, "\000")]
+
