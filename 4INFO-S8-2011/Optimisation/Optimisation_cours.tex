@@ -1,0 +1,479 @@
+% Définit si on compile en recto (pour la lecture sur écran) ou en rectoverso (pour l'impression)
+\providecommand{\VarRectoVerso}{oneside}
+
+\input{./preambule}
+%\input{./naming}
+
+
+\title{Optimisation}
+\author{Mohamed \textsc{Camar-Eddine}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+%======================%
+
+
+	\subsection{Aspect \og existence et unicité\fg des solutions}
+	%***********************************************************%
+	
+	On cherche toujours à déterminer un format de problème (P) où il y a une unique solution. Cela rend le problème de l'approximation de la solutoin moins complexe. Un exemple assez simple d'un résultat d'éxistence est le théorème de Weierstrass.
+	
+	Soit $C$ un compact de $R^n$ et $f: C->R$ continue. Alors $f$ est minoré sur $C$ et il existe un $\bar{x} \in C$ tel que $f(\bar{x}) = \inf_{x \in C} f(x) = \min_{x \in C} f(x)$.
+	
+	Il peut y avoir plusieurs solutions. Pour s'assurer de l'unicité de $\bar{x}$, on est souvent amené à supposer que $f$ vérifie certaines propriétés particulières telles que la stricte convexité.
+	
+	%\begin{definition}
+	Définition de la continuité :
+	$f:I->R$, $X_0 \in I$, $f$ est continue en $x_0$ ssi ($ \forall s>0$) $\exists \alpha >0$ tel que $|x-x_0| < \alpha \Rightarrow |f(x)-f(x_0)| < \epsilon$
+	%\end{definition}
+	
+	$A$ un sous ensemble de $R$, $m = \inf A$ ssi ($\forall \epsilon>0$) $\exists x_\epsilon \in A$ tel que $m - x_\epsilon < \epsilon$, textit{ie} $m < x_\epsilon + \epsilon$
+	
+	Conséquence : il existe toujours une suite $(x_k$ dans $A$ telle que $x_k \rightarrow \inf A$.
+	
+	Définition : $\exists (x_k \in C$ tel que $f(x_k) \rightarrow \inf_{x \in C} f(x)$ ; une telle suite est dite minimisante.
+	
+	Soit $C$ un compact, soit $(x_k)$ une suite minimisante : $f(x_k) \rightarrow \inf_{x \in C} f(x)$ comme $C$ est compact, on a $(x_k)$ borné $\Rightarrow$ il existe une sous suite $(x_{\phi(k)})$ de $(x_k)$ qui est convergente dans $C$. $x_{\phi(k)} \rightarrow \bar{x} \in C$. $f$ étant continue $f(x_{\phi(k)}) \rightarrow f(\bar{x}) = \inf_{x \in C} f(x)$.
+	
+	\subsection{Aspect \og conditions nécéssaires d'optimalité\fg}
+	%***********************************************************%
+	
+	Si $\bar{x}$ est un minimum local de $f$ sur $C$, alors on a $P$. (Attention : $P$ est seulement nécessaire)
+	
+	\subsection{Aspect \og conditions suffisantes d'optimalité\fg}
+	%***********************************************************%
+	
+	
+	
+	\subsection{Aspect \og algorithmes \fg}
+	%**************************************%
+	
+	$a$ est une valeur d'adhérence d'une suite $(x_n)$ ssi a est la limite d'une sous suite de $(x_n)$.
+	
+	\subsection{Aspect \og sensibilité aux perturbations, robustesse \fg}
+	%**************************************%
+	
+	$C = {x\in R^n ; h(x) = 0}$
+	
+	$C_\alpha = {x\in R^n ; h(x) = \alpha}$
+	
+	
+	
+	\subsection{Classification des problèmes d'optimisation}
+	%******************************************************%
+	
+	Elle est basée sur les propriétés des données du problème : différentiabilité, convexité, dimension finie ou non, variables continues ou discrètes, etc.
+	
+	
+	\subsection{Exemples}
+	%***********************%
+	
+		\subsubsection{Optimisation sans contraintes}
+		%-------------------------------------------%
+		
+	$f(x, y) = x^3 - y^3 + 3(y-x), (x, y) \in R^2$
+	$inf_{(x, y) \in R^2} f(xn y) = -\infty$
+	Étude des extremum locaux de $f$ :
+	$\nabla f(x, y) = (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y})^t = (3x^2-3, -3y^2 +3)=-3(x^2-1 , 1-y^2)$
+	
+	Recherche de points stationnaires (critiques) $\nabla f(x, y) = ( 0, 0)$
+	
+	$ x^2 = 1 , y^2 = 1$
+	
+	Les points stationnaires de f sont (-1, -1), (-1, 1), (1, -1) et (1, 1).
+	
+	%$\nabla^2 f(x, y) = (\cdots) = 3(2x & 0 & 0 & -2y) = 6(x & 0 & 0 & -y) = (r & s & s & t)$
+	
+	Rappel :
+	\begin{itemize}
+		\item si $rt-s^2 <0$ alors le point stationnaire en question n'est ni un minimum, ni un maximum local, c'est un point \og col\fg.
+		\item si $rt -s^2 >0$ et $r>0$ alors on a un minimum local. 
+		\item si si $re -s^2 >0$ et $r<0$ alors on a un maximum local.
+	\end{itemize}
+	
+	Donc (-1, -1) et (1, 1) sont des points cols, (-1, 1) est un maximum local, et (1, -1) est un minimum local.
+	
+	
+		\subsubsection{Optimisation avec contraintes}
+		%-------------------------------------------%
+		
+		Minimiser $f(x, y) = xy$ lorsque $(x, y) \in (E)$ où $(E)$ est l'éllipse d'équation $4x^2+y^2=4$ ($x^2/1^2 + y^2/2^2 = 1$).
+		
+		%\begin{theo} (Lagrange)
+		
+		Si $(x_0, y_0)$ réalise in minimum local sur $E$ et que $\nabla \neq 0$ alors il existe un réel $\lambda$ tel que $\nabla f + \lambda \nabla h = $
+		$\lambda$ s'appelle un multiplicateur de Lagrange.
+		
+		%\end{theo}
+		
+		%($E = {(x, y} \in R^2 | h(x, y) = 0}$) \\
+		$\nabla f(x, y) = ( x, y)$ \\
+		$\nabla h(x, y) = (8x, 2y)$ \\
+		$\nabla f + \lambda \nabla h = 0$ \\
+		%${ y+8\lambda x=0 (1) && x+2\lambda y=0 (2) && 4x^2+y^2-4=0 (3)$ \\
+		$(2) => x = -2\lambda y$ \\
+		$(1) => y+8\lambda (-2\lambda y) = 0 => y(1-16 \lambda^2) = 0 => y=0 ou \lambda = +- 1/4$ \\
+		mais $y=0 \Rightarrow x=0$ et $(0, 0) not \in (E)$ \\
+		donc $\lambda = \frac{1}{4}$ ou $\lambda = -\frac{1}{4}$
+		
+		\begin{itemize}
+		\item Cas $\frac{1}{4}$ : 
+		\dots
+		$(1/ \sqrt{2}, \sqrt{2})$ et $(-1/ \sqrt{2}, \sqrt{2})$
+		\item Cas $-\frac{1}{4}$ : 
+		\dots
+		$(1/ \sqrt{2}, \sqrt{2})$ et $(-1/ \sqrt{2}, -\sqrt{2})$
+		\end{itemize}
+		
+		$f(1/ \sqrt{2}, \sqrt{2}) = f(-1/ \sqrt{2}, -\sqrt{2}) = \max_{(E)} f$
+		$f(-1/ \sqrt{2}, \sqrt{2}) = f(1/ \sqrt{2}, -\sqrt{2}) = \min_{(E)} f$
+		
+	\section{Rappels et compléments de calcul différentiel}
+	%***********************%
+	
+	$a<b$, soit $f:[a, b]->R$, soit $x_0 \in ]a, b[$.
+	$f$ est dérivable en $x_0$ ssi $lim_{h->0, h\neq 0} \frac{ f(x_0+h)-f(x_0) }{ h }$ existe eet vaut $l \in R$.
+	De manière équivalente : $f$ est dérivable en $x_0$ ssi il existe une fonction $\epsilon$ définie au voisinage de $0$ vérifiant $\lim_{h->0} \epsilon (h) = 0$ et un réel $l$ tel que $f(x_0+h) = f(x_0)+l\dot h + h \dot \epsilon (h)$.
+	Soit $x$ un ouvert de $R^n$ ($n \in ?$), soir $f:\Omega ->R$, soit $x_0 \in \Omega$, f est différentiable en $x_0$ ssi il existe une application linéaire (et donc continue car dim finie) $l:R^n->R$ et une fonction $\epsilon$ définie sur un voisinage de $0$ telle que $f(x_0+h) = f(x_0)+l(h) + h \dot \epsilon (h)$, avec $\lim_{h->0} \epsilon (h) = 0$.
+	Comme $l$ est linéaire, $l$ est de la forme $l(h) = \sum _{l=1}^n l_i \dot h_i = <L,h>$ (produit scalaire). 
+	%$L= \left(\begin{array}{c} l_1 \\ \vdots \\ l_n \end{array} \right)$ 
+	$L= ( l_1 \dots l_n )^t$ 
+	est appelé gradient de $f$, on le note $\nabla f$.
+	
+	$\nabla f(x) = \left( \begin{array}{c} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{array}\right)$
+	
+	On suppose $f$ différentiable sur $\Omega$, soit $[\bar{x}, \bar{x}+h]$ un segment de $\Omega$.
+	\begin{itemize}
+		\item Inégalité des accroissements finis : $|f(a+h) -f(a)| \leq \sup_{ x \in ]\bar{x}, \bar{x}+h[ } |\nabla f(x)| \dot ||h||$
+		\item Taylor-Lagrange : $f(\bar{x}+h) - f(x) = <\nabla f(\bar{x}+\theta \dot h), h>$, où $0<\theta <1$
+		\item Taylor avec reste intégral : $f(\bar{x}+h) = f(\bar{x}) + \int_0^1 <\nabla f(\bar{x}+ t \dot h), h> dt$
+	\end{itemize}
+	si $f$ est dupposée deux fois différentiable sur $\Omega$ :
+	\begin{itemize}
+		\item Taylor-Young : $f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}, h> + \frac{1}{2} <\nabla^2 f(\bar{x} \dot h), h> + ||h||^2 \epsilon (h)$, avec $\ln \epsilon = 0$
+		\item $|f(\bar{x}+h) - f(\bar{x}) - <\nabla f(\bar{x}, h> \leq \frac{1}{2} \sup || \nabla^2 f(\bar{x})|| \dot ||h||^2$, avec $x \in ]\bar{x}, \bar{x}+h[$
+		\item Tylor-Lagrange : $f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}), h> + \frac{1}{2} <\nabla^2 f(\bar{x}+ \theta \dot h), h>$, où $0< \theta <1$
+		\item $f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}), h> \int_0^1 (1-t) \dot <\nabla^2 f(\bar{x}+ t \dot h), h> dt$
+	\end{itemize}
+	
+		\subsubsection{rappel sur les fonction convexes}
+		%--------------------%
+		
+		%Soit $C$ un convexe de $R^n$, $f:C->R$, $f$ est dite convexe ssi $\forall (x, x') \in C x C$ et $\forall \alpha \in ]0,1[$, on a $f(\alpha \dot x + (1-\alpha) \dot x') \infeq \alpha \dot f(x) + (1-\alpha) \dot f(x')$.
+		
+		%$f$ est fortement convexe sur $C$ de module de forte convexité $c>0$ si $f(\alpha \dot x + (1-\alpha) \dot x') \infeq \alpha \dot f(x) + (1-\alpha) \dot f(x') -\frac{1}{2} \dot c \dot \alpha \dot (1-\alpha) \dot ||x'-x||^2$.
+		
+		%\begin{theorem}
+		Soit $f$ différentiable sur un ouvert $\Omega$ de $R^n$ et $C$ un convexe de $\Omega$.
+		$f$ est convexe sur $C$ ssi $f(x) >= f(\bar{x}) + <\nabla f(\bar{x}), x-\bar{x}>$, $\forall (x, \bar{x}) \in C x C$.
+		%\end{theorem}
+		
+		$y=f'(\bar{x}) \dot (x-\bar{x}) +f(\bar{x})$
+		
+		%\begin{theorem}
+		Soit $f$ deux fois différentiable, sur un ouvert convexe $C$, alors :
+		\begin{itemize}
+			\item $f$ est convexe sur $C$ ssi $\nabla^2 f(x)$ est semi-définie positive.
+			\item Si $\nabla^2 f(x)$ est semi-définie positive $\forall x \in C$ alors $f$ est strictement convexe sur $C$.
+			\item $f$f est fortement convexe sur $C$ de module C ssi la plus petite valeur propore de $\nabla^2 f(x)$ est minorée par $c$, soit : <$\nabla^2 f(x) \dot \lambda, \lambda> >= c \dot --\lambda ||^2$, $\forall x \in C$ et $\forall \lambda \in R^n$.
+		\end{itemize}
+		%\end{theorem}
+		
+		
+	\subsection{Exemples}
+	%***********************%
+	
+		\subsubsection{Ex 1}
+		
+		Soit $f:\Omega \mathbb{R}^n$, ($\omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
+		
+		Soit $\bar{x}) \in Omega$, $f(\bar{x} +h) = A \dot (\bar{x}+h) + b = A \bar{x} + b + Ah = f(\bar{x}) + Ah + ||h|| \dot 0 = f(\bar{x}) + Ah + ||h|| \dot \epsilon (h)$, où $\epsilon (h) = 0$.
+		
+		%Donc $f$ est différentiable en $\bar{x}$ et $\nabla f(\bars{x}) = A$.
+		
+		
+		\subsubsection{Ex 2}
+		
+		Soit $\Phi : \Omega x \Omega \mathbb{R}$ bilinéaire et symétrique, $f: \omega \mathbb{R}$, $x \mapsto f(x) = \Phi(x, x)$.
+		Soit $\bar{x} \in \Omega$, $f(\bar{x}+h) = \Phi(\bar{x}+h, \bar{x}+h) = Phi(\bar{x}, \bar{x}) + \Phi(\bar{x}, h) + \Phi(h, \bar{x}) + \Phi(h, h) = f(\bar{x}) + 2 \dot \Phi(\bar{x}, h) + \Phi(h, h)$.
+		
+		Reste à montrer que $\Phi(h, h) = ||h|| \dot \epsilon (h) \Leftrightarrow \epsilon (h) = \frac{ Phi(h, h) }{ ||h|| }$, avec $\lim{h \rightarrow 0} \epsilon (h) = 0$, \textit{ie} $\Phi(h, h) = o(h)$
+		
+		Comme $\Phi$ est bilinéaire et continue (car $dim < 2$) on a : $| \Phi (x, x) \leq c \dot ||x||^2$.
+		$| \epsilon (h) | = \frac{  }{  } \leq c \dot \frac{ ||h||^2 }{ ||h|| } = c \dot ||h|| \rightarrow_{h \rightarrow 0} 0$.
+		
+		%Donc f est différentiable en \bar{x} et $<\nabla f(\bar{x}), h> = 2 \Phi( \bar{x}, h)$.
+		
+		\subsubsection{Ex 3}
+		
+		$f(x) = \frac{1}{2} <Ax, x> - <b, x>$ où $b \in R^n$ et $A \in Mn(R)$ symétrique ; étudier la différentiabilité de $f$.
+		
+		D'après le exemples 1 et 2, $f$ est différentiable et $\nabla f(\bar{x}) = A \bar{x} - b$, (où $<\nabla f(\bar{x}), h> = (A \bar{x} -b, h>$)
+		
+		Remarque : Si $A$ n'est pas symétrique, alors $\nabla f(\bar{x}) = \frac{1}{2} (A+A^t) \bar{x} - b$.
+		
+		\subsubsection{Ex 4}
+		
+		Soit $a \in R^n$ et $V$ un voisinage de $a$, soit $f:V \mathbb{R}$ différentiable en $a$, montrer que $\lim_{t \rightarrow 0} \frac{ f(a+th) - f(a) }{ t } = <\nabla f(a), h>$.
+		
+		Comme $f$ est différentiable en $a$, on a : $f(a+k) = f(a) + <\nabla f(a), k> + ||k|| \epsilon (k)$, avec $\lim_{k \rightarrow 0} \epsilon (k) = 0$.
+		
+		En particulier pour $k=th$, on a : $f(a+k) - f(a) = <\nabla f(a), th> + |t| \dot ||k|| \dot \epsilon (th) =  t <\nabla f(a), h> + |t| \dot ||k|| \dot \epsilon (th)$, et $\frac{ f(a+th) - f(a) }{ t } = <\nabla f(a), h> + \frac{|t|}{t} \dot ||k|| \dot \epsilon (th) \Rightarrow \lim_{t \rightarrow 0} \frac{ f(a+th) - f(a) }{ t } = < \nabla f(a), h>$. \P
+		
+		Si $f$ est telle que $\lim_{t \rightarrow 0} \frac{ f(a+th)-f(a) }{t}$ existe et vaut $l$, on dit que f admet une dérivé directionnelle en $a$ dans la direction $h$. On note cette dérivé $f'(a, h) = l$.
+		
+		On a vu que si $f$ est différentiable en $a$, alors $f'(a, h)$ existe (attention : la réciproque est fausse).
+		
+		Exemple : 
+		
+		$f(x, y) = \frac{x |y|}{\sqrt{x^2+y^2}}$, si $(x, y) \ne (0, 0)$
+		
+		$f(0, 0) = 0$
+		
+		$f$ admet des dérivés directionnelles en (0, 0) de direction $(h, k)$ quelconques.
+		
+		\[ \lim_{t \rightarrow 0} \frac{ f(0, t(h, k)) - f(0) }{t} = \lim \frac{ t(h, k)}{t} = \lim \frac{1}{t} \frac{t |t| h |k|}{ \sqrt{t^2 (h^2+k^2)}} = \frac{h|k|}{\sqrt{h^2+k^2}} \]
+		
+		Donc $f'(0, (h, k))$ esiste ($h\ne0$ et $k\ne0$), cependant $f$ n'est pas différentiable en $0$.
+		
+		Si $f$ était différentiable en 0, alors on aurait : \[ f(h, k) = < \nabla f(0), (h, k)> + ||(h, k)|| \epsilon (h, k) \] 
+		avec $\lim_{||(h, k)|| \rightarrow 0} \epsilon (h, k) = 0$
+		\[ = \frac{ \partial f}{\partial x} (0, 0) h + \frac{ \partial f}{\partial y} (0, 0) k + o(||(h, k)||) \]
+		
+		Or $ \frac{ \partial f}{\partial x} (0, 0) = f' ((0, 0), e_1) = 0$ où $e_1 = (1, 0)$, et $ \frac{ \partial f}{\partial y} (0, 0) = 0$.
+		
+		On aurait alors $f(h, k) = o(||(h, k)||) = ||(h, k)|| \epsilon (h, k)$.
+		
+		Question : A-t-on $\lim_{(h, k) \rightarrow (0, 0)} \epsilon (h, k) = 0 $ ?
+		
+		$\lim_{(h, k) \rightarrow (0, 0)} \epsilon (h, k) = \lim_{(h, k) \rightarrow (0, 0)} \frac{f(h, k)}{||(h, k)||} = \lim_{(h, k) \rightarrow (0, 0)} \frac{h|k|}{h^2+k^2}$ qui n'existe pas.
+		
+		En effet, $\lim_{(h, k) \rightarrow (0, 0)} \frac{h|k|}{h^2+k^2} = \lim_{h=k, h \rightarrow 0} \frac{h|h|}{2h^2}$, $h=k \rightarrow 0^+$,  $h=k \rightarrow 0^-$.
+		
+		\[ \lim_{h \rightarrow 0^+} f(h, h) = \frac{1}{2} \ne -\frac{1}{2} = \lim_{h \rightarrow 0} \frac{h|h|}{2h^2} \]
+		
+		Donc $f$ n'est pas différentiable en $(0, 0)$.
+		
+		
+		\subsubsection{Ex 5}
+		
+		Soit $u: \omega \mathbb{R}$ différentiable sur $\Omega$, soit $f: \omega \mathbb{R}$, $ x \mapsto f(x) = (u(x))^2$.
+		
+		$f$ est elle différentiable sur $\Omega$ ? Su oui, que vaut $ \nabla f(x)$ ?
+		
+		$a \in \Omega$, $u(a+h) = u(a) + <\nabla u(a), h> + o(h)$
+		
+		$f(a+h) = (u(a+h))^2 = (u(a) + <\nabla u(a), h> + o(h))^2 = u^2(a) + 2u(a)<\nabla u(a), h> +(<\nabla u(a), h>)^2 + \dots = f(a) + <2u(a)\nabla u(a), h> + o(h)$
+		
+		$f$ est différentiable et $\nabla f(a) = 2u(a) \nabla u(a)$.
+		
+		Cauchy-Schwartz : $|<\nabla u(a), h>| \leq ||\nabla u(a)|| \cdot ||h|| \Rightarrow |<\nabla u(a), h>|^2 \leq ||\nabla u(a)||^2 \cdot ||h||^2 \Rightarrow \frac{ (<\nabla u(a), h>)^2 }{||h||} \leq ||\nabla u(a)||^2 \cdot ||h|| \rightarrow_{||h|| \rightarrow 0} 0 \Rightarrow (< \nabla u(a), h>)^2 = o(h)$
+
+		
+		
+\section{Optimisation linéaire}
+%=============================%
+		
+		
+\section{Optimisation sans contraintes}
+%=====================================%
+
+	\subsection{1ère partie}
+	
+		\subsubsection{Condition d'optimalité}
+		
+		Soit $f : [a, b] \mathbb{R}$ continue et dérivable sur $[a,  b]$.
+		Soit $\bar{x} \in [a, b]$ tel que $\bar{x}$ réalise un minimum local de $f$.
+		
+		Théorème (condition d'optimalité du 1er ordre)
+		
+		Avec les hypothèses vues plus haut, on a $f'(x) = 0$.
+		
+		Preuve (faite)
+		
+		Attention : $f'(x) = 0$ n'est qu'une condition nécessaire, elle n'est pas suffisante ! (ex : $f(x) = x^3$)
+		
+		Théorème (Weierstrass) :
+		
+		Si $f : [a, b]$ est continue, alors $f$ atteint ses bornes dans $[a, b]$, \textit{ie} il existe $x_1$ et $x_2$ $ \in [a, b]$ tels que $\displaystyle f(x_1) = \inf_{x \in [a, b]} f(x) = \min_{[a, b]} f$ et $\displaystyle f(x_2) = \sup_{x \in [a, b]} f(x) = \max_{[a, b]} f$ \\
+		
+		Preuve (déjà faite).\\
+		
+		Définition :
+		
+		Soit $f : R \mathbb{R}$, on dit que $f$ est c\oe rcive si \[ \lim_{|x| \rightarrow \infty} f(x) = + \infty \]
+		
+		(ex : $|f(x)| \geq c|x|^\alpha$, avec $\alpha > 0$)
+		
+		Soit $f : R \mathbb{R}$ continue et c\oe rcive, alors $f$ atteint un minimum global.\\
+		
+		Rappel : $\displaystyle \lim_{x \rightarrow x_0} = l$ ssi ($\forall \epsilon >0$) $\exists \alpha >0$ tel que $|x-x_0| \Rightarrow |f(x) - l| < \epsilon$\\
+		
+		Preuve :
+		
+		Comme $\displaystyle \lim_{|x| \rightarrow + \infty} = +\infty$, on a pour tout $M>0$ il existe $\alpha >0$ tel que $|x|>\alpha \Rightarrow f(x)>M$
+		Doc $f$ est minorée par $M$ sur $]-\infty, \alpha[ \cup ]-\alpha, +\infty[$. Par ailleurs, $f$ est continue sur le fermé borné $]-\alpha, \alpha[$.
+		Cela implique (Weiestrass) que $f$ est bornée sur $]-\alpha, \alpha[$ et $y$ atteint ses bornes.
+		Il existe $ \bar{x} \in ]-\alpha, \alpha[$ tel que $\displaystyle f(\bar{x}) = \inf_{\bar{x} \in ]-\alpha, \alpha[} f(x)$
+		
+		Si $\displaystyle \inf_{\bar{x} \in ]-\alpha, \alpha[} f(x) \leq M$ alors $\displaystyle f(x) > \inf_{x \in R} f(x) = \inf_{\bar{x} \in ]-\alpha, \alpha[} f(x)$
+		
+		Si $\displaystyle \inf_{\bar{x} \in ]-\alpha, \alpha[} f(x) > M$ alors sur $]-\alpha, \alpha[$ on a $\displaystyle f(x) \geq \inf_{\bar{x} \in ]-\alpha, \alpha[} f(x) > M$
+		
+		(Choisir $M = f(x_0)$ avec $x_0 \in R$, on a : $\inf_{]-\alpha, \alpha[} f(x) > f(x_0) > f(x)$, $\forall |x| > \alpha$)
+		
+		\subsubsection{Conditions d'optimalité du second ordre}
+		
+		Soit $f : [a, b] \mathbb{R}$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
+		
+		Théorème (conditions nécessaire) : 
+		
+		Soit $\bar{x} \in ]a, b[$ tel que $\bar{x}$ réalise un minimum local de $f$. ALors $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$.
+		
+		En effet, $f$ admet un minimum local en $\bar{x} \Rightarrow \exists \alpha >0$ tel que $|x-\bar{x}|<\alpha \Rightarrow f(x) \geq f(\bar{x})$.
+		
+		D'après Taylor-Young, on a : $\displaystyle f(\bar{x}+h) -f(\bar{x}) = \frac{1}{2} h^2 f''(\bar{x}) + o(h^2)$, $\forall |h|<\alpha$
+		
+		On divise par $h^2 \ne 0$, et on obtient : $\displaystyle 0 \leq \frac{f(\bar{x}+h) - f(\bar{x}) }{ h^2 } = \frac{1}{2} f''(\bar{x}) + o(1) $, et $o(1) \sim \epsilon(h)$ tel que $\lim_{h \rightarrow 0} \epsilon(h) = 0$.
+		Prendre la limite quand $h\rightarrow 0$ : $\frac{1}{2} f''(\bar{x}) \geq 0$.
+		
+		
+		Théorème (condition suffisante) :
+		
+		$f : [a, b] \mathbb{R}$ continue et deux fois dérivable sur $]a, b[$. Soit $\bar{x} \in ]a, b[$ tel que $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$. ALors $\bar{x}$ réalise un minimum local strict de $f$ sur $[a, b]$.
+		
+		En effet,par Taylor-Young, on a: $f(\bar{x}+h) -f(\bar{x}) = \frac{1}{2} h^2 f''(\bar{x}) + h^2 \epsilon(h)$ et $signe( f(\bar{x}+h) - f(\bar{x}) ) = signe( \frac{1}{2} f''(\bar{x}) + \epsilon(h))$.
+		
+		Or $\displaystyle \epsilon(h) \longrightarrow_{h\rightarrow 0} 0$, donc pour $h$ suffisamment petit, on a : 
+		\[ \frac{1}{2} f''(\bar{x}) + \epsilon(h) >0\]
+		\[ \epsilon(h) \longrightarrow_{h\rightarrow 0} 0 \Rightarrow |\epsilon(h)| < \frac{1}{4} f''(\bar{x}) \textit{ pour h petit}\]
+		\[-\frac{1}{4} f''(\bar{x}) < \epsilon(h) < \frac{1}{4} f''(\bar{x})\]
+		\[0< \frac{1}{4} f''(\bar{x}) < \frac{1}{4} f''(\bar{x}) + \epsilon(h) \]
+		Or $f(\bar{x}+h) - f(\bar{x}) >0$ pour $h$ suffisamment petit, $ \Rightarrow \bar{x}$ réalise un minimum local strict.
+		
+		\subsection{2ème partie : fonction de plusieurs variables}
+		
+		Théorème :
+		
+		Soit $f : B(\bar{x}, \alpha) \rightarrow \mathbb{R}$,  (où $B(\bar{x}, \alpha) \subset \mathbb{R}^n$ est la boule de rayon $\alpha$ centrée sur $\bar{x}$) continue et différentiable sur $B(\bar{x}, \alpha)$.
+		
+		On suppose que $f$ admet un minimum local en $\bar{x}$, alors $\nabla f(\bar{x}) = 0$ (condition d'optimalité du premier ordre.
+		
+		Preuve : (exercice)
+		
+		Par Taylor-Young on a : $f(\bar{x}+h)-f(\bar{x}) = < \nabla f(\bar{x}) ,h> + ||h|| \epsilon(h)$ avec $\lim_0 \epsilon = 0$.
+		
+		%TODO
+		
+		Le théorème de Weierstrass reste vraie dans $\mathbb{R}^n$.
+		$f:X\rightarrow \mathbb{R}$ où $X$ est un compact de $R^n$.
+		Si $f$ est continue sur $X$, alors $f$ y atteint ses bornes.
+		
+		Théorème : 
+		
+		Soit $f:R^n \mathbb{R}$ continue et c\oe rcive, alors $f$ admet un minimum global.
+		
+		Théorème : 
+		
+		(Condition Nécessaire)
+		
+		Soit $f : B(\bar{x}, \alpha) \subset \mathbb{R}^n \mathbb{R}$ continue et deux fois différentiable.
+		
+		Si $\bar{x}$ réalise un minimum local, alors $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ est semi-définie positive.
+		
+		(Condition Suffisante)
+		
+		Soit $\bar{x}$ tel que $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ soit définie positive, alors $\bar{x}$ réalise un minimum local de $f$.
+		
+		\begin{ex}
+		
+		On veut minimiser la fonction quadratique $f(x) = <Ax, x> +2<b, x> +c$ où $A$ est symétrique définie positive $\forall x \in \mathbb{R}^n$.
+		($\nabla f(\bar{x}) = 2A\bar{x} +2b$)
+		
+		$f$ est un polynome de degré 2 en $x_i$ $\Rightarrow f$ est continue sur $\mathbb{R}^n$.
+		
+		$f$ est c\oe rcive et donc 
+	 	$ f(x) = <Ax, x>  +2<b, x> +c \geq \lambda ||x||^2 + 2<b, x> +c \geq \lambda ||x||^2 - 2||b|| \cdot ||x|| +c $
+		
+		(car par Cauchy-Schwartz : $|<b, x>| \leq ||b|| \cdot ||x||$)
+		
+		où $\lambda$ est la plus petite des valeurs propres de $A$, et comme $A$ est symétrique définie positive, on a $\lambda >0$.
+		
+		Or $\displaystyle \lim_{||x|| \rightarrow +\infty}( \lambda ||x||^2 -2||b|| \cdot ||x|| +c) = +\infty$.
+		$\displaystyle \Rightarrow \lim_{||x|| \rightarrow +\infty}f(x) = +\infty \Rightarrow f$ est c\oe rcive.
+		
+		Si $f$ est continue et c\oe rcive, alors $f$ admet un minimum global atteint en au moins un $\bar{x}$ solution de $\nabla f(\bar{x}) = 0$.
+		
+		$\nabla f(\bar{x}) = 2A\bar{x} +2b = 0 \Rightarrow \bar{x} = A^{-1} b$, et comme $A$ est symétrique définie positive, $\Rightarrow A$ est inversible.
+		
+		$f(x) = <Ax, x> +2<b, x> +c$ est strictement convexe $\Rightarrow$ il y a unicité de la solution.
+		
+		\end{ex}
+		
+		\begin{ex}%[droite de régression]
+		
+		Soient $N$ points $\{(x_i, y_i), 1\leq i \leq N\}$ d'abscisses strictement croissantes.
+		
+		Déterminer une droite d'équation $y=ax+b$ telle que la quantité $\displaystyle f(a, b) = \sum_{i=1}^N (y_i-(ax_i+b))^2$ soit minimale.
+		
+		$f$ est continue et différentiable en tout $(a, b) \in \mathbb{R}^2$.
+		On veut que $\nabla f(a, b) = 0$.
+		
+		Notations :
+		$\displaystyle \bar{x} = \frac{1}{N} \sum_{i=1}^N x_i$, 
+		$\displaystyle \bar{y} = \frac{1}{N} \sum_{i=1}^N y_i$, 
+		$\displaystyle s_2 = \frac{1}{N} \sum_{i=1}^N x_i^2$, 
+		$\displaystyle s_1 = \frac{1}{N} \sum_{i=1}^N x_i y_i$.
+		
+		\begin{eqnarray*}%[\{]
+ \frac{\partial f}{\partial a} = \sum_{i=1}^N 2(y_i-(ax_i+b)) \\ \frac{\partial f}{\partial b} = \sum_{i=1}^N 2(y_i-(ax_i+b)) \end{eqnarray*}
+
+		\end{ex}
+		
+		
+\section{Optimisation avec contraintes}
+%=====================================%
+
+%TODO
+
+Nous nous intéressons au problème d'optimisation suivant : \[ (P) : \min f(x), x \in K \]
+
+Il s'agit de trouver $\bar{x} \in K$ tel que \[ f(\bar{x}) = \inf f(x) \]
+
+% TODO
+
+Généralement $K$ est définie par des fonctions $h_i$, $1 \leq i \leq p$, de la manière suivante : \[ TODO \]
+
+On parle de contraintes de type égualité.
+
+%TODO
+
+\begin{ex}
+	Considérons le problème de minimisation, avec une seule contrainte, suivant : \[ TODO \]	
+	
+	L'ensemble des contraintes est le cercle de centre 0 et de rayon $\sqrt 2$ \[ K = C(0, \sqrt(2)) \].
+	
+	On considère les droites d'équation \[  \]
+	
+	Les droites $(\delta_a)$ se déplacent vers le \og sud-ouest \fg. $f$ atteint donc son minimum en \[ \bar{x} = (-1, -1) \]
+	
+	En $\bar{x}$, on a $\displaystyle \nabla f = ...$ et $ $ où $h(x) = x_1^2 + x_2^2 - 2$
+	
+	On remarque que $ \nabla h( \bar{x} ) = -2  \nabla f( \bar{x} ) $
+	
+	
+\end{ex}
+		
+%\sectionEt{Conclusion}
+%====================%
+
+
+\end{document}
+
