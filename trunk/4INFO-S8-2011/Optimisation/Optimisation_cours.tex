@@ -4,7 +4,6 @@
 \input{./preambule}
 %\input{./naming}
 
-
 \title{Optimisation}
 \author{Mohamed \textsc{Camar-Eddine}}
 
@@ -470,10 +469,131 @@ On parle de contraintes de type égualité.
 	
 	
 \end{ex}
-		
-%\sectionEt{Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%% TODO %%%%%%%%%%%%%%%%%%%%%%
+
+	Remarque sur la droite de régression :
+
+	Quand on veut approcher un nuage de points $(x_i, y_i)_{1 \leq i \leq n}$ par une droite $y = ax +b$, la mesure naturelle serait la somme des valeurs absolues des résidus $r_i = y_i -(ax_i+b)$ mais il est plus commode de considérer la somme des $r_i^2$.
+
+	\[ 1 \leq \frac{ |r_1| + \dots + |r_n| }{ (r_i^2 + \dots + r_n^2)^{\frac{1}{2}} } \leq \sqrt{n} \]
+	
+\begin{ex}
+	Soit $1<p \leq q$, soit $f: \mathbb{R}^n \rightarrow \mathbb{R}$, $x \mapsto \sum $ TODO
+	
+\end{ex}
+
+\subsection{Condition de type inégalité (condition de Karush Kuhn Tucker}
+
+\begin{ex}
+	Reprenons le problème $(P1)$ avec une contrainte d'ingalité.
+	\[ (P) : \min f(x) = x_1 + x_2 \]
+	sachant que $g(x) = x_1+x_2 -2 \leq 0$.
+	
+	$S = \{ g(x) = 0 \}$ est le cercle $C(0, \sqrt{0})$ qui est compact. $f$ étant continue, $f$ atteint son minimum en un point $\bar{x} \in S$
+	
+	$\bar{x} \in S(avec un rond : intérieur de S)$ sinon $\nabla f$ serait nul, ce qui n'est pas le cas.
+	
+	La condition de Lagrange dit : $\exists \lambda \in \mathbb{R}$ tel que : \[ \nabla f + \lambda \cdot \nabla h = 0 \]
+	$\Rightarrow \bar{x} = (-1, -1) et \lambda = \frac{1}{2}$ ou $\bar{x} = (1, 1) et \lambda = -\frac{1}{2}$
+	
+\end{ex}
+	
+	\subsubsection{CN d'optimalité : règle des multiplicateurs de KKT}
+	
+	On considère le problème suivant : \[ \min f(x) et g_j(x) \leq 0 , 1 \leq j \leq p\]
+	
+	On suppose que :
+\begin{itemize}
+	\item $\bar{x}$ est un point admissible
+	\item $f:B(\bar{x},\alpha)$ est différentiable
+	\item toutes les fonctions $(g_j)_j$ TODO
+\end{itemize}
+
+On ajoute l'hypothèse suivante, dite de qualification des contraintes : les gradients des contraintes actives au point $\bar{x}$ : $\nabla g_j(\bar{x}), {j\in J(\bar{x})}$ sont linéairement indépendants.
+
+%\begin{theo}
+	Conditions nécéssaires de KKT
+	
+	Si $\bar{x}$ réalise un minimum local de $f$, alors il existe un vecteur $\mu \in \mathbb{R}_+^p$, $\mu \ne 0$ de multiplicateur positif tel que TODO !
+	
+%\end{theo}
+
+Remarque : La condition (ii) signifie que si $j not \in J(\bar{x})$ alors $\mu_j = 0$.
+
+La coindition de KKT devient \[ TODO \]
+
+Théorème Condition d'optimalité de KKT pour les problmèmes convexes
+
+Supposons $f$ et $g_j$ cxonvexes définies sur un convexe $C$ de $\mathbb{R}^n$. Si les conditions de KKt sont satisfaites en $\bar{x}$, alors $\bar{x}$ réalise un minimum global.
+
+Optimisation avec contraintes mixtes :
+
+Considérons le problème d'optimisation suivant avec les deux types de contraintes : \[ (P) TODO \]
+
+On désigne par $J(\bar{x})=\{j \in \{1, \dots , p\}; g_j(\bar{x}) = 0\}$
+
+On ajoute l'hypôthèse suivante de qualification de contriantes
+
+\begin{itemize}
+	\item TODO
+\end{itemize}
+
+Théorème CN d'optimalité de KKT
+
+Si $\bar{x}$ réalise un minimum local de $f$, $\exists \lambda \in \mathbb{R}^n$ et $\mu \in \mathbb{R}^p$ tel que :
+\begin{itemize}
+	\item[(i)] TODO
+\end{itemize}
+
+Théorèle CS d'optimalité dans le cas convexe
+
+Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALors si les conditions de KKT sont satisfaites au point $\bar{x}$, alors ce point est un minimum de $f$.
+
+\begin{ex}
+	Soit $A$ un matrice de $Mn(\mathbb{R})$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda \leq 0$. On considère le problème d'optimisation suivant : \[ TODO \]
+	\[ f(x) = \sum_{i=1}^n |x_i|^p \]
+	\[ g(x) = \sum_{i=1}^n |x_i|^q \]
+	\[ C = \{ x \in \mathbb{R} ; g(x) = 1 \} \]
+	\[ \min TODO \]
+	Comme $p>1$ et $q>1$, les fonctions $f$ et $g$ sont différentiables sur $\mathbb{R}^n$, et on obtient :\\ $\displaystyle (\nabla f)_i = \sum_{i=1}^n p |x_i|^{p-1} si x_i\geq 0$ TODO
+	
+	La condition de Lagrande s'écrit : $\exists \lambda \in \mathbb{R}$ tel que $ \nabla f(\bar{x}) + lambda \nabla g(\bar{x}) = 0 $ dans $\R$.
+	
+	\[ (\nabla f(\bar{x}))_i + (\lambda \nabla g(\bar{x}))_i = 0 , \forall i \in \{ 1, \dots, n \} \]
+	\[ p|x_i|^{p-1} + \lambda q|x_i|^{q-1} = 0 \]
+	%TODO
+	$ \Rightarrow \lambda = - \frac{p}{q}|x_i|^{p-q} $ existe et est unique (au point $\bar{x}$). On en déduit que les valeurs absolues de tous les $x_i$ sont égales.
+	
+	La méthode de ré-injection tourne en rond.
+	
+	Notons $k$ le nombre des $x_i$ non nuls ($k \geq 1$ car sinon $g(x) = 0$ et $\bar{x} not \in C$)
+	
+	$f(\bar{x}) = \sum_{i=1}^n |\bar{x_i}|^p$
+	
+	TODO
+	
+	Donc $f(\bar{x})$ est maximal pour $k=n$, $f(\bar{x}) = n^{1-\frac{p}{q}}$ et $\bar{x} = (+- n^{-\frac{1}{q}}, \dots)$.
+	
+\end{ex}
+
+\begin{ex}
+	$f(x) = <Ax, x>$, $C = \{ x\in \R, ||x|| \leq 1 \}$
+	
+	$<Ax, a> \geq \lambda _1 ||x||^2$
+	
+\end{ex}
+
+	
+\sectionEt{Conclusion}
 %====================%
 
+Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
+ 
 
 \end{document}
 
+
+%\bibliographystyle{./plain-fr}
+%\bibliography{biblio}
+%\ajoutTocChapter{Bibliographie}
