@@ -28,10 +28,10 @@
 	
 	Il peut y avoir plusieurs solutions. Pour s'assurer de l'unicité de $\bar{x}$, on est souvent amené à supposer que $f$ vérifie certaines propriétés particulières telles que la stricte convexité.
 	
-	%\begin{definition}
+	\begin{definition}
 	Définition de la continuité :
 	$f:I->R$, $X_0 \in I$, $f$ est continue en $x_0$ ssi ($ \forall s>0$) $\exists \alpha >0$ tel que $|x-x_0| < \alpha \Rightarrow |f(x)-f(x_0)| < \epsilon$
-	%\end{definition}
+	\end{definition}
 	
 	$A$ un sous ensemble de $R$, $m = \inf A$ ssi ($\forall \epsilon>0$) $\exists x_\epsilon \in A$ tel que $m - x_\epsilon < \epsilon$, textit{ie} $m < x_\epsilon + \epsilon$
 	
@@ -105,12 +105,12 @@
 		
 		Minimiser $f(x, y) = xy$ lorsque $(x, y) \in (E)$ où $(E)$ est l'éllipse d'équation $4x^2+y^2=4$ ($x^2/1^2 + y^2/2^2 = 1$).
 		
-		%\begin{theo} (Lagrange)
+		\begin{theoreme} (Lagrange)
 		
 		Si $(x_0, y_0)$ réalise in minimum local sur $E$ et que $\nabla \neq 0$ alors il existe un réel $\lambda$ tel que $\nabla f + \lambda \nabla h = $
 		$\lambda$ s'appelle un multiplicateur de Lagrange.
 		
-		%\end{theo}
+		\end{theoreme}
 		
 		%($E = {(x, y} \in R^2 | h(x, y) = 0}$) \\
 		$\nabla f(x, y) = ( x, y)$ \\
@@ -169,21 +169,21 @@
 		
 		%$f$ est fortement convexe sur $C$ de module de forte convexité $c>0$ si $f(\alpha \dot x + (1-\alpha) \dot x') \infeq \alpha \dot f(x) + (1-\alpha) \dot f(x') -\frac{1}{2} \dot c \dot \alpha \dot (1-\alpha) \dot ||x'-x||^2$.
 		
-		%\begin{theorem}
+		\begin{theoreme}
 		Soit $f$ différentiable sur un ouvert $\Omega$ de $R^n$ et $C$ un convexe de $\Omega$.
 		$f$ est convexe sur $C$ ssi $f(x) >= f(\bar{x}) + <\nabla f(\bar{x}), x-\bar{x}>$, $\forall (x, \bar{x}) \in C x C$.
-		%\end{theorem}
+		\end{theoreme}
 		
 		$y=f'(\bar{x}) \dot (x-\bar{x}) +f(\bar{x})$
 		
-		%\begin{theorem}
+		\begin{theoreme}
 		Soit $f$ deux fois différentiable, sur un ouvert convexe $C$, alors :
 		\begin{itemize}
 			\item $f$ est convexe sur $C$ ssi $\nabla^2 f(x)$ est semi-définie positive.
 			\item Si $\nabla^2 f(x)$ est semi-définie positive $\forall x \in C$ alors $f$ est strictement convexe sur $C$.
 			\item $f$f est fortement convexe sur $C$ de module C ssi la plus petite valeur propore de $\nabla^2 f(x)$ est minorée par $c$, soit : <$\nabla^2 f(x) \dot \lambda, \lambda> >= c \dot --\lambda ||^2$, $\forall x \in C$ et $\forall \lambda \in R^n$.
 		\end{itemize}
-		%\end{theorem}
+		\end{theoreme}
 		
 		
 	\subsection{Exemples}
@@ -191,7 +191,7 @@
 	
 		\subsubsection{Ex 1}
 		
-		Soit $f:\Omega \mathbb{R}^n$, ($\omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
+		Soit $f:\Omega \R^n$, ($\omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
 		
 		Soit $\bar{x}) \in Omega$, $f(\bar{x} +h) = A \dot (\bar{x}+h) + b = A \bar{x} + b + Ah = f(\bar{x}) + Ah + ||h|| \dot 0 = f(\bar{x}) + Ah + ||h|| \dot \epsilon (h)$, où $\epsilon (h) = 0$.
 		
@@ -200,13 +200,13 @@
 		
 		\subsubsection{Ex 2}
 		
-		Soit $\Phi : \Omega x \Omega \mathbb{R}$ bilinéaire et symétrique, $f: \omega \mathbb{R}$, $x \mapsto f(x) = \Phi(x, x)$.
+		Soit $\Phi : \Omega x \Omega \R$ bilinéaire et symétrique, $f: \omega \R$, $x \mapsto f(x) = \Phi(x, x)$.
 		Soit $\bar{x} \in \Omega$, $f(\bar{x}+h) = \Phi(\bar{x}+h, \bar{x}+h) = Phi(\bar{x}, \bar{x}) + \Phi(\bar{x}, h) + \Phi(h, \bar{x}) + \Phi(h, h) = f(\bar{x}) + 2 \dot \Phi(\bar{x}, h) + \Phi(h, h)$.
 		
 		Reste à montrer que $\Phi(h, h) = ||h|| \dot \epsilon (h) \Leftrightarrow \epsilon (h) = \frac{ Phi(h, h) }{ ||h|| }$, avec $\lim{h \rightarrow 0} \epsilon (h) = 0$, \textit{ie} $\Phi(h, h) = o(h)$
 		
 		Comme $\Phi$ est bilinéaire et continue (car $dim < 2$) on a : $| \Phi (x, x) \leq c \dot ||x||^2$.
-		$| \epsilon (h) | = \frac{  }{  } \leq c \dot \frac{ ||h||^2 }{ ||h|| } = c \dot ||h|| \rightarrow_{h \rightarrow 0} 0$.
+		%$| \epsilon (h) | = \frac{  }{  } \leq c \dot \frac{ ||h||^2 }{ ||h|| } = c \dot ||h|| \rightarrow_{h \rightarrow 0} 0$.
 		
 		%Donc f est différentiable en \bar{x} et $<\nabla f(\bar{x}), h> = 2 \Phi( \bar{x}, h)$.
 		
@@ -220,7 +220,7 @@
 		
 		\subsubsection{Ex 4}
 		
-		Soit $a \in R^n$ et $V$ un voisinage de $a$, soit $f:V \mathbb{R}$ différentiable en $a$, montrer que $\lim_{t \rightarrow 0} \frac{ f(a+th) - f(a) }{ t } = <\nabla f(a), h>$.
+		Soit $a \in R^n$ et $V$ un voisinage de $a$, soit $f:V \R$ différentiable en $a$, montrer que $\lim_{t \rightarrow 0} \frac{ f(a+th) - f(a) }{ t } = <\nabla f(a), h>$.
 		
 		Comme $f$ est différentiable en $a$, on a : $f(a+k) = f(a) + <\nabla f(a), k> + ||k|| \epsilon (k)$, avec $\lim_{k \rightarrow 0} \epsilon (k) = 0$.
 		
@@ -263,7 +263,7 @@
 		
 		\subsubsection{Ex 5}
 		
-		Soit $u: \omega \mathbb{R}$ différentiable sur $\Omega$, soit $f: \omega \mathbb{R}$, $ x \mapsto f(x) = (u(x))^2$.
+		Soit $u: \omega \R$ différentiable sur $\Omega$, soit $f: \omega \R$, $ x \mapsto f(x) = (u(x))^2$.
 		
 		$f$ est elle différentiable sur $\Omega$ ? Su oui, que vaut $ \nabla f(x)$ ?
 		
@@ -288,7 +288,7 @@
 	
 		\subsubsection{Condition d'optimalité}
 		
-		Soit $f : [a, b] \mathbb{R}$ continue et dérivable sur $[a,  b]$.
+		Soit $f : [a, b] \R$ continue et dérivable sur $[a,  b]$.
 		Soit $\bar{x} \in [a, b]$ tel que $\bar{x}$ réalise un minimum local de $f$.
 		
 		Théorème (condition d'optimalité du 1er ordre)
@@ -307,11 +307,11 @@
 		
 		Définition :
 		
-		Soit $f : R \mathbb{R}$, on dit que $f$ est c\oe rcive si \[ \lim_{|x| \rightarrow \infty} f(x) = + \infty \]
+		Soit $f : R \R$, on dit que $f$ est c\oe rcive si \[ \lim_{|x| \rightarrow \infty} f(x) = + \infty \]
 		
 		(ex : $|f(x)| \geq c|x|^\alpha$, avec $\alpha > 0$)
 		
-		Soit $f : R \mathbb{R}$ continue et c\oe rcive, alors $f$ atteint un minimum global.\\
+		Soit $f : R \R$ continue et c\oe rcive, alors $f$ atteint un minimum global.\\
 		
 		Rappel : $\displaystyle \lim_{x \rightarrow x_0} = l$ ssi ($\forall \epsilon >0$) $\exists \alpha >0$ tel que $|x-x_0| \Rightarrow |f(x) - l| < \epsilon$\\
 		
@@ -330,7 +330,7 @@
 		
 		\subsubsection{Conditions d'optimalité du second ordre}
 		
-		Soit $f : [a, b] \mathbb{R}$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
+		Soit $f : [a, b] \R$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
 		
 		Théorème (conditions nécessaire) : 
 		
@@ -346,7 +346,7 @@
 		
 		Théorème (condition suffisante) :
 		
-		$f : [a, b] \mathbb{R}$ continue et deux fois dérivable sur $]a, b[$. Soit $\bar{x} \in ]a, b[$ tel que $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$. ALors $\bar{x}$ réalise un minimum local strict de $f$ sur $[a, b]$.
+		$f : [a, b] \R$ continue et deux fois dérivable sur $]a, b[$. Soit $\bar{x} \in ]a, b[$ tel que $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$. ALors $\bar{x}$ réalise un minimum local strict de $f$ sur $[a, b]$.
 		
 		En effet,par Taylor-Young, on a: $f(\bar{x}+h) -f(\bar{x}) = \frac{1}{2} h^2 f''(\bar{x}) + h^2 \epsilon(h)$ et $signe( f(\bar{x}+h) - f(\bar{x}) ) = signe( \frac{1}{2} f''(\bar{x}) + \epsilon(h))$.
 		
@@ -361,7 +361,7 @@
 		
 		Théorème :
 		
-		Soit $f : B(\bar{x}, \alpha) \rightarrow \mathbb{R}$,  (où $B(\bar{x}, \alpha) \subset \mathbb{R}^n$ est la boule de rayon $\alpha$ centrée sur $\bar{x}$) continue et différentiable sur $B(\bar{x}, \alpha)$.
+		Soit $f : B(\bar{x}, \alpha) \rightarrow \R$,  (où $B(\bar{x}, \alpha) \subset \R^n$ est la boule de rayon $\alpha$ centrée sur $\bar{x}$) continue et différentiable sur $B(\bar{x}, \alpha)$.
 		
 		On suppose que $f$ admet un minimum local en $\bar{x}$, alors $\nabla f(\bar{x}) = 0$ (condition d'optimalité du premier ordre.
 		
@@ -371,19 +371,19 @@
 		
 		%TODO
 		
-		Le théorème de Weierstrass reste vraie dans $\mathbb{R}^n$.
-		$f:X\rightarrow \mathbb{R}$ où $X$ est un compact de $R^n$.
+		Le théorème de Weierstrass reste vraie dans $\R^n$.
+		$f:X\rightarrow \R$ où $X$ est un compact de $R^n$.
 		Si $f$ est continue sur $X$, alors $f$ y atteint ses bornes.
 		
 		Théorème : 
 		
-		Soit $f:R^n \mathbb{R}$ continue et c\oe rcive, alors $f$ admet un minimum global.
+		Soit $f:R^n \R$ continue et c\oe rcive, alors $f$ admet un minimum global.
 		
 		Théorème : 
 		
 		(Condition Nécessaire)
 		
-		Soit $f : B(\bar{x}, \alpha) \subset \mathbb{R}^n \mathbb{R}$ continue et deux fois différentiable.
+		Soit $f : B(\bar{x}, \alpha) \subset \R^n \R$ continue et deux fois différentiable.
 		
 		Si $\bar{x}$ réalise un minimum local, alors $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ est semi-définie positive.
 		
@@ -391,12 +391,12 @@
 		
 		Soit $\bar{x}$ tel que $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ soit définie positive, alors $\bar{x}$ réalise un minimum local de $f$.
 		
-		\begin{ex}
+		\begin{exemple}
 		
-		On veut minimiser la fonction quadratique $f(x) = <Ax, x> +2<b, x> +c$ où $A$ est symétrique définie positive $\forall x \in \mathbb{R}^n$.
+		On veut minimiser la fonction quadratique $f(x) = <Ax, x> +2<b, x> +c$ où $A$ est symétrique définie positive $\forall x \in \R^n$.
 		($\nabla f(\bar{x}) = 2A\bar{x} +2b$)
 		
-		$f$ est un polynome de degré 2 en $x_i$ $\Rightarrow f$ est continue sur $\mathbb{R}^n$.
+		$f$ est un polynome de degré 2 en $x_i$ $\Rightarrow f$ est continue sur $\R^n$.
 		
 		$f$ est c\oe rcive et donc 
 	 	$ f(x) = <Ax, x>  +2<b, x> +c \geq \lambda ||x||^2 + 2<b, x> +c \geq \lambda ||x||^2 - 2||b|| \cdot ||x|| +c $
@@ -414,15 +414,15 @@
 		
 		$f(x) = <Ax, x> +2<b, x> +c$ est strictement convexe $\Rightarrow$ il y a unicité de la solution.
 		
-		\end{ex}
+		\end{exemple}
 		
-		\begin{ex}%[droite de régression]
+		\begin{exemple}%[droite de régression]
 		
 		Soient $N$ points $\{(x_i, y_i), 1\leq i \leq N\}$ d'abscisses strictement croissantes.
 		
 		Déterminer une droite d'équation $y=ax+b$ telle que la quantité $\displaystyle f(a, b) = \sum_{i=1}^N (y_i-(ax_i+b))^2$ soit minimale.
 		
-		$f$ est continue et différentiable en tout $(a, b) \in \mathbb{R}^2$.
+		$f$ est continue et différentiable en tout $(a, b) \in \R^2$.
 		On veut que $\nabla f(a, b) = 0$.
 		
 		Notations :
@@ -434,7 +434,7 @@
 		\begin{eqnarray*}%[\{]
  \frac{\partial f}{\partial a} = \sum_{i=1}^N 2(y_i-(ax_i+b)) \\ \frac{\partial f}{\partial b} = \sum_{i=1}^N 2(y_i-(ax_i+b)) \end{eqnarray*}
 
-		\end{ex}
+		\end{exemple}
 		
 		
 \section{Optimisation avec contraintes}
@@ -454,146 +454,169 @@ On parle de contraintes de type égualité.
 
 %TODO
 
-\begin{ex}
+\begin{exemple}
 	Considérons le problème de minimisation, avec une seule contrainte, suivant : \[ TODO \]	
 	
 	L'ensemble des contraintes est le cercle de centre 0 et de rayon $\sqrt 2$ \[ K = C(0, \sqrt(2)) \].
 	
 	On considère les droites d'équation \[  \]
 	
-	Les droites $(\delta_a)$ se déplacent vers le \og sud-ouest \fg. $f$ atteint donc son minimum en \[ \bar{x} = (-1, -1) \]
+	Les droites $(\Delta_a)$ se déplacent vers le \og sud-ouest \fg. $f$ atteint donc son minimum en \[ \bar{x} = (-1, -1) \]
 	
 	En $\bar{x}$, on a $\displaystyle \nabla f = ...$ et $ $ où $h(x) = x_1^2 + x_2^2 - 2$
 	
 	On remarque que $ \nabla h( \bar{x} ) = -2  \nabla f( \bar{x} ) $
 	
 	
-\end{ex}
+\end{exemple}
 
 %%%%%%%%%%%%%%%%%%%%%%% TODO %%%%%%%%%%%%%%%%%%%%%%
 
-	Remarque sur la droite de régression :
+\begin{remarque} (sur la droite de régression)
 
 	Quand on veut approcher un nuage de points $(x_i, y_i)_{1 \leq i \leq n}$ par une droite $y = ax +b$, la mesure naturelle serait la somme des valeurs absolues des résidus $r_i = y_i -(ax_i+b)$ mais il est plus commode de considérer la somme des $r_i^2$.
 
 	\[ 1 \leq \frac{ |r_1| + \dots + |r_n| }{ (r_i^2 + \dots + r_n^2)^{\frac{1}{2}} } \leq \sqrt{n} \]
 	
-\begin{ex}
-	Soit $1<p \leq q$, soit $f: \mathbb{R}^n \rightarrow \mathbb{R}$, $x \mapsto \sum $ TODO
+	Les deux erreurs ne sont proches que si n est petit.
+\end{remarque}
+
+\begin{exemple}
+	Soient $1 < p \leq q$,
+	\begin{align*}
+	f : \R^n & \rightarrow  \R \\
+	x & \mapsto \sum_{i=1}^n (x_i)^p
+	\end{align*}
+	\begin{align*}
+	g : \R^n & \rightarrow  \R \\
+	x & \mapsto \sum_{i=1}^n (x_i)^q
+	\end{align*}
+	\[ S = \{ x \in \R, \quad g(x) = 1 \} \]
 	
-\end{ex}
+	Étudier le problème suivant :
+	\[ \mathcal{P} \begin{cases} f(x), \\ x \in S \end{cases} \]
+	
+	
+\end{exemple}
 
 \subsection{Condition de type inégalité (condition de Karush Kuhn Tucker}
 
-\begin{ex}
-	Reprenons le problème $(P1)$ avec une contrainte d'ingalité.
-	\[ (P) : \min f(x) = x_1 + x_2 \]
+\begin{exemple}
+	Reprenons le problème $(P1)$ avec une contrainte d'inégalité.
+	\[ (\mathcal{P}) : \min f(x) = x_1 + x_2 \]
 	sachant que $g(x) = x_1+x_2 -2 \leq 0$.
 	
 	$S = \{ g(x) = 0 \}$ est le cercle $C(0, \sqrt{0})$ qui est compact. $f$ étant continue, $f$ atteint son minimum en un point $\bar{x} \in S$
 	
-	$\bar{x} \in S(avec un rond : intérieur de S)$ sinon $\nabla f$ serait nul, ce qui n'est pas le cas.
+	$\bar{x} \in S$(avec un rond : intérieur de S) sinon $\nabla f$ serait nul, ce qui n'est pas le cas.
 	
-	La condition de Lagrange dit : $\exists \lambda \in \mathbb{R}$ tel que : \[ \nabla f + \lambda \cdot \nabla h = 0 \]
+	La condition de Lagrange dit : $\exists \lambda \in \R$ tel que : \[ \nabla f + \lambda \cdot \nabla h = 0 \]
 	$\Rightarrow \bar{x} = (-1, -1) et \lambda = \frac{1}{2}$ ou $\bar{x} = (1, 1) et \lambda = -\frac{1}{2}$
 	
-\end{ex}
+\end{exemple}
 	
 	\subsubsection{CN d'optimalité : règle des multiplicateurs de KKT}
 	
-	On considère le problème suivant : \[ \min f(x) et g_j(x) \leq 0 , 1 \leq j \leq p\]
+	On considère le problème suivant : \[ \begin{cases}\min f(x) \\ g_j(x) \leq 0 , \quad 1 \leq j \leq p \end{cases} \]
 	
 	On suppose que :
 \begin{itemize}
 	\item $\bar{x}$ est un point admissible
 	\item $f:B(\bar{x},\alpha)$ est différentiable
-	\item toutes les fonctions $(g_j)_j$ TODO
+	\item toutes les fonctions $(g_j)_j$ sont continuement différentiables en $\bar{x}$
 \end{itemize}
+
+On désigne par $J(x)$ l'ensembles des indices des contraintes actives (saturées) au point $\bar{x}$, ie $J(x) = \{ j \in \{ 1, \dots, p \}, \quad g_j(\bar{x}) = 0 \} $.
 
 On ajoute l'hypothèse suivante, dite de qualification des contraintes : les gradients des contraintes actives au point $\bar{x}$ : $\nabla g_j(\bar{x}), {j\in J(\bar{x})}$ sont linéairement indépendants.
 
-%\begin{theo}
-	Conditions nécéssaires de KKT
+\begin{theoreme} (CN de KKT)
 	
-	Si $\bar{x}$ réalise un minimum local de $f$, alors il existe un vecteur $\mu \in \mathbb{R}_+^p$, $\mu \ne 0$ de multiplicateur positif tel que TODO !
+	Si $\bar{x}$ réalise un minimum local de $f$, alors il existe un vecteur $\mu \in \R_+^p$, $\mu \ne 0$ de multiplicateur positif tel que \[ \begin{cases} \displaystyle \nabla f(\bar{x}) + \sum_{j=1}^p \mu _j \nabla g_j (\bar{x}) = 0 \quad (i) \\ \mu _j g_j(\bar{x}) = 0, \quad \forall i \leq j \leq p \quad (ii) \end{cases} \]
 	
-%\end{theo}
+\end{theoreme}
 
-Remarque : La condition (ii) signifie que si $j not \in J(\bar{x})$ alors $\mu_j = 0$.
+\begin{remarque}
+La condition $(ii)$ signifie que si $j \not \in J(\bar{x})$ alors $\mu_j = 0$.
 
-La coindition de KKT devient \[ TODO \]
+La condition de KKT devient \[ \nabla f(\bar{x}) + \sum_{j \in J(x)} \mu _j \nabla g_j (\bar{x}) = 0 \]
+\end{remarque}
 
-Théorème Condition d'optimalité de KKT pour les problmèmes convexes
+\begin{theoreme} (CS d'optimalité de KKT pour les problèmes convexes)
 
-Supposons $f$ et $g_j$ cxonvexes définies sur un convexe $C$ de $\mathbb{R}^n$. Si les conditions de KKt sont satisfaites en $\bar{x}$, alors $\bar{x}$ réalise un minimum global.
+Supposons $f$ et $g_j$ convexes définies sur un convexe $C$ de $\R^n$. Si les conditions de KKt sont satisfaites en $\bar{x}$, alors $\bar{x}$ réalise un minimum global.
+\end{theoreme}
 
-Optimisation avec contraintes mixtes :
+\subsection{Optimisation avec contraintes mixtes}
 
-Considérons le problème d'optimisation suivant avec les deux types de contraintes : \[ (P) TODO \]
+Considérons le problème d'optimisation suivant avec les deux types de contraintes : \[ (\mathcal{P}) \begin{cases}\min f(x) \\ h_i(x) = 0 , \quad 1 \leq j \leq n \\ g_j(x) \leq 0 , \quad i \leq j \leq p \end{cases} \]
 
-On désigne par $J(\bar{x})=\{j \in \{1, \dots , p\}; g_j(\bar{x}) = 0\}$
-
-On ajoute l'hypôthèse suivante de qualification de contriantes
-
+On désigne par $J(\bar{x})=\{j \in \{1, \dots , p\}; g_j(\bar{x}) = 0\}$.
+On ajoute les hypothèses suivantes de qualification de contraintes :
 \begin{itemize}
-	\item TODO
+	\item[1)] $\exists \lambda_0 \in \R^n$ tel que :
+	\begin{itemize}
+		\item $<\nabla h_i(\bar{x}), \lambda_0> \; = 0, \quad \forall i \in \{ 1, \dots , n \}$
+		\item $<\nabla g_j(\bar{x}), \lambda_0> \; < 0, \quad \forall j \in \{ 1, \dots , p \}$
+	\end{itemize}
+	\item[2)] $\nabla h_1(\bar{x}), \dots, \nabla h_n(\bar{x})$ sont linéairement indépendants
 \end{itemize}
 
-Théorème CN d'optimalité de KKT
+\begin{theoreme} (CN d'optimalité de KKT)
 
-Si $\bar{x}$ réalise un minimum local de $f$, $\exists \lambda \in \mathbb{R}^n$ et $\mu \in \mathbb{R}^p$ tel que :
-\begin{itemize}
-	\item[(i)] TODO
-\end{itemize}
+Si $\bar{x}$ réalise un minimum local de $f$, $\exists \lambda \in \R^n$ et $\mu \in \R^p$ tel que :
+	\begin{itemize}
+		\item[(i)] $\displaystyle \nabla f(\bar{x}) + \sum_{i=1}^n \lambda _i \nabla h_j (\bar{x}) + \sum_{j=1}^p \mu _j \nabla g_j (\bar{x}) = 0$
+		\item[(ii)] $ \mu _j \geq 0 \quad \forall j \in \{ i, \dots , p \}$
+		\item[(iii)] $ \mu _j \cdot g_j(\bar{x}) = 0 \quad \forall j \in \{ 1, \dots , p \}$
+	\end{itemize}
+\end{theoreme}
 
-Théorèle CS d'optimalité dans le cas convexe
+\begin{theoreme} (CS d'optimalité dans le cas convexe)
 
 Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALors si les conditions de KKT sont satisfaites au point $\bar{x}$, alors ce point est un minimum de $f$.
+\end{theoreme}
+\begin{exemple} %1
 
-\begin{ex}
-	Soit $A$ un matrice de $Mn(\mathbb{R})$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda \leq 0$. On considère le problème d'optimisation suivant : \[ TODO \]
-	\[ f(x) = \sum_{i=1}^n |x_i|^p \]
-	\[ g(x) = \sum_{i=1}^n |x_i|^q \]
-	\[ C = \{ x \in \mathbb{R} ; g(x) = 1 \} \]
-	\[ \min TODO \]
-	Comme $p>1$ et $q>1$, les fonctions $f$ et $g$ sont différentiables sur $\mathbb{R}^n$, et on obtient :\\ $\displaystyle (\nabla f)_i = \sum_{i=1}^n p |x_i|^{p-1} si x_i\geq 0$ TODO
+	Soient $ \displaystyle f(x) = \sum_{i=1}^n |x_i|^p $, 
+	$ \displaystyle g(x) = \sum_{i=1}^n |x_i|^q $, et
+	$ \displaystyle C = \{ x \in \R ; g(x) = 1 \} $
 	
-	La condition de Lagrande s'écrit : $\exists \lambda \in \mathbb{R}$ tel que $ \nabla f(\bar{x}) + lambda \nabla g(\bar{x}) = 0 $ dans $\R$.
+	%\[ \min TODO \]
 	
-	\[ (\nabla f(\bar{x}))_i + (\lambda \nabla g(\bar{x}))_i = 0 , \forall i \in \{ 1, \dots, n \} \]
-	\[ p|x_i|^{p-1} + \lambda q|x_i|^{q-1} = 0 \]
-	%TODO
+	Comme $p>1$ et $q>1$, les fonctions $f$ et $g$ sont différentiables sur $\R^n$, et on obtient :\\ $\displaystyle (\nabla f)_i = \begin{cases} p |x_i|^{p-1} \quad \text{ si }x_i\geq 0 \\  -p |x_i|^{p-1} \quad \text{ si } x_i < 0  \end{cases}$ 
+	
+	La condition de Lagrange s'écrit : $\exists \lambda \in \R$ tel que 
+	\[ \nabla f(\bar{x}) + \lambda \nabla g(\bar{x}) = 0 \]
+	\[ (\nabla f(\bar{x}))_i + (\lambda \nabla g(\bar{x}))_i = 0 , \quad \forall i \in \{ 1, \dots, n \} \]
+	\[ p|x_i|^{p-1} + \lambda q|x_i|^{q-1} = 0 , \quad \forall i \in \{ 1, \dots, n \} \]
+	%TODO	La méthode de ré-injection tourne en rond.
 	$ \Rightarrow \lambda = - \frac{p}{q}|x_i|^{p-q} $ existe et est unique (au point $\bar{x}$). On en déduit que les valeurs absolues de tous les $x_i$ sont égales.
+	Notons $k$ le nombre des $x_i$ non nuls ($k \geq 1$ car sinon $g(x) = 0$ et $\bar{x} \not \in C$)
+	$f(\bar{x}) = k \alpha ^p$ où $\alpha = |x_i|$.
 	
-	La méthode de ré-injection tourne en rond.
+	On veut maximiser $f$, on sait que $\bar{x} \in C \Rightarrow g(\bar{x}) = 1 \Rightarrow \sum |x_i|^q = 1 \Rightarrow k |x_i|^q = 1 \Rightarrow k \alpha^q = 1 \Rightarrow \alpha = k^{-\frac{1}{q}} \Rightarrow f(\bar{x}) = k \alpha^p = k \cdot k^{-\frac{p}{q}} = k^{1-\frac{p}{q}} $
 	
-	Notons $k$ le nombre des $x_i$ non nuls ($k \geq 1$ car sinon $g(x) = 0$ et $\bar{x} not \in C$)
+	Or $1-\frac{p}{q} \geq 0$, donc $f(\bar{x})$ est maximal pour $k=n$, $f(\bar{x}) = n^{1-\frac{p}{q}}$ et $\bar{x} = (^+_- n^{-\frac{1}{q}}, \dots, ^+_- n^{-\frac{1}{q}})$.
 	
-	$f(\bar{x}) = \sum_{i=1}^n |\bar{x_i}|^p$
-	
-	TODO
-	
-	Donc $f(\bar{x})$ est maximal pour $k=n$, $f(\bar{x}) = n^{1-\frac{p}{q}}$ et $\bar{x} = (+- n^{-\frac{1}{q}}, \dots)$.
-	
-\end{ex}
+\end{exemple}
 
-\begin{ex}
-	$f(x) = <Ax, x>$, $C = \{ x\in \R, ||x|| \leq 1 \}$
+\begin{exemple} %2
+	Soit $A$ un matrice de $Mn(\R)$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda \leq 0$. On considère le problème d'optimisation suivant : \[ \begin{cases}\min f(x) = <Ax, x> \\ x \in C = \{ x \in \R, ||x|| \leq 1 \} \end{cases} \]
+	\[f(x) = <Ax, x>, \quad C = \{ x\in \R, ||x|| \leq 1 \} \]
+	\[<Ax, a> \geq \lambda _1 ||x||^2 \]
 	
-	$<Ax, a> \geq \lambda _1 ||x||^2$
-	
-\end{ex}
+\end{exemple}
 
 	
-\sectionEt{Conclusion}
+%\sectionEt{Conclusion}
 %====================%
 
-Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
+%Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
  
 
+\bibliographystyle{./plain-fr}
+\bibliography{biblio}
+
+
 \end{document}
-
-
-%\bibliographystyle{./plain-fr}
-%\bibliography{biblio}
-%\ajoutTocChapter{Bibliographie}
