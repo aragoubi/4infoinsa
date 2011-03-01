@@ -602,15 +602,20 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 \end{exemple}
 
 \begin{exemple} %2
-	Soit $A$ un matrice de $Mn(\R)$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda \leq 0$. On considère le problème d'optimisation suivant : \[ \begin{cases}\min f(x) = <Ax, x> \\ x \in C = \{ x \in \R, ||x|| \leq 1 \} \end{cases} \]
-	\[f(x) = <Ax, x>, \quad C = \{ x\in \R, ||x|| \leq 1 \} \]
-	\[<Ax, a> \geq \lambda _1 ||x||^2 \]
+	Soit $A$ un matrice de $Mn(\R)$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda _0 \leq 0$. On considère le problème d'optimisation suivant : \[ \begin{cases}\min f(x) = <Ax, x> \quad 0 \not \in sp(A)\\ x \in C = \{ x \in \R, ||x||^2 \leq 1 \} \end{cases} \]
+	
+	$C$ est fermé borné donc $C$ est compact ;
+	$f$ est continue sur $\R^n$, donc $f$ atteint son minimum en un point $\bar{x}$ de $C$.
+	
+	% 2 %
 	
 \end{exemple}
 
 	
 %\sectionEt{Conclusion}
 %====================%
+
+
 
 %Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
  
