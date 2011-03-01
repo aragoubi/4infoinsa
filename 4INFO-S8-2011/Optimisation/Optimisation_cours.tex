@@ -437,8 +437,13 @@
 		\end{exemple}
 		
 		
-\section{Optimisation avec contraintes}
+\section{Optimisation avec contraintes \\ Conditions de Lagrange \\ Conditions de Karush-Kuhn-Tucker }
 %=====================================%
+
+\subsection{Optimisation avec contraintes de type égalité - Condition de Lagrange}
+Soient $f : \R^n \rightarrow \R$, non nécessairement linéaire et K un sous ensemble de $\R^n$.\\
+Nous nous intéressons au problème d'optimisation suivant :
+ \[ (\mathcal{P})\begin{cases}\min f(x) \\ x \in K \end{cases} \]
 
 %TODO
 
@@ -499,7 +504,7 @@ On parle de contraintes de type égualité.
 	
 \end{exemple}
 
-\subsection{Condition de type inégalité (condition de Karush Kuhn Tucker}
+\subsection{Condition de type inégalité (condition de Karush Kuhn Tucker)}
 
 \begin{exemple}
 	Reprenons le problème $(P1)$ avec une contrainte d'inégalité.
@@ -564,7 +569,7 @@ On ajoute les hypothèses suivantes de qualification de contraintes :
 
 \begin{theoreme} (CN d'optimalité de KKT)
 
-Si $\bar{x}$ réalise un minimum local de $f$, $\exists \lambda \in \R^n$ et $\mu \in \R^p$ tel que :
+Si $\bar{x}$ réalise un minimum local de $f$, alors $\exists \lambda \in \R^n \text{  et } \mu \in \R^p$ tel que :
 	\begin{itemize}
 		\item[(i)] $\displaystyle \nabla f(\bar{x}) + \sum_{i=1}^n \lambda _i \nabla h_j (\bar{x}) + \sum_{j=1}^p \mu _j \nabla g_j (\bar{x}) = 0$
 		\item[(ii)] $ \mu _j \geq 0 \quad \forall j \in \{ i, \dots , p \}$
@@ -625,6 +630,9 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 \section{Algorithmes de minimisation sans contraintes}
 \subsection{Résolution approchée d'équations non linéaires}
 \subsection{Méthode de Newton}
+
+
+
 \subsection{Méthode de la sécante}
 \subsection{Méthodes de descente}
 \subsection{Algorithme du gradient à pas fixe}
@@ -637,7 +645,30 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 
 
 %Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
- 
+
+% 1 %
+
+Posons $ g(x) = ||x||^2 - 1 $, $g$ est différentiable sur $\R^n$ tout entier.\\
+Si $\bar{x}$ réalise le minimum de $f$ alors $\bar{x}$ est sur le bord de $C$. Prouvons le par l'absurde.\\
+On suppose que $\bar{x} \in \text{ l'intérieur de }\CC $.
+Cela implique que : \[ \exists \alpha>0 \text{ tel que la boule } B(\bar{x},\alpha)  \]
+\[ f : B(x,\alpha) \rightarrow R \]
+$f$ est différentiable sur un voisinage de $\bar{x}$ et atteint son minimum en $\bar{x}$.
+
+% 2 %
+
+\[ \exists \lambda > 0 \text{ tel que } \nabla f(\bar{x}) + \lambda.\nabla g(\bar{x}) = 0 \]
+\[ \Rightarrow 2A\bar{x} + 2\lambda\bar{x} = 0 \]
+\[ \Rightarrow A\bar{x} = - \lambda\bar{x}\]
+
+Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $-\lambda$. $\bar{x}$ est à chercher dans l'ensemble des vecteurs propres unitaires associés à des valeurs propres négatives.
+
+% 3 %
+
+
+
+
+
 
 \bibliographystyle{./plain-fr}
 \bibliography{biblio}
