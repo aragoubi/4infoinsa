@@ -605,11 +605,30 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 	Soit $A$ un matrice de $Mn(\R)$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda _0 \leq 0$. On considère le problème d'optimisation suivant : \[ \begin{cases}\min f(x) = <Ax, x> \quad 0 \not \in sp(A)\\ x \in C = \{ x \in \R, ||x||^2 \leq 1 \} \end{cases} \]
 	
 	$C$ est fermé borné donc $C$ est compact ;
-	$f$ est continue sur $\R^n$, donc $f$ atteint son minimum en un point $\bar{x}$ de $C$.
+	$f$ est continue sur $\R^n$, donc $f$ atteint son minimum en un point $\x$ de $C$.
 	
 	% 2 %
 	
+	$\Ra \nabla f(\x) = 0$
+	Or $\nabla f(\x) = \not 2A\x$
+	on aurait $2A\x = 0 \Lra A\x = 0$ qui est interdit car $0 \not \in sp(A)$
+	Donc $\x \in \partial C \text{(bord de C)} \Ra g(\x) = 0 \Ra$ la contrainte est active en $\x$.
+	
+	% 4 %
+	
+	$f(\x) = <A\x, \x> = <-\lambda \x, \x> = -\lambda <\x, \x> = - \lambda$ \\
+	Donc pour minimiser $f$f, on prend $\x$, un vecteur propre unitaire associé à $\lambda_1$.\\
+	On aura au préalable montré que la contrainte est qualifiée en $\x$ : on a $\nabla g(\x) = 2\x \ne 0$ (car $||\x||=1$).
+	
 \end{exemple}
+
+\section{Algorithmes de minimisation sans contraintes}
+\subsection{Résolution approchée d'équations non linéaires}
+\subsection{Méthode de Newton}
+\subsection{Méthode de la sécante}
+\subsection{Méthodes de descente}
+\subsection{Algorithme du gradient à pas fixe}
+\subsection{Algorithme du gradient à pas optimal}
 
 	
 %\sectionEt{Conclusion}
