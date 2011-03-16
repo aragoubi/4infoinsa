@@ -1,0 +1,153 @@
+% Définit si on compile en recto (pour la lecture sur écran) ou en rectoverso (pour l'impression)
+\providecommand{\VarRectoVerso}{oneside}
+
+\input{./preambule}
+%\input{./naming}
+
+\title{Compléxité}
+\author{Danielle \textsc{Quichaud}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{TD1}
+
+\begin{exercice}{Fibonacci}
+
+\[ \begin{cases} u_n = u_{n-1} + u_{n-2} \\ u_1 = 1 \\ u_0= 0 \end{cases} \]
+
+\textit{Équation caractéristique} 
+\[x^2-x-1 = 0\]
+\[ \Delta = 1+4=5 >0 \]
+\[ \textit{2 racines distincts } \frac{1 \pm \sqrt{5}}{2} \]
+\[ u_n = a \left(\frac{1 - \sqrt{5}}{2}\right)^n + b \left(\frac{1 + \sqrt{5}}{2}\right)^n \]
+
+\textit{Calcul de a et b} 
+\[ u_0 = 0 = a +b \]
+\[ u_1 = 1 = a \left(\frac{1 - \sqrt{5}}{2}\right) + b \left(\frac{1 + \sqrt{5}}{2}\right) \]
+\[ \Rightarrow \]
+\[ a + b = 0 \Leftrightarrow b = -a \]
+\[ \sqrt(5) (b-a) = 2 \]
+\[ \Leftrightarrow \]
+\[ b = \frac{1}{\sqrt{5}} \]
+\[ a = -\frac{1}{\sqrt{5}} \]
+
+\[ u_n = \frac{1}{\sqrt{5}} \left[ \left( \frac{1 + \sqrt{5}}{2} \right)^n - \left( \frac{1 - \sqrt{5}}{2} \right)^n \right] \]
+
+
+\end{exercice}
+
+\begin{exercice}
+\[ \begin{cases} u_n = 4 u_{n-1} - 4 u_{n-2} + 2 n \\ u_1 = 1 \\ u_0 = 0 \end{cases} \]
+On a bien $f(n)$ de la forme $b^n P(n)$ avec $b = 1$ et $P(n) = 2n$, $d^o P = 1$.
+
+\textit{Équation caractéristique} 
+\[ (x^2-4x+4)(x-1)^2 = 0 \]
+\[ \Ra (x-2)^2(x-1)^2 = 0 \]
+\[ \Ra \textit{ 2 et 1 racines doubles} \]
+\[ \Ra u_n=(an+b)2^n+(cn+d) \]
+\[ \textit{(sol gen + sol part)} \]
+
+\textit{Calcul de c et d} en écrivant que $u_n=cn+d$ est une solution particulière de $t$.
+\[ cn+d=4[c(n-1)+d]-4[c(n-2)+d]+2n \] 
+\[ cn+d+4c-4d-8c+4d=2n \]
+\[ cn+d-4c=2n \]
+\[ \Ra \begin{cases} c=2 \\ d-4c=0 \Ra d=8 \end{cases} \]
+\[ \Ra u_n=(an+b)2^n+2n+8 \]
+
+\textit{Calcul de a et b}
+\[ \begin{cases} u_0=0=b+8 \Ra b=-8 \\u_1=1=2(a+b)+10 \Ra 2a=7 \Ra a=\frac{7}{2} \end{cases} \]
+
+\[ \Ra u_n=(\frac{7}{2}n-2)2^n+2n+8 \]
+
+\end{exercice}
+
+\begin{exercice}
+\[ \begin{cases} u_n=u_{n-1}+u_{n-3}-u_{n-4} \textit{ pour } n\ge 4 \\ u_n=n \textit{ pour } 0 \le n \le 5 \end{cases} \]
+
+\textit{Équation caractéristique} 
+\[ x^4-x^3-x+1=0 \]
+\[ \textit{solution évidente : } 1 \]
+\[ (x-1)(x^3-1)=0 \]
+\[ (x-1)(x-1)(x^2+x+1)=0 \]
+\[ (x-1)^2(x^2+x+1)=0 \]
+\[ x^2+x+1 \textit{ n'a pas de solution réelles } \]
+\[ 2 \textit{ racines complexes } \frac{-1 \pm 
+i \sqrt{3}}{2} = \pm e^{i\frac{2\pi}{3}} \]
+\[ \textit{ce sont les racines cubiques de l'unité : } j \textit{ et } j^2 \]
+
+\[ u_n=(an+b)+cj^n+dj^{2n} \]
+
+Calcul de a, b, c et d à partir des conditions initiales
+\[ \begin{cases} u_0=0=b+c+d \\ 
+u_1=1=a+b+cj+dj^2 \\
+u_2=2=2a+b+cj^2+dj \\
+u_3=3=3a+b+c+d \end{cases} \]
+
+\[ \Ra \begin{cases} a=1 \\ 
+b+c+d=0 \\
+b+cj+dj^2=0 \\
+b+cj^2+dj=0 \end{cases} \]
+
+\[ \Ra \begin{cases} a=1 \\ 
+b=-c-d \\
+c(j-1)+d(j^2-1)=0 \\
+c(j^2-1)+d(j-1)=0 \end{cases} \]
+
+\[ \Ra \begin{cases} a=1 \\ 
+b=c=d=0 \end{cases} \]
+ 
+\end{exercice}
+ 
+\begin{exercice}
+
+\[ \begin{cases} u_n=3u_{n-1}^2 \textit{ pour } n \ge 1 \\ u_0=1 \end{cases} \]
+
+Il faut se ramener à une équation de récurrence linéaire qu'on résoud par la méthode des l'équation caractéristique. On passe donc par les logarithmes.
+
+\[ \log u_n =n\log 3+2\log u_{n-1} \]
+
+On change de varible : $v_n=\log u_n$.
+\[ \begin{cases} v_n=2v_{n-1}+n\log 3 \\
+v_0=\log u_0=0 \end{cases} \]
+
+Le second membre est bien de la forme $b^nP(n)$ avec $b=1$ et $P(n)=n\log 3$ ($d^o P=1$), on utilise donc la méthode de l'équation caractéristique.
+
+\[ (x-2)(x-2)^2=0 \]
+\[ v_n=a2^n+bn+c \]
+
+Calcul de b et de c
+\[ bn+c=2[b(n-1)+c]+n\log 3 \]
+\[ -bn-c-2b=n\log 3\]
+\[ \begin{cases} b=-\log 3 \\ c+2b=0 \Ra c=-2b=2\log 3 \end{cases} \]
+
+Calcul de a à partir de $v_0$
+\[ v_0=0=a+c \Ra a=-2\log 3 \]
+\[ v_n=-2^{n+1}\log 3-n\log 3+2\log3 \]
+\[ v_n=[-2^{n+1}-n+2]\log 3 \]
+\[ \Ra u_n=e^{v_n}=e^{[-2^{n+1}-n+2]\log 3} \]
+\[ u_n=3^{-2^{n+1}-n+2} \]
+
+\end{exercice}
+
+\begin{exercice}
+
+\[ \begin{cases} T(n)=aT(\frac{n}{n})+g(n) \\ T(1)=1 \end{cases} \]
+
+On obtient ce genre d'équations avec des algos du type diviser pour régner. Problème décomposé en sous problèmes de taille $\frac{n}{b}$. $g(n)$ est le cout de la décomposition, et de la recomposition.
+
+Hypothèse : $n$ puissance de $b$ : $n=b$
+\[ \begin{cases} T(b^k)=aT(b^{k-1})+g(b^k) \\ T(b^0)=1 \end{cases} \]
+
+On fait ler changement de variable : $u_k=T(b^k)$
+%TODO
+
+
+\end{exercice}
+
+\end{document}
