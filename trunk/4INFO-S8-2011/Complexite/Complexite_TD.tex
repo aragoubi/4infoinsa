@@ -1,20 +1,10 @@
-% Définit si on compile en recto (pour la lecture sur écran) ou en rectoverso (pour l'impression)
-\providecommand{\VarRectoVerso}{oneside}
-
+\providecommand{\VarRectoVerso}{\oneside}
 \input{./preambule}
-%\input{./naming}
-
-\title{Compléxité}
-\author{Danielle \textsc{Quichaud}}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\title{Complexité}
+\author{Danielle Quichaud}
 \begin{document}
-
 \maketitle
-
 \tableofcontents
-
 \section{TD1}
 
 \begin{exercice}{Fibonacci}
@@ -145,9 +135,20 @@ Hypothèse : $n$ puissance de $b$ : $n=b$
 \[ \begin{cases} T(b^k)=aT(b^{k-1})+g(b^k) \\ T(b^0)=1 \end{cases} \]
 
 On fait ler changement de variable : $u_k=T(b^k)$
-%TODO
+\[ \begin{cases}u_k=au_{k-1}+g(b^k) \\ u_0=1 \end{cases}\]
 
+Par la méthode des facteurs sommants
 
+\[ \begin{cases}
+	u_k=au_{k-1}+g(b^k)\\
+	u_{k-1}=au_{k-2}+g(b^{k-1})\\
+	...\\
+	u_k=au_1+g(b)
+\end{cases}\]
+
+\[u_k=a^ku_0+\sum_{i=0}^{k-1} a^ig(b^{k-1})\]
+
+\[\Ra u_k=a^k+\sum_{i=0}^{k-1} a^ig(b^{k-1})\]
 \end{exercice}
 
 \end{document}
