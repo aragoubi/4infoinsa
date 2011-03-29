@@ -2,6 +2,7 @@
 \input{./preambule}
 \title{Complexité}
 \author{Danielle Quichaud}
+\usepackage{amsmath}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -151,4 +152,147 @@ Par la méthode des facteurs sommants
 \[\Ra u_k=a^k+\sum_{i=0}^{k-1} a^ig(b^{k-1})\]
 \end{exercice}
 
+\section{TD2}
+\subsection{Series génératrices pour résoudre des équations de récurrence}
+\begin{exercice}
+\[ \begin{cases}
+	u_n = 5u_{n-1} - 6u_{n-2}$ pour n $\ge2\\
+	u_0=0,u_1 = 1
+\end{cases}\]
+
+Faire apparaitre la génératrice $u(x) = \sum_{n\ge0} u_n x^n$\\
+
+$\ra$ \underline{\textbf{Multiplier par :}} $x^n$\\
+$u_nx^n = 5u_{n-1}x^n - 6u_{n-2}x^n$ pour $n \ge 2$\\
+
+$\ra$ \textbf{\underline{Sommer ces équations pour faire apparaitre la série génératrice :}}\\
+$\sum_{n\ge2}u_nx^n = 5u_{n-1}x^{n-1} - 6x^2 \sum_{n\ge2} u_{n-2}x^{n-2}$\\
+
+%$u(x)-u_0-u_2x = 5x \sum_{n\ge2}u_{n-1}$\\
+%... voir Cannibal : fait
+\[ u(x) = \sum_{n>=2}^{} u_nx^n\]
+On obtient après sommage
+\[ \sum_{n>=2}^{} u_nx^n = 5\sum_{n>=2}^{} u_{n-1}x^{n-1} - 6\sum_{n>=2}^{} u_{n-2}x^{n-2}\]
+\[ u(x)-u_0-u_1x = 5x\sum_{n>=2}^{} u_{n-1}x^{n-1} - 6x^2\sum_{n>=2}^{} u_{n-2}x^{n-2}\]
+\[ = 5x\sum_{n>=1}^{} u_{n}x^{n} - 6x^2\sum_{n>=0}^{} u_{n}x^{n}\]
+\[ u(x)-u_0-u_1x = 5x[u(x)-u_0]-6x^2u(x)\]
+$\ra$ avec $u_0 = 0, u_1 = 1$
+\[\Ra u(x) - x = 5xu(x) - 6x^2u(x)\]
+\[u(x)[6x^2-5x+1]=x\]
+\[u(x)=\frac{x}{6x^2-5x+1}\]
+$\ra$ racines de $6x^2-5x+1$
+\[\delta = 25-24 = 1 >0 \ra 2\] racines distinctes $\frac{5 \pm 1}{12}$ donne $\frac{1}{2}$ ou $\frac{1}{3}$
+\[u(x)=\frac{x}{6(x-\frac{1}{2})(x-\frac{1}{3})}=\frac{a}{x-\frac{1}{2}}+\frac{b}{x-\frac{1}{3}}\]
+%fini
+
+$\ra X(x-\frac{1}{2})$ puis $x = \frac{1}{2}$ => $a=\frac{\frac{1}{2}}{6(\frac{1}{2}-\frac{1}{3})} =  \frac{1}{2})$\\
+
+$\ra X(x-\frac{1}{3})$ puis $x = \frac{1}{3}$ => $b=\frac{\frac{1}{3}}{6(\frac{1}{3}-\frac{1}{2})} = \frac{1}{3})$\\
+
+$u(x) = \frac{1}{2(x-\frac{1}{2})} - \frac{1}{3(x-\frac{1}{3})} = \frac{1}{2x-1}-\frac{1}{3x-1} = \frac{1}{1-3x} - \frac{1}{1-2x}$\\
+
+$\Ra$ utiliser $\frac{1}{1-cz} = \sum_{n \ge 0}c^nz^n \Ra$ \[ \begin{cases}
+	\frac{1}{1-3x} = \sum_{n\ge0}3^nx^n\\
+	\frac{1}{1-2x} = \sum_{n\ge0}2^nx^n
+\end{cases}\]\\
+
+% Voir Thibaud 2 : fait
+\[\Ra u(x) = \sum_{n>=0}^{} u_{n}x^{n}=\sum_{n>=0}^{} 3^{n}x^{n}-\sum_{n>=0}^{} 2^{n}x^{n}\]
+\[\sum_{n>=0}^{} (3^{n}-2^{n})x^{n}\]
+$\Ra u_{n} = 3^{n}-2^{n}$ pour $n>=0$
+
+\end{exercice}
+
+\begin{exercice}
+Même travail sur le système suivant :
+\[\begin{cases}
+	u_n = 2u_{n-1} + u_{n-2} - 2u_{n-3} pour n>=3\\
+	u_0 = 0, u_1 = u_2 = 1\\
+\end{cases}\]
+
+\[\sum_{n>=3}^{}u_nx^n = 2\sum_{n>=3}^{}u_{n-1}x^n + \sum_{n>=3}^{}u_{n-2}x^n - 2\sum_{n>=3}^{}u_{n-3}x^n\]
+\[u(x)-u_0-u_{1}x-u_{2}x^2 = 2x\sum_{n>=2}^{}u_nx^n+x^2\sum_{n>=2}^{}u_nx^n-2x^3\sum_{n>=2}^{}u_nx^n\]
+
+
+%fini
+$u(x)-u_0 -u_1x - u_2x^2 = 2x [u(x)-u_0-u_2x] + x^2[u(x) - u_0] - 2x^3u(x)$\\
+avec $u_0 = 0, u_1 = u_2 = 1$\\
+
+$\Ra u(x) - x - x^2 = 2x u(x) - 2x^2 +x^2u(x) - 2x^3u(x)$\\
+
+$u(x)[2x^3-x^2-2x+1] = x-x^2$\\
+
+$\Ra u(x) = \frac{x(1-X)}{2x^3 - x^2 -2x +1}$\\
+
+racines de $2x^3 -x^2 -2x +1$ :\\
+Une racine évidente :\\
+$2x^3 - x^2 - 2x + 1 = (x-1)(2x^2+x-1) \\= (x-1)(x+1)(2x-1)$ car -1 racine de $2x^2+x-1$\\
+
+
+
+%Voir Thibaud 3 : Fait
+\[\Ra u(x) = \frac{x(x-1)}{(x-1)(x+1)(2x-1)}=\frac{x}{(x+1)(2x-1)}=\frac{a}{1+x}+\frac{b}{1-2x}\]
+$\ra x(1+x)$ puis $x=-1$ donne $a=\frac{-1}{1+2}=\frac{-1}{3}$
+
+$x(1-2x)$ puis $x=\frac{1}{2}$ donne $b=\frac{\frac{1}{2}}{1+\frac{1}{2}}=\frac{1}{3}$
+\[u(x) = \frac{1}{3}\left[\frac{1}{1-2x}-\frac{1}{1+x}\right]\]
+utiliser 
+\[\frac{1}{1-cz}=\sum_{n>=0}^{} c^{n}z^{n}\]
+donne  \[\frac{1}{1-2x}=\sum_{n>=0}^{} 2^{n}x^{n}\]
+et \[\frac{1}{1+x}=\sum_{n>=0}^{} (-1)^{n}x^{n}\]
+\[u(x) = \frac{1}{3}\left[\sum_{n>=0}^{} 2^{n}x^{n}-\sum_{n>=0}^{} (-1)^{n}x^{n}\right]=\sum_{n>=0}^{} \frac{1}{3}\left[2^n-(-1)^n\right]x^n\]
+\[\Ra u_n=\frac{1}{3}\left[2^n-(-1)^n\right]\]pour n $\ge$ 0
+\end{exercice}
+%fin
+\begin{exercice}
+\[ \begin{cases}
+	u_n=3u_{n-1}-2u_{n-2} $ pour $ n\ge2\\
+	u_0=u_1=0
+\end{cases}\]
+
+$\sum_{n ge 2}u_nx^n = 3 \sum_{n \ge 2}u_{n-1}x^n - 2\sum_{n \ge 2}u_{n-2}x^n + 4\sum_{n \ge 2}(n-2)x^n$\\
+Posons $u(x) =\sum_{n \ge 0} u_nx^n$\\
+$u(x)-u_0-u_1x = 3x\sum_{n \ge 2}u_{n-1}x^{n-1} - 2x^2\sum_{n \ge 2}u_{n-2}x^{n-2}+ 4x^2\sum_{n \ge 2}(n-2)x^{n-2}\\
+= 3x\sum_{n \ge 1}u_{n}x^n - 2x^2\sum_{n \ge 0}u_nx^n + 4x^2\sum_{n \ge 0}nx^n\\
+= 3x[u(x)-u_0] -2x^2u(x)+4x^2\sum_{n \ge 0}nx^n$\\
+avec $u_0 = u_1 = 0 $ et $\sum_{n \ge 0}nx^n=\frac{x}{(1-x)^2}$\\
+
+% voir Thibaud 4 : fait
+\[u(x)=3xu(x)-2x^2u(x)+\frac{4x^3}{(1-x^2)^2}\]
+\[\Ra u(x)[2x^2-3x+1]=\frac{4x^3}{(1-x^2)^2}\]
+\[\Ra u(x)=\frac{4x^3}{(1-x^2)^2(2x^2-3x+1)}\]
+or \[2x^2-3x+1 = (x-1)(2x-1)\]
+\[u(x)=\frac{4x^3}{(1-x^2)^3(2x^2-3x+1)}=\frac{a}{1-2x}+\frac{b}{1-x}+\frac{c}{(1-2x)^2}+\frac{d}{(1-2x)^3}\]
+$x(1-2x)$ puis $x=\frac{1}{2}$ donne $a=\frac{4(\frac{1}{2})^3}{(1-\frac{1}{2})^3}=4$
+
+$x(1-x)^3$ puis $x=1$ donne $d=\frac{4}{1-2}=-4$
+
+\[u(x)=\frac{4}{1-2x}-\frac{4}{(1-x)^3}+\frac{b}{1-x}+\frac{c}{(1-x)^2}=\frac{4x^3}{(1-x)^3(1-2x)}\]
+%fin
+
+\[\Ra 4x^2 = 4 (1-x)^3 - 4(1-2x)+b(1-2x)(1-x)^2 + c(1-2x(1-x)\\
+=4(1-x)(x^2-2x+1) - 4(1-2x) + b(1-x)(2x^2-3x+1) +c(1-3x +2x^2)\\
+=4(-x^3 + 3x^2 -3x +1) -4(1-2x) +b(-2x^3 +5x^2 -4x +1) +c(1-3x+2x^2)\\
+=x^3[-4-2b] + x^2[12+5b+2c] +x(-4-4b-3c]+b+c\\
+b+c=0 \Ra c=-b\\
+4+2b = -4 \Ra b=-4 c=4\\
+\]
+% Thibaud 5 : fait
+\[u(x)=4\left[\frac{1}{1-2x}-\frac{1}{1-x}+\frac{1}{(1-x)^2}-\frac{1}{(1-x)^3}\right]\]
+\[\frac{1}{1-cx}=\sum_{n>=0}c^nx^n\]
+donne \[\frac{1}{1-2x}=\sum_{n>=0}2^nx^n\]
+et \[\frac{1}{1-x}=\sum_{n>=0}x^n\]
+puis \[\frac{1}{(1-z)^{m+1}}=\sum_{n>=0}\begin{matrix}n+m \\ n\end{matrix} z^n\]
+
+ce qui donne pour m=1 : \[\frac{1}{(1-x)^2}=\sum_{n>=0}\begin{matrix} n+1 \\ n\end{matrix} x^n= \sum_{n>=0}C_{n+1}^nx^n=\sum_{n>=0} (n+1)x^n\]
+
+et pour m=2 : \[\frac{1}{(1-x)^3}=\sum_{n>=0}\begin{matrix} n+2 \\ n \end{matrix} x^n = \sum_{n>=0}C_{n+2}^nx^n=\sum_{n>=0}\frac{(n+1)(n+2)}{2}x^n\]
+%fini
+
+$\Ra u(x) = \sum_{n \ge 0}u_nx^n = 4[\sum_{n \ge 0}2^nx^n -\sum_{n \ge 0}(n+1)x^n - \sum_{n \ge 0}\frac{(n+1)(n+2)}{2}]\\
+=\sum_{n \ge 0}(2^{n+2} - 4 + 4(n+1 -2(n+1)(n+2))x^n\\
+= \sum_{n \ge 0}(2^{n+2} -4 -2n(n+1)\\
+\Ra u_n = 2^{n+2} -2n^2 -2n -4$ pour $n \ge 0$
+
+\end{exercice}
 \end{document}
