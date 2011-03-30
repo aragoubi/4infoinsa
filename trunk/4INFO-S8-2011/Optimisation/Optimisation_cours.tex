@@ -606,13 +606,22 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 	
 \end{exemple}
 
-\begin{exemple} %2
+\begin{exemple}
+
+
+ 	% 2
 	Soit $A$ un matrice de $Mn(\R)$. Notons $\lambda _1$ sa plus petite valeur propre. On suppose que $\lambda _0 \leq 0$. On considère le problème d'optimisation suivant : \[ \begin{cases}\min f(x) = <Ax, x> \quad 0 \not \in sp(A)\\ x \in C = \{ x \in \R, ||x||^2 \leq 1 \} \end{cases} \]
 	
 	$C$ est fermé borné donc $C$ est compact ;
 	$f$ est continue sur $\R^n$, donc $f$ atteint son minimum en un point $\x$ de $C$.
 	
 	% 2 %
+	Posons $ g(x) = ||x||^2 - 1 $, $g$ est différentiable sur $\R^n$ tout entier.\\
+Si $\bar{x}$ réalise le minimum de $f$ alors $\bar{x}$ est sur le bord de $C$. Prouvons le par l'absurde.\\
+On suppose que $\bar{x} \in \textit{ l'intérieur de }C $.
+Cela implique que : \[ \exists \alpha>0 \text{ tel que la boule } B(\bar{x},\alpha)  \]
+\[ f : B(x,\alpha) \rightarrow R \]
+$f$ est différentiable sur un voisinage de $\bar{x}$ et atteint son minimum en $\bar{x}$.
 	
 	$\Ra \nabla f(\x) = 0$
 	Or $\nabla f(\x) = \not 2A\x$
@@ -620,6 +629,11 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 	Donc $\x \in \partial C \text{(bord de C)} \Ra g(\x) = 0 \Ra$ la contrainte est active en $\x$.
 	
 	% 4 %
+	\[ \exists \lambda > 0 \text{ tel que } \nabla f(\bar{x}) + \lambda.\nabla g(\bar{x}) = 0 \]
+\[ \Rightarrow 2A\bar{x} + 2\lambda\bar{x} = 0 \]
+\[ \Rightarrow A\bar{x} = - \lambda\bar{x}\]
+
+Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $-\lambda$. $\bar{x}$ est à chercher dans l'ensemble des vecteurs propres unitaires associés à des valeurs propres négatives.
 	
 	$f(\x) = <A\x, \x> = <-\lambda \x, \x> = -\lambda <\x, \x> = - \lambda$ \\
 	Donc pour minimiser $f$f, on prend $\x$, un vecteur propre unitaire associé à $\lambda_1$.\\
@@ -638,6 +652,13 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 \subsection{Algorithme du gradient à pas fixe}
 \subsection{Algorithme du gradient à pas optimal}
 
+
+% 28/03/2011
+
+
+
+
+
 	
 %\sectionEt{Conclusion}
 %====================%
@@ -645,29 +666,6 @@ Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALor
 
 
 %Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
-
-% 1 %
-
-Posons $ g(x) = ||x||^2 - 1 $, $g$ est différentiable sur $\R^n$ tout entier.\\
-Si $\bar{x}$ réalise le minimum de $f$ alors $\bar{x}$ est sur le bord de $C$. Prouvons le par l'absurde.\\
-On suppose que $\bar{x} \in \textit{ l'intérieur de }C $.
-Cela implique que : \[ \exists \alpha>0 \text{ tel que la boule } B(\bar{x},\alpha)  \]
-\[ f : B(x,\alpha) \rightarrow R \]
-$f$ est différentiable sur un voisinage de $\bar{x}$ et atteint son minimum en $\bar{x}$.
-
-% 2 %
-
-\[ \exists \lambda > 0 \text{ tel que } \nabla f(\bar{x}) + \lambda.\nabla g(\bar{x}) = 0 \]
-\[ \Rightarrow 2A\bar{x} + 2\lambda\bar{x} = 0 \]
-\[ \Rightarrow A\bar{x} = - \lambda\bar{x}\]
-
-Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $-\lambda$. $\bar{x}$ est à chercher dans l'ensemble des vecteurs propres unitaires associés à des valeurs propres négatives.
-
-% 3 %
-
-
-
-
 
 
 \bibliographystyle{./plain-fr}

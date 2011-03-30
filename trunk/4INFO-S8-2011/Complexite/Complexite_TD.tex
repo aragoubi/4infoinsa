@@ -295,4 +295,87 @@ $\Ra u(x) = \sum_{n \ge 0}u_nx^n = 4[\sum_{n \ge 0}2^nx^n -\sum_{n \ge 0}(n+1)x^
 \Ra u_n = 2^{n+2} -2n^2 -2n -4$ pour $n \ge 0$
 
 \end{exercice}
+
+\section{TD3}
+
+\subsection{Résolution d'équations de récurrence non linéaire à l'aide des séries génératrices}
+
+\begin{exercice}
+
+%1
+Complexité en moyenne du tri rapide en nombre de comparaisons.
+
+$C_n$ : nombre de comparaisons pour trier $n$ éléments
+\[ \begin{cases} C_n=(n+1)+\frac{1}{n}\sum_{j=1}^n(C_{j-1}+C_{n-j}) \textit{ pour n } \geq 1 \\ C_0=0 \end{cases}\]
+
+\[ C_n=(n+1)+\frac{1}{n}\left(\sum_{j=1}^nC_{j-1}+\sum_{j=1}^nC_{n-j}\right) \]
+
+\[ C_n=(n+1)+\frac{2}{n}\sum_{k=0}^nC_k\textit{ pour } n \geq 1 \]
+
+$\rightarrow$ Faire apparaître la série génératrice des $C_n$ : $\displaystyle C(x)=\sum_{n\geq0}c_nx^n$
+
+
+
+%3
+\[ \sum_{n\geq 1} \left( \sum_{k=0}^{n-1}C_k\right)x^n
+= x\sum_{n\geq 1} \left( \sum_{k=0}^{n-1}C_k\right)x^{n-1}
+= x\sum_{n\geq 0} \left( \sum_{k=0}^{n}C_k\right)x^{n}
+=x \frac{C(x)}{1-x} \textit{ (somme partielle)} \]
+
+\[ \Ra xC'(x)=\frac{2x}{(1-3x)^3}+\frac{xC(x)}{1-x} \]
+\[ \Ra \boxed{ C'(x)=\frac{2}{(1-3x)^3}+2\frac{C(x)}{1-x} } \]
+\begin{center}(équation différentielle d'ordre 1)\end{center}
+
+Équation sans second membre :
+\[ C'(x)=2\frac{C(x)}{1-x} \Lra \frac{C'(x)}{C(x)}=\frac{2}{1-x} \]
+\[ \log \frac{C(x)}{\lambda}=-2\log |1-x|=\log\frac{1}{|1-x|^2} \Ra \boxed{C(x)=\frac{\lambda}{(1-x)^2} } \]
+
+Équation générale $\ra$ méthode de variation de la constante :
+\[ C'(x)=2\frac{\lambda(x)}{(1-x)^2} \Ra C'(x)
+=\frac{\lambda''(x)(1-x)^2+2\lambda(x)(1-x)}{(1-x)^4}
+=\frac{\lambda''(x)}{(1-x)^2}+\frac{2\lambda(x)}{(1-x)^3} \]
+
+
+\end{exercice}
+%5
+\begin{exercice}
+Calculer le nombre $b_n$ d'arbres binaires ayant $n+1$ feuilles.
+
+$(n+1)$ feuilles $\Lra n$ n\oe ud internes $\Lra (2n+1)$ n\oe uds
+
+$b_0=1 \ra \cdot$
+
+$b_1=1 \ra$ 2 feuilles % + schéma
+
+$b_2=2 \ra$ 3 feuilles % + schéma
+
+Pour $n\geq 1$, on à deux sous arbres : % + schéma
+\begin{itemize}
+\item un arbre binaire gauche avec k feuilles (avec $1 \leq k \leq n$)
+\item un arbre binaire droit avec $(n+1-k)$ feuilles
+\end{itemize}
+
+\[ \boxed{ b_n=\sum_{k=1}^n b_{k-1}b_{n-k} } \textit{ pour } n \geq 1 \]
+
+$\ra$ faire apparaître la série génératrice des $(b_n)_{n>0}$
+
+
+%7
+\[ \Delta=1-4x \ra b(x)=\frac{1\pm \sqrt(1-4x)}{2x} \Ra xb(x)=\frac{1\pm \sqrt(1-4x)}{2} \]
+
+Pour que cette égalité soit vrai pour $x=0$, il faut prendre $b(x)=\frac{1\pm \sqrt(1-4x)}{2}$ 
+$\ra$ utiliser le développement en série entière de $(1+x)^\alpha$.
+
+\[ (1+x)^\alpha=1+\alpha x+\frac{\alpha(\alpha-1)}{2}x^2 + \dots +\frac{\alpha(\alpha-1)\dots (\alpha-n+1)}{n!}x^n+\dots \]
+
+\[ \Ra \boxed{ (1-4x)^\frac{1}{2}=1-2\sum_{n\geq}\frac{(2n-2)!}{n!(n-1)!}x^n } \]
+
+\[ \Ra b(x)=\frac{1}{2}-\left(\frac{1}{2}-\sum_{n\geq 1}\frac{(2n-2)!}{n!(n-1)!}x^n \right)
+\Ra \boxed{ b(x)=\sum_{n\geq 1}\frac{(2n-2)!}{n!(n-1)!}x^n }\]
+
+
+
+
+\end{exercice}
+
 \end{document}
