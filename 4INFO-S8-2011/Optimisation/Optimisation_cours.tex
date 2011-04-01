@@ -658,8 +658,101 @@ Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $
 
 
 
+% 01/04/2011
 
-	
+\begin{proposition}
+
+Soit $A \in Mn(\R)$ S.D.P., $b\in\R^n$ et $:\R^n\ra\R$, $x\mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x>$.
+
+Soit $(x^{(n)})$ définie positive comme suit :
+%TODO
+
+$w^{(n)} \ne 0$ est une direction de descente stricte de $f$ en $(x^{(n)})$.
+
+$\rho^{(n)})$ est optimal dans la direction $(w^{(n)})$.
+
+Si la famille $(w^{(0n)}, w^{(1)}, \dots, w^{(n-1)})$ est une famille A-conjugué, alors on a :
+\[ x^{(n)}=\bar{x} \textit{ avec } A\bar{x}=b \]
+\[ f(\bar{x})=\inf_{\R^n} f \]
+
+\end{proposition}
+
+Les grandes lignes de la preuve :\\
+Tout revient à prouver que :
+\[<Ax^{(n)}-b,w^{(p)}> = 0, \forall p \in \{0,1,\dots,n-1\}\]
+
+Cas $p=n-1$, on doit montrer que :
+\[<Ax^{(n)}-b,w^{(n-1)}> = 0\]
+mais \[ x^{(n)}=x^{(n-1)}+\rho_{n-1}w^{(n-1)} \]
+avec \[ \rho_{n-1} \textit{ optimal dans la direction } w^{(n-1)} \] 
+\[ Ax^{(n)}-b=\nabla f(x^{(n)}) = \nabla f(x^{(n-1)}+\rho_{n-1}w^{(n-1)}) \]
+Donc \[ <Ax^{(n)}-b,w^{(n-1)}> = <\nabla f(x^{(n-1)}+\rho_{n-1}w^{(n-1)}), w^{(n-1)}>=\phi '(\rho_{n-1}) \]
+Où \[ \phi (t)=f(x^{(n-1)}+tw^{(n-1)}) \]
+\[ \phi'(t)=<\nabla f(x^{(n-1)}+tw^{(n-1)}, w^{(n-1)}>\]
+\[ (\phi' \textit{ optimal }) \Ra \phi'(\rho_{n-1})=0 \]
+Donc \[ <Ax^{(n)}-b,w^{(n-1)}>=0 \]
+
+Cas $0\leq p \leq n-1$, montrons que :
+\[ <Ax^{(n)}-b,w^{(p)}>=0 \]
+or \[ Ax^{(n)}-b=A(x^{(n-1)}+\rho_{n-1}w^{(n-1)})-b \]
+\[ =Ax^{(n-1)}-b+\rho_{n-1}Aw^{(n-1)} \]
+\[ =A(x^{(n-2)}+\rho_{n-2}w^{(n-2)})-b+\rho_{n-1}Aw^{(n-1)} \]
+\[ =(Ax^{(n-2)}-b)+\rho_{n-1}Aw^{(n-1)}+\rho_{n-2}Aw^{(n-2)} \]
+Par itération on obtient :
+\[ Ax^{(n)}-b=Ax^{(p+1)}-b+\sum_{j=p+1}^{n-1}\rho_jw^{(j)} \]
+Donc \[ <Ax^{(n)}-b,w^{(p)}>=<Ax^{(p+1)}-b,w^{(p)}>+\sum_{j=p+1}^{n-1}\rho_j<Aw^{(j)},w^{(p)}>=0 \]
+\[(\textit{cf plus haut avec }\phi), ((w^{(0)}, \dots, w^{(n-1)}) \textit{ est A-conjuguée}) \]
+Donc $Ax^{(n)}-b$ est orthogonal à la famille $(w^{(0)}, \dots, w^{(n-1)}$, or d'après la proposition précédente, la famille $(w^{(0)}, \dots, w^{(n-1)}$ est une base de $\R^n$ (car A-conjugué et contient $n$ vecteurs).
+
+On en déduit que : $Ax^{(n)}-b$ est orthogonal à $\R^n$, $\Ra Ax^{(n)}-b=0 \Ra Ax^{(n)}=b \Ra x^{(n)}=\bar{x}$ (unicité de la solution de $Ax=b$ car $A$ SDP $\Ra A$ inversible).
+
+\begin{remarque}
+Cette proposition suggère le principe suivant : si on connait $x^{(0)}, x^{(1)}, \dots, x^{(n)}$ et $w^{(0)}, w^{(1)}, \dots, w^{(n)}$, on cherche ... %TODO
+\end{remarque}
+
+L'algorithme du gradient conjugué :
+
+\[f:\R^n\ra \R \]
+\[x \mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x> \]
+
+Initialisation :
+
+Soit $x^{(0)} \in \R$ et $r^{(0)}=b-Ax^{(0)}=-\nabla f(x^{(0)})$
+\begin{enumerate}
+\item si $r^{(0)}=0$, alors $Ax^{(0)}-b$ et ... %TODO
+\item 
+\end{enumerate}
+
+Iteration :
+%TODO
+
+\begin{enumerate}
+\item %TODO
+\item 
+\end{enumerate}
+
+Preuve : admise\\
+La suite $x^{(n)} \ra \bar{x}=x^{(N)}$.
+
+\begin{exemple}
+Méthode de Polak-Ribière
+
+C'est une méthode de gradient conjugué pour une fonction qui n'est pas nécessairement quadratique.
+\[ f:\R^N\ra \R \in C^2\]
+\[ \alpha |y|^2 \leq <\nabla^2f(x)y, y> \leq \beta |y|^2 \quad \forall x, y \in \R^N, \quad 0<\alpha\leq\beta \]
+
+\begin{enumerate}
+\item Montrer que $f$ est strictement convexe et c\oe rcive,
+\item Montrer que $\sp(\nabla^2f)$ est borné.
+\end{enumerate}
+
+Soit $x$ et $y$ dans $\R^N$, d'après Taylor-Lagrange, on a : \[ f(y)=f(x)+<\nabla f(x),y-x>+\frac{1}{2}<\nabla^2 f(x+\theta(y-x))(y-x),y-x> \quad (0<\theta<1) \]
+\[ f(y)\geq f(x)+<\nabla f(x),y-x>+\frac{\alpha}{2}|y-x|^2 \quad (*)\quad \Ra f \textit{ est strictement convexe}\]
+On fixe $x$ et on prend la limite quand $||y|| \ra \infty$ dans $(*)$ : \[ \lim_{||y|| \ra \infty} f(y) \geq f(x)+\lim_{||y|| \ra \infty}(-|\nabla f(x)||y_x|+\frac{\alpha}{2}|y_-x|^2)=+\infty \]
+\[ \Ra \lim_{||y|| \ra \infty} f(y) = +\infty \quad \Ra f \textit{ est c\oe rcive} \]
+
+\end{exemple}
+
 %\sectionEt{Conclusion}
 %====================%
 
