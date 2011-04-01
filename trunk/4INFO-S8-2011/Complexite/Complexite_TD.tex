@@ -284,25 +284,28 @@ donne \[\frac{1}{1-2x}=\sum_{n>=0}2^nx^n\]
 et \[\frac{1}{1-x}=\sum_{n>=0}x^n\]
 puis \[\frac{1}{(1-z)^{m+1}}=\sum_{n>=0}\begin{matrix}n+m \\ n\end{matrix} z^n\]
 
-ce qui donne pour m=1 : \[\frac{1}{(1-x)^2}=\sum_{n>=0}\begin{matrix} n+1 \\ n\end{matrix} x^n= \sum_{n>=0}C_{n+1}^nx^n=\sum_{n>=0} (n+1)x^n\]
+ce qui donne pour m=1 : \[\frac{1}{(1-x)^2}=\sum_{n>=0}\left(\begin{matrix} n+1 \\ n\end{matrix}\right) x^n= \sum_{n>=0}C_{n+1}^nx^n=\sum_{n>=0} (n+1)x^n\]
 
-et pour m=2 : \[\frac{1}{(1-x)^3}=\sum_{n>=0}\begin{matrix} n+2 \\ n \end{matrix} x^n = \sum_{n>=0}C_{n+2}^nx^n=\sum_{n>=0}\frac{(n+1)(n+2)}{2}x^n\]
+et pour m=2 : \[\frac{1}{(1-x)^3}=\sum_{n>=0}\left(\begin{matrix} n+2 \\ n \end{matrix}\right) x^n = \sum_{n>=0}C_{n+2}^nx^n=\sum_{n>=0}\frac{(n+1)(n+2)}{2}x^n\]
 %fini
 
-$\Ra u(x) = \sum_{n \ge 0}u_nx^n = 4[\sum_{n \ge 0}2^nx^n -\sum_{n \ge 0}(n+1)x^n - \sum_{n \ge 0}\frac{(n+1)(n+2)}{2}]\\
-=\sum_{n \ge 0}(2^{n+2} - 4 + 4(n+1 -2(n+1)(n+2))x^n\\
-= \sum_{n \ge 0}(2^{n+2} -4 -2n(n+1)\\
-\Ra u_n = 2^{n+2} -2n^2 -2n -4$ pour $n \ge 0$
+\[
+\begin{disarray}{r c l}
+\Ra u(x) 
+&=& \sum_{n \ge 0}u_nx^n\\
+&=& 4[\sum_{n \ge 0}2^nx^n -\sum_{n \ge 0}(n+1)x^n - \sum_{n \ge 0}\frac{(n+1)(n+2)}{2}]\\
+&=& \sum_{n \ge 0}(2^{n+2} - 4 + 4(n+1 -2(n+1)(n+2))x^n\\
+&=& \sum_{n \ge 0}(2^{n+2} -4 -2n(n+1)\\
+\end{disarray}\]
+
+$\Ra u_n = 2^{n+2} -2n^2 -2n -4$ pour $n \ge 0$
 
 \end{exercice}
 
 \section{TD3}
 
-\subsection{Résolution d'équations de récurrence non linéaire à l'aide des séries génératrices}
+\begin{exercice}{Complexité en moyenne du tri rapide en nombre de comparaisons}
 
-\begin{exercice}
-
-%1
 Complexité en moyenne du tri rapide en nombre de comparaisons.
 
 $C_n$ : nombre de comparaisons pour trier $n$ éléments
@@ -314,9 +317,26 @@ $C_n$ : nombre de comparaisons pour trier $n$ éléments
 
 $\rightarrow$ Faire apparaître la série génératrice des $C_n$ : $\displaystyle C(x)=\sum_{n\geq0}c_nx^n$
 
+$\ra$ Multiplier par $nx^n$
+\[ nC_nx^n = n(n+1)x^n+2(\sum_{k=0}^{n-1}C_k)x^n\]
+$\ra$ En sommant
+\[ \sum_{n\geq1}nC_nx^n = \sum_{n\geq}n(n+1)x^n + 2(\sum_{k=0}^{n-1}C_k)x^n\]
+$\ra$ Différentiation (dérivée)
+\[\begin{disarray}{r c l}
+\sum_{n\geq1}nC_nx^n
+&=& x\sum_{n\geq1}nC_nx^{n-1} \\
+&=& x\sum_{n\geq0}(n+1)C_{n-1}x^n \\
+&=& xC'(x)
+\end{disarray}\]
+$\ra$ Ce qui donne au final
+\[\begin{disarray}{r c l}
+\sum_{n\geq1}^{}n(n+1)x^n
+&=&\x\sum_{n\geq1}n(n+1)x^{n-1}\\
+&=&x\sum_{n\geq0}n(n+1)(n+2)x^n\\
+&=&2x\sum_{n\geq0}\frac{(n+1)(n+2)}{2}x^n\\
+&=&\frac{2x}{(1-x)^3}
+\end{disarray}\]
 
-
-%3
 \[ \sum_{n\geq 1} \left( \sum_{k=0}^{n-1}C_k\right)x^n
 = x\sum_{n\geq 1} \left( \sum_{k=0}^{n-1}C_k\right)x^{n-1}
 = x\sum_{n\geq 0} \left( \sum_{k=0}^{n}C_k\right)x^{n}
@@ -331,15 +351,39 @@ $\rightarrow$ Faire apparaître la série génératrice des $C_n$ : $\displaysty
 \[ \log \frac{C(x)}{\lambda}=-2\log |1-x|=\log\frac{1}{|1-x|^2} \Ra \boxed{C(x)=\frac{\lambda}{(1-x)^2} } \]
 
 Équation générale $\ra$ méthode de variation de la constante :
-\[ C'(x)=2\frac{\lambda(x)}{(1-x)^2} \Ra C'(x)
-=\frac{\lambda''(x)(1-x)^2+2\lambda(x)(1-x)}{(1-x)^4}
-=\frac{\lambda''(x)}{(1-x)^2}+\frac{2\lambda(x)}{(1-x)^3} \]
+\[\begin{disarray}{r c l}
+C'(x)
+&=&2\frac{\lambda(x)}{(1-x)^2} \Ra C'(x)\\
+&=&\frac{\lambda''(x)(1-x)^2+2\lambda(x)(1-x)}{(1-x)^4}\\
+&=&\frac{\lambda''(x)}{(1-x)^2}+\frac{2\lambda(x)}{(1-x)^3} 
+\end{disarray}\]
 
+
+\[\Ra\frac{\lambda'(x)}{(1-x)^2}+\frac{2\lambda(x)}{(1-x)^3}=\frac{2}{(1-x)^3}+2\frac{\lambda(x)}{(1-x)^3}\]
+\[\Ra\lambda'(x)=\frac{2}{1-x}\]
+\[\Ra\lambda(x)=log\frac{1}{(1-x)^2}+K\]
+
+\underline{Calcul à partir de C(0)}
+\[\begin{disarray}{r c l}
+C(0)=C_0=0 &\Ra& \lambda(0)=0=K+log1=K\\
+&\Ra& \boxed{K=0}\\
+&\Ra& \lambda(x)=log\frac{1}{(1-x)^2}
+\end{disarray}\]
+
+\[\boxed{C(x)=\frac{1}{(1-x)^2}log\frac{1}{(1-x)^2}}\Ra C(x)=\frac{2}{(1-x)^2}log\frac{1}{1-x}\]
+
+\[\begin{disarray}{r c l}
+C(x)
+&=&\frac{2}{x}\left[\frac{x}{(1-x)^2log\frac{1}{1-x}}\right]\\
+&=&\frac{2}{x}n(H_n-1)x^n\\
+&=&2\sum_{n\geq0}(n+1)(H_{n+1}-1)
+\end{disarray}\]
+
+En utilisant le décalage vers la gauche avec $a_n = n(H_n-1)$ et avec $a_0=0$
 
 \end{exercice}
-%5
-\begin{exercice}
-Calculer le nombre $b_n$ d'arbres binaires ayant $n+1$ feuilles.
+
+\begin{exercice}{Calculer le nombre $b_n$ d'arbres binaires ayant $n+1$ feuilles}
 
 $(n+1)$ feuilles $\Lra n$ n\oe ud internes $\Lra (2n+1)$ n\oe uds
 
@@ -359,8 +403,24 @@ Pour $n\geq 1$, on à deux sous arbres : % + schéma
 
 $\ra$ faire apparaître la série génératrice des $(b_n)_{n>0}$
 
+\[b(x)=\sum_{n\geq0}b_nx^n\]
 
-%7
+\underline{Multiplier par $x^n$ puis sommer}
+
+\[\sum_{n\geq1}b_nx^n=\sum_{n\geq1}\left(\sum_{k=1}^{n}b_{k-1}b_{n-k}x^n\right)\]
+\[
+\begin{disarray}{r c l}
+b(x)-b(0)
+&=&\sum_{n\geq1}\left(\sum_{k\geq0}^{n-1}b_{k-1}b_{n-k}\right)x^n\\
+&=&x\sum_{n\geq1}\left(\sum_{k\geq0}^{n-1}b_{k}b_{n-1-k}\right)x^{n-1}\\
+&=&x\sum_{n\geq0}\left(\sum_{k\geq0}^{n-1}b_{k}b_{n-k}\right)x^{n}\\
+&=&xb(x)b(x)
+\end{disarray}
+\]
+\[\Ra b(x-1)=x[b(x)]^2\Lra \boxed{x[b(x)]^2 - b(x) +1 = 0}\]
+
+$\ra$ équation quadratique
+
 \[ \Delta=1-4x \ra b(x)=\frac{1\pm \sqrt(1-4x)}{2x} \Ra xb(x)=\frac{1\pm \sqrt(1-4x)}{2} \]
 
 Pour que cette égalité soit vrai pour $x=0$, il faut prendre $b(x)=\frac{1\pm \sqrt(1-4x)}{2}$ 
@@ -373,8 +433,18 @@ $\ra$ utiliser le développement en série entière de $(1+x)^\alpha$.
 \[ \Ra b(x)=\frac{1}{2}-\left(\frac{1}{2}-\sum_{n\geq 1}\frac{(2n-2)!}{n!(n-1)!}x^n \right)
 \Ra \boxed{ b(x)=\sum_{n\geq 1}\frac{(2n-2)!}{n!(n-1)!}x^n }\]
 
+\[
+\begin{disarray}{r c l}
+b(x) 
+&=& x\sum_{n\geq1}\frac{(2n-2)!}{n!(n-1)!}x^{n-1}\\
+&=& x\sum_{n\geq0}\frac{(2n)!}{(n+1)!(n)!}x^n\\
+&=& x\sum_{n\geq0}\frac{1}{n+1}\frac{(2n!}{(n)!(n)!}x^n\\
+&=& x\sum_{n\geq0}\frac{1}{n+1}\left(\begin{tabular}{l}2n\\n\end{tabular}\right)x^n
+\end{disarray}
+\]
+\[\Ra \boxed{b_n = \frac{1}{n+1}\left(\begin{tabular}{l}2n\\n\end{tabular}\right)}\]
 
-
+pour $n\geq0 \Ra$ nombre de Catalan
 
 \end{exercice}
 
