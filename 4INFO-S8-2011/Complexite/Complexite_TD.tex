@@ -3,6 +3,7 @@
 \title{Complexité}
 \author{Danielle Quichaud}
 \usepackage{amsmath}
+\usepackage{graphicx}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -446,7 +447,7 @@ $\ra$ utiliser le développement en série entière de $(1+x)^\alpha$.
 b(x) 
 &=& x\sum_{n\geq1}\frac{(2n-2)!}{n!(n-1)!}x^{n-1}\\
 &=& x\sum_{n\geq0}\frac{(2n)!}{(n+1)!(n)!}x^n\\
-&=& x\sum_{n\geq0}\frac{1}{n+1}\frac{(2n!}{(n)!(n)!}x^n\\
+&=& x\sum_{n\geq0}\frac{1}{n+1}\frac{(2n)!}{(n)!(n)!}x^n\\
 &=& x\sum_{n\geq0}\frac{1}{n+1}\left(\begin{tabular}{l}2n\\n\end{tabular}\right)x^n
 \end{disarray}
 \]
@@ -455,5 +456,297 @@ b(x)
 pour $n\geq0 \Ra$ nombre de Catalan
 
 \end{exercice}
+
+\section{TD4}
+
+\begin{exercice}{Complexité du tri par fusion (p10)}
+
+\[
+\begin{disarray}{r c l}
+T(n)
+&=& 2T(\frac{n}{2})-c.n\\
+2T(\frac{n}{2}) &=& 2^2T(\frac{n}{2^2}) - 2c.\frac{n}{2}\\
+2^2T(\frac{n}{2^2}) &=& 2^3T(\frac{n}{2^3}) - 2^2c.\frac{n}{2^2}\\
+2^{k-1}T(\frac{n}{2^{k-1}}) &=& 2^kT(\frac{n}{2^k}) - 2^{k-1}.c.\frac{n}{2^{k-1}}\\
+=> T(n) &=& 2^kT(1)+\sum_{i=0}^{k-1}{c.n}\\
+&=& n.T(1) + k.c.n\\
+&=& n.T(1) + log_2(n).c.n
+\end{disarray}
+\]
+
+\end{exercice}
+
+\begin{exercice}{tri fusion (p18)}
+
+En appliquant directement le théorème on a:
+\[
+T(n) = 2T(\frac{n}{2}) + n
+\]
+
+Donc a = b = 2
+\[
+T(n) \simeq n.log(n)
+\]
+\end{exercice}
+
+\begin{exercice}{Approche Diviser pour Résoudre (p21)}
+
+Le produit de X et Y s'écrit donc:
+\[
+X.Y = A.C.2^n + (A.D + B.C).2^{n/2}+B.D
+\]
+
+On a:
+\begin{itemize}
+\item 4 multiplications à $n/2$ chiffres
+\item 3 additions avec au maximum 2n chiffres
+\item 2 décalages (multiplication par $2^n$ et $2^{n/2}$)
+\end{itemize}
+
+Ces deux dernieres opérations sont en O(n), d'ou:
+
+\[
+\begin{disarray}{r c l}
+T(1) &=& 1\\
+T(n) &=& 4.T(\frac{n}{2}) + c.n
+\end{disarray}
+\]
+
+On peut donc appliquer le théorème avec $a = 4$ et $b = 2$\\
+On obtient $T(n) = O(n^{log(4)} = O(n^2)$ : pas d'amélioration
+\\\\
+Amélioration:\\\\
+On peut reformuler l'équation de manière à diminuer le nombre de sous-problèmes, c'est à dire le nombre de multiplications entre entiers à n/2 chiffres:
+
+\[
+\begin{disarray}{r c l}
+X.Y &=& A.C.2^n + [(A-B).(D-C) + A.C + B.D].2^{n/2} + B.D
+\end{disarray}
+\]
+
+Il n'y a plus que trois sous-problèmes a effectuer. On a donc:
+
+\[
+\begin{disarray}{r c l}
+T(1) &=& 1\\
+T(n) &=& 3.T(\frac{n}{2}) + c'.n
+\end{disarray}
+\]
+
+d'ou : $T(n) = O(n^{log(3)} = O(n^{1.59})$\\
+En pratique : cette solution est plus efficace que l'algorithme naif que si $n > 25$ , du fait de la valeur élevée des constantes
+
+
+\end{exercice}
+
+\begin{exercice}{Multiplication des polynomes (p23)}
+
+\[
+\begin{disarray}{r c l}
+P(X) &=& X^4 + 3.X^3 + X^2 - X +1\\
+&=& X^2(X^2 + 3X + 1) - X + 1
+\end{disarray}
+\]
+
+On Pose: $P_1(X) = X^2 + 3X +1$ et $P_2(X) = X + 1$
+
+\[
+\begin{disarray}{r c l}
+P(X) &=& X^{n/2}.P_1(X) + P_2(X)
+\end{disarray}
+\]
+
+On obtient:
+
+\[
+\begin{disarray}{r c l}
+P(X) &=& P_g(X) + X^{n/2}.P_d(X)\\
+Q(X) &=& Q_g(X) + X^{n/2}.Q_d(X)
+\end{disarray}
+\]
+
+On reformule ensuite le produit de manière à ce qu'il n'y ait que 3 multiplications de polynomes de taille $n/2$
+
+\[
+\begin{disarray}{r c l}
+P.Q = P_g.Q_g + [(P_g + P_d).(Q_g + Q_d) - P_g.Q_g - P_d.Q_d].X^{n/2} + P_d.Q_d.X^n
+\end{disarray}
+\]
+
+d'ou une complexité : $T(n) = O(n^{log_2(3)}) = O(n^{1.59})$
+
+\end{exercice}
+
+\begin{exercice}{Algorithme de l'enveloppe rapide (p40)}
+\begin{verbatim}
+procedure Enveloppe(E){
+	Calculer P et Q;
+	Calculer E' et E":
+	Renvoyer Concatenation(Env(E',P,Q), sansQP(Env(E", Q, P)));
+}
+\end{verbatim}
+
+avec:
+
+\begin{verbatim}
+procedure Env(E, P, Q){
+	S := le point de E le plus eloigne de PQ:
+	si S est sur PQ alors
+		réessayer (P,Q):
+	sinon
+		E1 := points de E delimites par PS ne contenant pas Q
+		E1 := points de E delimites par QS ne contenant pas P
+	Renvoyer Concat(Env(E1, P, S), sansS(Env(E2, S, Q)));
+}
+\end{verbatim}
+
+Soient $n_1$ et $n_2$ les nombres respectifs de points de $E_1$ et $E_2$. Les temps mis à déterminer le point S et à trier les points entre $E_1$ et $E_2$ est linéaire:\\\\
+
+On a donc:\\
+$T(n) = c.n + T(n_1) + T(n_2)$ avec $n_1 + n_2 \leq n-1$\\\\
+
+Cette formule ressemble à celle de la complexité du tri rapide pour laquelle on avait $n_1 + n_2 = n - 1$. On reconnait donc un algorithme en $O(n.log(n))$ en moyenne.\\\\
+
+Exercice : déterminer la configuration qui constitue le cas le pire de cet algo
+
+\end{exercice}
+
+\section{TD5}
+
+\begin{exercice}{Exemple: suite de Fibonacci}
+
+\paragraph{}
+Problème: le calcul naif de la suite de fibonacci est exponentielle, voir l'arbre des appels:\\
+\includegraphics[width=7cm]{fibo_expo}
+
+\paragraph{}
+Réponse: on peut utiliser les techniques de marquage. Au premier passage par chaque noeud, on le marque. On évite ainsi de refaire le calcul ultérieurement.
+
+\paragraph{}
+Attention: marquer ne suffit pas, il faut également stocker le résultat. Comme la procédure Fibonnacci ne renvoie que des valeurs positives, cela peut etre fait dans le meme tableau.
+
+Graphe des appels optimisé:\\
+\includegraphics[width=7cm]{fibo_graph}
+
+\paragraph{}
+Version récursive avec mémorisation des nombres de fibo pour éviter la complexité exponentielle:
+
+\begin{verbatim}
+int TabFib[NMAX];
+for(i=0; i < NMAX; i++)
+  TabFib[i] = -1;
+
+TabFib[0] = 0;
+TabFib[1] = 1;
+int Fibo(int n){
+  if(TabFib[n] >= 0)
+    return TabFib[n];
+  else
+  {
+    TabFib[n] = Fibo(n-1) + Fibo(n-2);
+    return TabFib[n];
+  }
+}
+\end{verbatim}
+
+\paragraph{}
+Version itérative qui ne nécessite que 3 variables:
+
+\begin{verbatim}
+int Fibo(int n){
+  int a,b,aux;
+  if(n==0 || n==1)
+    return n;
+  else{
+    a = 0;
+    b = 1;
+    for(i=2; i <= n; i++){
+      aux = b;
+      b = a+b;
+      a = aux;
+    }
+    return b;
+  }
+}
+\end{verbatim}
+
+\end{exercice}
+
+\begin{exercice}{Combinaisons $C_n^p$}
+
+\begin{verbatim}
+int Comb(int n, int p){
+  if(p==0 || p==n)
+    return 1;
+  else
+    return (Comb(n-1,p) + Comb(n-1,p-1));
+}
+ \end{verbatim}
+
+\paragraph{}
+Soit A(n,p) le nombre d'appels à C, y compris le principal, lors de l'évaluation de C(n,p).
+En étudiant l'algorithme naif, on a:
+
+\[
+\begin{disarray}{r c l}
+A(n,0) &=& A(n,n) = 1\\
+0 \leq p < n : A(n,p) &=& 1 + A(n - 1, p) + A(n-1, p-1)
+\end{disarray}
+\]
+
+On a donc : $A(n,p) \geq C(n,p)$\\\\
+
+\[
+ C(2k, k) = \frac{2k*(2k-1)*...*(k+1)}{k*(k-1)*...*1}
+\]
+
+\paragraph{}
+Arbre des appels\\
+\includegraphics[width=15cm]{combinaison_appels}
+
+\paragraph{}
+Dans le cas des combinaisons:
+\begin{itemize}
+ \item La longueur minimale d'une branche est $min(p, n-p)$
+ \item La hauteur de l'arbre des appels est $n$
+ \item Donc le nombre d'appels est supérieur ou égal à $2^{min(p, n-p)}$
+\end{itemize}
+
+\paragraph{}
+Matrice n x p ou tableau (n-p) x p\\
+Initialisation à -1
+
+\begin{verbatim}
+ int Comb(int n, int p){
+  if(p==0 || p==n)
+    return 1;
+  else{
+    if(tab[n][p] == -1){
+      tab[n][p] = Comb(n-1, p-1) + Comb(n-1,p);
+    }
+    return tab[n][p];
+  }
+}
+\end{verbatim}
+
+Cout en $O(np)$ opérations\\
+Place mémoire: $(np - p^2) : O(np)$
+
+\paragraph{Algorithme itératif}
+\begin{verbatim}
+ // Initialisation tab(i) = C(i,i) = 1
+pour i dans 1..p faire tab(i) := 1
+
+pour k dans 1..n-p faire
+  pour i dans 1..p faire
+    tab(i) := tab(i) + tab(i-1);
+
+return tab(p);
+\end{verbatim}
+
+
+
+\end{exercice}
+
 
 \end{document}
