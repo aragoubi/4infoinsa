@@ -35,6 +35,7 @@
 
 \begin{exercice}
 \[ \begin{cases} u_n = 4 u_{n-1} - 4 u_{n-2} + 2 n \\ u_1 = 1 \\ u_0 = 0 \end{cases} \]
+
 On a bien $f(n)$ de la forme $b^n P(n)$ avec $b = 1$ et $P(n) = 2n$, $d^o P = 1$.
 
 \textit{Équation caractéristique} 
@@ -75,23 +76,24 @@ i \sqrt{3}}{2} = \pm e^{i\frac{2\pi}{3}} \]
 \[ u_n=(an+b)+cj^n+dj^{2n} \]
 
 Calcul de a, b, c et d à partir des conditions initiales
-\[ \begin{cases} u_0=0=b+c+d \\ 
+\[ \begin{disarray}{r c l}
+\begin{cases}u_0=0=b+c+d \\ 
 u_1=1=a+b+cj+dj^2 \\
 u_2=2=2a+b+cj^2+dj \\
-u_3=3=3a+b+c+d \end{cases} \]
-
-\[ \Ra \begin{cases} a=1 \\ 
+u_3=3=3a+b+c+d \end{cases}
+\Ra\begin{cases} a=1 \\ 
 b+c+d=0 \\
 b+cj+dj^2=0 \\
-b+cj^2+dj=0 \end{cases} \]
+b+cj^2+dj=0 \end{cases}
 
-\[ \Ra \begin{cases} a=1 \\ 
+&\Ra& \begin{cases} a=1 \\ 
 b=-c-d \\
 c(j-1)+d(j^2-1)=0 \\
-c(j^2-1)+d(j-1)=0 \end{cases} \]
+c(j^2-1)+d(j-1)=0 \end{cases}\\
 
-\[ \Ra \begin{cases} a=1 \\ 
-b=c=d=0 \end{cases} \]
+&\Ra& \begin{cases} a=1 \\ 
+b=c=d=0 \end{cases}
+\end{disarray} \]
  
 \end{exercice}
  
@@ -173,15 +175,18 @@ $\sum_{n\ge2}u_nx^n = 5u_{n-1}x^{n-1} - 6x^2 \sum_{n\ge2} u_{n-2}x^{n-2}$\\
 \[ u(x) = \sum_{n>=2}^{} u_nx^n\]
 On obtient après sommage
 \[ \sum_{n>=2}^{} u_nx^n = 5\sum_{n>=2}^{} u_{n-1}x^{n-1} - 6\sum_{n>=2}^{} u_{n-2}x^{n-2}\]
-\[ u(x)-u_0-u_1x = 5x\sum_{n>=2}^{} u_{n-1}x^{n-1} - 6x^2\sum_{n>=2}^{} u_{n-2}x^{n-2}\]
-\[ = 5x\sum_{n>=1}^{} u_{n}x^{n} - 6x^2\sum_{n>=0}^{} u_{n}x^{n}\]
+\[ \begin{disarray}{r c l}u(x)-u_0-u_1x &=& 5x\sum_{n>=2}^{} u_{n-1}x^{n-1} - 6x^2\sum_{n>=2}^{} u_{n-2}x^{n-2}\\
+&=& 5x\sum_{n>=1}^{} u_{n}x^{n} - 6x^2\sum_{n>=0}^{} u_{n}x^{n}\end{disarray}\]
 \[ u(x)-u_0-u_1x = 5x[u(x)-u_0]-6x^2u(x)\]
 $\ra$ avec $u_0 = 0, u_1 = 1$
 \[\Ra u(x) - x = 5xu(x) - 6x^2u(x)\]
 \[u(x)[6x^2-5x+1]=x\]
 \[u(x)=\frac{x}{6x^2-5x+1}\]
 $\ra$ racines de $6x^2-5x+1$
-\[\delta = 25-24 = 1 >0 \ra 2\] racines distinctes $\frac{5 \pm 1}{12}$ donne $\frac{1}{2}$ ou $\frac{1}{3}$
+\[\delta = 25-24 = 1 >0 \ra 2\]
+
+racines distinctes $\frac{5 \pm 1}{12}$ donne $\frac{1}{2}$ ou $\frac{1}{3}$
+
 \[u(x)=\frac{x}{6(x-\frac{1}{2})(x-\frac{1}{3})}=\frac{a}{x-\frac{1}{2}}+\frac{b}{x-\frac{1}{3}}\]
 %fini
 
@@ -191,10 +196,11 @@ $\ra X(x-\frac{1}{3})$ puis $x = \frac{1}{3}$ => $b=\frac{\frac{1}{3}}{6(\frac{1
 
 $u(x) = \frac{1}{2(x-\frac{1}{2})} - \frac{1}{3(x-\frac{1}{3})} = \frac{1}{2x-1}-\frac{1}{3x-1} = \frac{1}{1-3x} - \frac{1}{1-2x}$\\
 
-$\Ra$ utiliser $\frac{1}{1-cz} = \sum_{n \ge 0}c^nz^n \Ra$ \[ \begin{cases}
+$\Ra$ utiliser $\frac{1}{1-cz} = \sum_{n \ge 0}c^nz^n \Ra$
+\[ \begin{cases}
 	\frac{1}{1-3x} = \sum_{n\ge0}3^nx^n\\
 	\frac{1}{1-2x} = \sum_{n\ge0}2^nx^n
-\end{cases}\]\\
+\end{cases}\]
 
 % Voir Thibaud 2 : fait
 \[\Ra u(x) = \sum_{n>=0}^{} u_{n}x^{n}=\sum_{n>=0}^{} 3^{n}x^{n}-\sum_{n>=0}^{} 2^{n}x^{n}\]
@@ -250,12 +256,14 @@ et \[\frac{1}{1+x}=\sum_{n>=0}^{} (-1)^{n}x^{n}\]
 	u_0=u_1=0
 \end{cases}\]
 
-$\sum_{n ge 2}u_nx^n = 3 \sum_{n \ge 2}u_{n-1}x^n - 2\sum_{n \ge 2}u_{n-2}x^n + 4\sum_{n \ge 2}(n-2)x^n$\\
+\[\sum_{n\ge2}u_nx^n = 3 \sum_{n\ge2}u_{n-1}x^n - 2\sum_{n\ge2}u_{n-2}x^n + 4\sum_{n\ge2}(n-2)x^n\]
 Posons $u(x) =\sum_{n \ge 0} u_nx^n$\\
-$u(x)-u_0-u_1x = 3x\sum_{n \ge 2}u_{n-1}x^{n-1} - 2x^2\sum_{n \ge 2}u_{n-2}x^{n-2}+ 4x^2\sum_{n \ge 2}(n-2)x^{n-2}\\
-= 3x\sum_{n \ge 1}u_{n}x^n - 2x^2\sum_{n \ge 0}u_nx^n + 4x^2\sum_{n \ge 0}nx^n\\
-= 3x[u(x)-u_0] -2x^2u(x)+4x^2\sum_{n \ge 0}nx^n$\\
-avec $u_0 = u_1 = 0 $ et $\sum_{n \ge 0}nx^n=\frac{x}{(1-x)^2}$\\
+\[\dsr
+u(x)-u_0-u_1x 
+&=& 3x\sum_{n \ge 2}u_{n-1}x^{n-1} - 2x^2\sum_{n \ge 2}u_{n-2}x^{n-2}+ 4x^2\sum_{n \ge 2}(n-2)x^{n-2}\\
+&=& 3x\sum_{n \ge 1}u_{n}x^n - 2x^2\sum_{n \ge 0}u_nx^n + 4x^2\sum_{n \ge 0}nx^n\\
+&=& 3x[u(x)-u_0] -2x^2u(x)+4x^2\sum_{n \ge 0}nx^n\findsr\]
+avec $u_0 = u_1 = 0 $ et $\displaystyle\sum_{n \ge 0}nx^n=\frac{x}{(1-x)^2}$\\
 
 % voir Thibaud 4 : fait
 \[u(x)=3xu(x)-2x^2u(x)+\frac{4x^3}{(1-x^2)^2}\]
