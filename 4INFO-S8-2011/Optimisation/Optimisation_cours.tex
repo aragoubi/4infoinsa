@@ -661,15 +661,65 @@ Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $
 
 % 28/03/2011
 
+\subsection{Algorithme du gradient à pas variable}
 
+Dans cet algorithme, nous ne privilégions pas le paramètre optimal pour $p$. Nous permettons au paramètre de varier (de façon pas nécessairement optimal) d'une itération à l'autre.
+
+L'algorithme s'écrit :
+
+\textsc{Initialisation :}
+\[ x_0 \in \R \]
+
+\textsc{Itération :}
+On suppose $x_n$ connu, on calcul $w_n=-\nabla f(x_n)$.
+\begin{itemize}
+\item si $w_n=0$, l'algo s'arrête,
+\item sinon, on prend $\rho_n>0$ tel que $f(x_n+\rho_nw_n)<f(x_n)$ et on pose $x_{n+1}=x_n+\rho_nw_n$
+\end{itemize}
+
+La preuve du théotème de convergence est similaire à celle du théorème de convergence du gradient à pas optimal.
+
+\begin{theoreme}
+Soit $f\in\mathcal{C}^1(\R^n,\R)$ c\oe rcive, alors :
+\begin{enumerate}
+\item on peut définir une suite $(x_n)$ comme dans l'itération de l'algorithme,
+\item la suite $(x_n)$ est bornée,
+\item si $x_{n_k}\ra x$ et si $\nabla f(x_{n_k})\ra_{k\ra \infty}0$ alors $\nabla f(x)=0$,\\
+si de pluis $f$ est convexe, alors $\displaystyle f(x)=\inf_{y\in\R^N} f(y)$,
+\item si $\nabla f(x_n)\ra 0$ et $f$ est strictement convexe, alors toute la suite $(x_n)$ converge vers une limite $\bar{x}$ qui vérifie $\displaystyle f(\bar{x})=\inf_{y\in\R^N} f(y)$
+\end{enumerate}
+\end{theoreme}
+
+\subsection{Algorithme du gradient conjugué}
+(Découvert en 1952 par Hestenes et Stiefel)\\
+Il concerne les fonctions quadratiques de type : \[ f(x)=\frac{1}{2}<Ax,x>-<b,x> \]
+où $A$ est une matrice symétrique définie positive.
+
+\begin{definition}
+Soit $A$ une matrice semi-définie positive,
+\begin{enumerate}
+\item deux vecteur $u$ et $v$ sont dit A-conjugué si $<u,Av>=0$,
+\item une famille de vecteurs $(w^{(1)},w^{(2)},\dots,w^{(n)})_{1\leq p \leq n}$ est dite A-conjugué \\ si $<Aw_i,w_j>=0 \quad \forall i\ne j$,
+\end{enumerate}
+\end{definition}
+
+\textbf{Preuve}
+
+1) Soit $\displaystyle (\alpha_i)_{i=1}^p \subset \R$ tel que $\displaystyle \sum_{i=1}^p \alpha_iw^{(i)}=0$, montrons que tous les $\alpha_i$ sont nuls.
+
+Prenons le produit scalaire de (1?) par un vecteur $Aw_j$ : \[ \sum_{i=1}^p \alpha_i<Aw_j,w_j>=0 \quad \Ra \quad \alpha_j<Aw_j,w_j>=0 \quad\Ra\quad \alpha_j=0 \] 
+\[ (=0 \quad\forall i\ne j) \quad\quad\quad\quad\quad (>0) \]
+On répète l'opération pour $j$ allant de $1$ à $p$ :
+\[ \Ra \alpha_j=0 \forall j\in\{1,\dots,p\} \quad\Ra\quad \textit{ la famille } (w^{(1)},\dots,w^{(n)})\textit{ est libre} \]
+
+2) si $p>n$, c'est immédiat.\\ En effet, en dimension $n$, une famille libre de $n$ vecteurs est nécessairement une base.
 
 
 % 01/04/2011
 
 \begin{proposition}
 
-Soit $A \in Mn(\R)$ S.D.P., $b\in\R^N$ et $:\R^N\ra\R$, $x\mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x>$.
-
+Soit $A \in Mn(\R)$ S.D.P., $b\in\R^N$ et $f:\R^N\ra\R$, \\ $x\mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x>$.\\
 Soit $(x^{(n)})$ définie positive comme suit :
 
 \textsc{Initialisation :}
