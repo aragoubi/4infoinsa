@@ -9,11 +9,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{amsmath}
 \begin{document}
 
 \maketitle
 
 \tableofcontents
+
+\newpage{}
 
 \section{Introduction}
 %======================%
@@ -22,7 +25,7 @@
 	\subsection{Aspect \og existence et unicité\fg des solutions}
 	%***********************************************************%
 	
-	On cherche toujours à déterminer un format de problème (P) où il y a une unique solution. Cela rend le problème de l'approximation de la solutoin moins complexe. Un exemple assez simple d'un résultat d'éxistence est le théorème de Weierstrass.
+	On cherche toujours à déterminer un format de problème $(\mathcal{P})$ où il y a une unique solution. Cela rend le problème de l'approximation de la solution moins complexe. Un exemple assez simple d'un résultat d'existence est le théorème de Weierstrass.
 	
 	Soit $C$ un compact de $R^n$ et $f: C->R$ continue. Alors $f$ est minoré sur $C$ et il existe un $\bar{x} \in C$ tel que $f(\bar{x}) = \inf_{x \in C} f(x) = \min_{x \in C} f(x)$.
 	
@@ -37,7 +40,8 @@
 	
 	Conséquence : il existe toujours une suite $(x_k$ dans $A$ telle que $x_k \rightarrow \inf A$.
 	
-	Définition : $\exists (x_k \in C$ tel que $f(x_k) \rightarrow \inf_{x \in C} f(x)$ ; une telle suite est dite minimisante.
+	\begin{definition} $\exists (x_k \in C$ tel que $f(x_k) \rightarrow \inf_{x \in C} f(x)$ ; une telle suite est dite minimisante.
+	\end{definition}
 	
 	Soit $C$ un compact, soit $(x_k)$ une suite minimisante : $f(x_k) \rightarrow \inf_{x \in C} f(x)$ comme $C$ est compact, on a $(x_k)$ borné $\Rightarrow$ il existe une sous suite $(x_{\phi(k)})$ de $(x_k)$ qui est convergente dans $C$. $x_{\phi(k)} \rightarrow \bar{x} \in C$. $f$ étant continue $f(x_{\phi(k)}) \rightarrow f(\bar{x}) = \inf_{x \in C} f(x)$.
 	
@@ -48,8 +52,6 @@
 	
 	\subsection{Aspect \og conditions suffisantes d'optimalité\fg}
 	%***********************************************************%
-	
-	
 	
 	\subsection{Aspect \og algorithmes \fg}
 	%**************************************%
@@ -62,8 +64,6 @@
 	$C = {x\in R^n ; h(x) = 0}$
 	
 	$C_\alpha = {x\in R^n ; h(x) = \alpha}$
-	
-	
 	
 	\subsection{Classification des problèmes d'optimisation}
 	%******************************************************%
@@ -88,9 +88,13 @@
 	
 	Les points stationnaires de f sont (-1, -1), (-1, 1), (1, -1) et (1, 1).
 	
-	%$\nabla^2 f(x, y) = (\cdots) = 3(2x & 0 & 0 & -2y) = 6(x & 0 & 0 & -y) = (r & s & s & t)$
+	$\nabla^2 f(x, y) = \begin{pmatrix} \frac{\partial^2 f}{\partial x^2} &\frac{\partial^2 f}{\partial x \partial y} \\ \frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2} \end{pmatrix} 
+	= \begin{pmatrix} 32x & 0 \\ 0 & -2y \end{pmatrix}
+	= 6\begin{pmatrix} x & 0 \\ 0 & -y\end{pmatrix} 
+	= \begin{pmatrix} r & s \\ s & t\end{pmatrix}$
+
 	
-	Rappel :
+	\textbf{Rappel} :
 	\begin{itemize}
 		\item si $rt-s^2 <0$ alors le point stationnaire en question n'est ni un minimum, ni un maximum local, c'est un point \og col\fg.
 		\item si $rt -s^2 >0$ et $r>0$ alors on a un minimum local. 
@@ -106,17 +110,13 @@
 		Minimiser $f(x, y) = xy$ lorsque $(x, y) \in (E)$ où $(E)$ est l'éllipse d'équation $4x^2+y^2=4$ ($x^2/1^2 + y^2/2^2 = 1$).
 		
 		\begin{theoreme} (Lagrange)
-		
 		Si $(x_0, y_0)$ réalise in minimum local sur $E$ et que $\nabla \neq 0$ alors il existe un réel $\lambda$ tel que $\nabla f + \lambda \nabla h = $
 		$\lambda$ s'appelle un multiplicateur de Lagrange.
-		
 		\end{theoreme}
 		
-		%($E = {(x, y} \in R^2 | h(x, y) = 0}$) \\
-		$\nabla f(x, y) = ( x, y)$ \\
-		$\nabla h(x, y) = (8x, 2y)$ \\
-		$\nabla f + \lambda \nabla h = 0$ \\
-		%${ y+8\lambda x=0 (1) && x+2\lambda y=0 (2) && 4x^2+y^2-4=0 (3)$ \\
+		($E = {(x, y) \in \R^2 | h(x, y) = 0}$)\\
+		\[\begin{cases} \nabla f(x, y) = ( x, y) \\ \nabla h(x, y) = (8x, 2y)\\ \nabla f + \lambda \nabla h = 0 \end{cases} \] \\
+		\[\begin{cases} y+8\lambda x=0 \quad(1) \\ x+2\lambda y=0 \quad(2) \\ 4x^2+y^2-4=0 \quad(3)\end{cases}\] \\
 		$(2) => x = -2\lambda y$ \\
 		$(1) => y+8\lambda (-2\lambda y) = 0 => y(1-16 \lambda^2) = 0 => y=0 ou \lambda = +- 1/4$ \\
 		mais $y=0 \Rightarrow x=0$ et $(0, 0) not \in (E)$ \\
@@ -142,32 +142,36 @@
 	De manière équivalente : $f$ est dérivable en $x_0$ ssi il existe une fonction $\epsilon$ définie au voisinage de $0$ vérifiant $\lim_{h->0} \epsilon (h) = 0$ et un réel $l$ tel que $f(x_0+h) = f(x_0)+l\dot h + h \dot \epsilon (h)$.
 	Soit $x$ un ouvert de $R^n$ ($n \in ?$), soir $f:\Omega ->R$, soit $x_0 \in \Omega$, f est différentiable en $x_0$ ssi il existe une application linéaire (et donc continue car dim finie) $l:R^n->R$ et une fonction $\epsilon$ définie sur un voisinage de $0$ telle que $f(x_0+h) = f(x_0)+l(h) + h \dot \epsilon (h)$, avec $\lim_{h->0} \epsilon (h) = 0$.
 	Comme $l$ est linéaire, $l$ est de la forme $l(h) = \sum _{l=1}^n l_i \dot h_i = <L,h>$ (produit scalaire). 
-	%$L= \left(\begin{array}{c} l_1 \\ \vdots \\ l_n \end{array} \right)$ 
+	%$L= \begin{pmatrix} l_1 \\ \vdots \\ l_n \end{pmatrix}$ 
 	$L= ( l_1 \dots l_n )^t$ 
 	est appelé gradient de $f$, on le note $\nabla f$.
 	
-	$\nabla f(x) = \left( \begin{array}{c} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{array}\right)$
+	\[\nabla f(x) = \left( \begin{array}{c} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{array}\right)\]
 	
 	On suppose $f$ différentiable sur $\Omega$, soit $[\bar{x}, \bar{x}+h]$ un segment de $\Omega$.
 	\begin{itemize}
-		\item Inégalité des accroissements finis : $|f(a+h) -f(a)| \leq \sup_{ x \in ]\bar{x}, \bar{x}+h[ } |\nabla f(x)| \dot ||h||$
-		\item Taylor-Lagrange : $f(\bar{x}+h) - f(x) = <\nabla f(\bar{x}+\theta \dot h), h>$, où $0<\theta <1$
-		\item Taylor avec reste intégral : $f(\bar{x}+h) = f(\bar{x}) + \int_0^1 <\nabla f(\bar{x}+ t \dot h), h> dt$
+		\item Inégalité des accroissements finis : \[|f(a+h) -f(a)| \leq \sup_{ x \in ]\bar{x}, \bar{x}+h[ } |\nabla f(x)| \dot ||h||\]
+		\item Taylor-Lagrange : \[f(\bar{x}+h) - f(x) = <\nabla f(\bar{x}+\theta \dot h), h>, \quad \textit{ où } 0<\theta <1\]
+		\item Taylor avec reste intégral : \[f(\bar{x}+h) = f(\bar{x}) + \int_0^1 <\nabla f(\bar{x}+ t \dot h), h> dt\]
 	\end{itemize}
-	si $f$ est dupposée deux fois différentiable sur $\Omega$ :
+	si $f$ est supposée deux fois différentiable sur $\Omega$ :
 	\begin{itemize}
-		\item Taylor-Young : $f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}, h> + \frac{1}{2} <\nabla^2 f(\bar{x} \dot h), h> + ||h||^2 \epsilon (h)$, avec $\ln \epsilon = 0$
-		\item $|f(\bar{x}+h) - f(\bar{x}) - <\nabla f(\bar{x}, h> \leq \frac{1}{2} \sup || \nabla^2 f(\bar{x})|| \dot ||h||^2$, avec $x \in ]\bar{x}, \bar{x}+h[$
-		\item Tylor-Lagrange : $f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}), h> + \frac{1}{2} <\nabla^2 f(\bar{x}+ \theta \dot h), h>$, où $0< \theta <1$
-		\item $f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}), h> \int_0^1 (1-t) \dot <\nabla^2 f(\bar{x}+ t \dot h), h> dt$
+		\item Taylor-Young : \[f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}, h> + \frac{1}{2} <\nabla^2 f(\bar{x} \dot h), h> + ||h||^2 \epsilon (h), \quad \textit{ avec } \ln \epsilon = 0\]
+		\item \[|f(\bar{x}+h) - f(\bar{x}) - <\nabla f(\bar{x}, h> \leq \frac{1}{2} \sup || \nabla^2 f(\bar{x})|| \dot ||h||^2, \quad \textit{ avec } x \in ]\bar{x}, \bar{x}+h[\]
+		\item Tylor-Lagrange : \[f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}), h> + \frac{1}{2} <\nabla^2 f(\bar{x}+ \theta \dot h), h>, \quad \textit{ où } 0< \theta <1\]
+		\item \[f(\bar{x}+h) = f(\bar{x}) + <\nabla f(\bar{x}), h> \int_0^1 (1-t) \dot <\nabla^2 f(\bar{x}+ t \dot h), h> dt\]
 	\end{itemize}
 	
 		\subsubsection{rappel sur les fonction convexes}
 		%--------------------%
 		
-		%Soit $C$ un convexe de $R^n$, $f:C->R$, $f$ est dite convexe ssi $\forall (x, x') \in C x C$ et $\forall \alpha \in ]0,1[$, on a $f(\alpha \dot x + (1-\alpha) \dot x') \infeq \alpha \dot f(x) + (1-\alpha) \dot f(x')$.
+		\begin{definition}
+		Soit $C$ un convexe de $\R^n$, $f:C\ra \R$, $f$ est dite convexe ssi $\forall (x, x') \in C x C$ et $\forall \alpha \in ]0,1[$, on a $f(\alpha x + (1-\alpha) x') \leq \alpha f(x) + (1-\alpha) f(x')$.
+		\end{definition}
 		
-		%$f$ est fortement convexe sur $C$ de module de forte convexité $c>0$ si $f(\alpha \dot x + (1-\alpha) \dot x') \infeq \alpha \dot f(x) + (1-\alpha) \dot f(x') -\frac{1}{2} \dot c \dot \alpha \dot (1-\alpha) \dot ||x'-x||^2$.
+		\begin{definition}
+		$f$ est fortement convexe sur $C$ de module de forte convexité $c>0$ si $f(\alpha x + (1-\alpha) x') \leq \alpha f(x) + (1-\alpha) f(x') -\frac{1}{2} c \alpha (1-\alpha) ||x'-x||^2$.
+		\end{definition}
 		
 		\begin{theoreme}
 		Soit $f$ différentiable sur un ouvert $\Omega$ de $R^n$ et $C$ un convexe de $\Omega$.
@@ -189,36 +193,38 @@
 	\subsection{Exemples}
 	%***********************%
 	
-		\subsubsection{Ex 1}
+		\begin{exemple}
 		
-		Soit $f:\Omega \R^n$, ($\omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
+		Soit $f:\Omega \ra \R^n$, ($\omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
 		
-		Soit $\bar{x}) \in Omega$, $f(\bar{x} +h) = A \dot (\bar{x}+h) + b = A \bar{x} + b + Ah = f(\bar{x}) + Ah + ||h|| \dot 0 = f(\bar{x}) + Ah + ||h|| \dot \epsilon (h)$, où $\epsilon (h) = 0$.
+		Soit $\bar{x}) \in \Omega$, $f(\bar{x} +h) = A \dot (\bar{x}+h) + b = A \bar{x} + b + Ah = f(\bar{x}) + Ah + ||h|| \dot 0 = f(\bar{x}) + Ah + ||h|| \dot \epsilon (h)$, où $\epsilon (h) = 0$.
 		
-		%Donc $f$ est différentiable en $\bar{x}$ et $\nabla f(\bars{x}) = A$.
+		Donc $f$ est différentiable en $\bar{x}$ et $\nabla f(\bar{x}) = A$.
+		\end{exemple}
 		
+		\begin{exemple}
 		
-		\subsubsection{Ex 2}
-		
-		Soit $\Phi : \Omega x \Omega \R$ bilinéaire et symétrique, $f: \omega \R$, $x \mapsto f(x) = \Phi(x, x)$.
+		Soit $\Phi : \Omega \; x \; \Omega \ra \R$ bilinéaire et symétrique, $f: \omega \R$, $x \mapsto f(x) = \Phi(x, x)$.
 		Soit $\bar{x} \in \Omega$, $f(\bar{x}+h) = \Phi(\bar{x}+h, \bar{x}+h) = Phi(\bar{x}, \bar{x}) + \Phi(\bar{x}, h) + \Phi(h, \bar{x}) + \Phi(h, h) = f(\bar{x}) + 2 \dot \Phi(\bar{x}, h) + \Phi(h, h)$.
 		
-		Reste à montrer que $\Phi(h, h) = ||h|| \dot \epsilon (h) \Leftrightarrow \epsilon (h) = \frac{ Phi(h, h) }{ ||h|| }$, avec $\lim{h \rightarrow 0} \epsilon (h) = 0$, \textit{ie} $\Phi(h, h) = o(h)$
+		Reste à montrer que $\Phi(h, h) = ||h|| \dot \epsilon (h) \Leftrightarrow \epsilon (h) = \frac{ \Phi(h, h) }{ ||h|| }$, avec $\lim{h \rightarrow 0} \epsilon (h) = 0$, \textit{ie} $\Phi(h, h) = o(h)$
 		
 		Comme $\Phi$ est bilinéaire et continue (car $dim < 2$) on a : $| \Phi (x, x) \leq c \dot ||x||^2$.
-		%$| \epsilon (h) | = \frac{  }{  } \leq c \dot \frac{ ||h||^2 }{ ||h|| } = c \dot ||h|| \rightarrow_{h \rightarrow 0} 0$.
+		$| \epsilon (h) | = \frac{ ? }{ ? } \leq c \frac{ ||h||^2 }{ ||h|| } = c ||h|| \rightarrow_{h \rightarrow 0} 0$. %TODO
 		
-		%Donc f est différentiable en \bar{x} et $<\nabla f(\bar{x}), h> = 2 \Phi( \bar{x}, h)$.
+		Donc f est différentiable en $\bar{x}$ et $<\nabla f(\bar{x}), h> = 2 \Phi( \bar{x}, h)$.
+		\end{exemple}
 		
-		\subsubsection{Ex 3}
+		\begin{exemple}
 		
 		$f(x) = \frac{1}{2} <Ax, x> - <b, x>$ où $b \in R^n$ et $A \in Mn(R)$ symétrique ; étudier la différentiabilité de $f$.
 		
 		D'après le exemples 1 et 2, $f$ est différentiable et $\nabla f(\bar{x}) = A \bar{x} - b$, (où $<\nabla f(\bar{x}), h> = (A \bar{x} -b, h>$)
 		
 		Remarque : Si $A$ n'est pas symétrique, alors $\nabla f(\bar{x}) = \frac{1}{2} (A+A^t) \bar{x} - b$.
+		\end{exemple}
 		
-		\subsubsection{Ex 4}
+		\begin{exemple}
 		
 		Soit $a \in R^n$ et $V$ un voisinage de $a$, soit $f:V \R$ différentiable en $a$, montrer que $\lim_{t \rightarrow 0} \frac{ f(a+th) - f(a) }{ t } = <\nabla f(a), h>$.
 		
@@ -229,8 +235,9 @@
 		Si $f$ est telle que $\lim_{t \rightarrow 0} \frac{ f(a+th)-f(a) }{t}$ existe et vaut $l$, on dit que f admet une dérivé directionnelle en $a$ dans la direction $h$. On note cette dérivé $f'(a, h) = l$.
 		
 		On a vu que si $f$ est différentiable en $a$, alors $f'(a, h)$ existe (attention : la réciproque est fausse).
+		\end{exemple}
 		
-		Exemple : 
+		\begin{exemple} 
 		
 		$f(x, y) = \frac{x |y|}{\sqrt{x^2+y^2}}$, si $(x, y) \ne (0, 0)$
 		
@@ -240,7 +247,7 @@
 		
 		\[ \lim_{t \rightarrow 0} \frac{ f(0, t(h, k)) - f(0) }{t} = \lim \frac{ t(h, k)}{t} = \lim \frac{1}{t} \frac{t |t| h |k|}{ \sqrt{t^2 (h^2+k^2)}} = \frac{h|k|}{\sqrt{h^2+k^2}} \]
 		
-		Donc $f'(0, (h, k))$ esiste ($h\ne0$ et $k\ne0$), cependant $f$ n'est pas différentiable en $0$.
+		Donc $f'(0, (h, k))$ existe ($h\ne0$ et $k\ne0$), cependant $f$ n'est pas différentiable en $0$.
 		
 		Si $f$ était différentiable en 0, alors on aurait : \[ f(h, k) = < \nabla f(0), (h, k)> + ||(h, k)|| \epsilon (h, k) \] 
 		avec $\lim_{||(h, k)|| \rightarrow 0} \epsilon (h, k) = 0$
@@ -259,9 +266,9 @@
 		\[ \lim_{h \rightarrow 0^+} f(h, h) = \frac{1}{2} \ne -\frac{1}{2} = \lim_{h \rightarrow 0} \frac{h|h|}{2h^2} \]
 		
 		Donc $f$ n'est pas différentiable en $(0, 0)$.
+		\end{exemple}
 		
-		
-		\subsubsection{Ex 5}
+		\begin{exemple}
 		
 		Soit $u: \omega \R$ différentiable sur $\Omega$, soit $f: \omega \R$, $ x \mapsto f(x) = (u(x))^2$.
 		
@@ -274,8 +281,7 @@
 		$f$ est différentiable et $\nabla f(a) = 2u(a) \nabla u(a)$.
 		
 		Cauchy-Schwartz : $|<\nabla u(a), h>| \leq ||\nabla u(a)|| \cdot ||h|| \Rightarrow |<\nabla u(a), h>|^2 \leq ||\nabla u(a)||^2 \cdot ||h||^2 \Rightarrow \frac{ (<\nabla u(a), h>)^2 }{||h||} \leq ||\nabla u(a)||^2 \cdot ||h|| \rightarrow_{||h|| \rightarrow 0} 0 \Rightarrow (< \nabla u(a), h>)^2 = o(h)$
-
-		
+		\end{exemple}
 		
 \section{Optimisation linéaire}
 %=============================%
@@ -291,31 +297,34 @@
 		Soit $f : [a, b] \R$ continue et dérivable sur $[a,  b]$.
 		Soit $\bar{x} \in [a, b]$ tel que $\bar{x}$ réalise un minimum local de $f$.
 		
-		Théorème (condition d'optimalité du 1er ordre)
+		\begin{theoreme} (condition d'optimalité du 1er ordre)
 		
 		Avec les hypothèses vues plus haut, on a $f'(x) = 0$.
+		\end{theoreme}
 		
-		Preuve (faite)
+		\textbf{Preuve} (faite)
 		
 		Attention : $f'(x) = 0$ n'est qu'une condition nécessaire, elle n'est pas suffisante ! (ex : $f(x) = x^3$)
 		
-		Théorème (Weierstrass) :
+		\begin{theoreme} (Weierstrass) :
 		
 		Si $f : [a, b]$ est continue, alors $f$ atteint ses bornes dans $[a, b]$, \textit{ie} il existe $x_1$ et $x_2$ $ \in [a, b]$ tels que $\displaystyle f(x_1) = \inf_{x \in [a, b]} f(x) = \min_{[a, b]} f$ et $\displaystyle f(x_2) = \sup_{x \in [a, b]} f(x) = \max_{[a, b]} f$ \\
+		\end{theoreme}
 		
-		Preuve (déjà faite).\\
+		\textbf{Preuve} (déjà faite).\\
 		
-		Définition :
+		\begin{definition}
 		
 		Soit $f : R \R$, on dit que $f$ est c\oe rcive si \[ \lim_{|x| \rightarrow \infty} f(x) = + \infty \]
+		\end{definition}
 		
 		(ex : $|f(x)| \geq c|x|^\alpha$, avec $\alpha > 0$)
 		
 		Soit $f : R \R$ continue et c\oe rcive, alors $f$ atteint un minimum global.\\
 		
-		Rappel : $\displaystyle \lim_{x \rightarrow x_0} = l$ ssi ($\forall \epsilon >0$) $\exists \alpha >0$ tel que $|x-x_0| \Rightarrow |f(x) - l| < \epsilon$\\
+		\textbf{Rappel} : $\displaystyle \lim_{x \rightarrow x_0} = l$ ssi ($\forall \epsilon >0$) $\exists \alpha >0$ tel que $|x-x_0| \Rightarrow |f(x) - l| < \epsilon$\\
 		
-		Preuve :
+		\textbf{Preuve} :
 		
 		Comme $\displaystyle \lim_{|x| \rightarrow + \infty} = +\infty$, on a pour tout $M>0$ il existe $\alpha >0$ tel que $|x|>\alpha \Rightarrow f(x)>M$
 		Doc $f$ est minorée par $M$ sur $]-\infty, \alpha[ \cup ]-\alpha, +\infty[$. Par ailleurs, $f$ est continue sur le fermé borné $]-\alpha, \alpha[$.
@@ -332,9 +341,10 @@
 		
 		Soit $f : [a, b] \R$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
 		
-		Théorème (conditions nécessaire) : 
+		\begin{theoreme} (conditions nécessaire) : 
 		
 		Soit $\bar{x} \in ]a, b[$ tel que $\bar{x}$ réalise un minimum local de $f$. ALors $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$.
+		\end{theoreme}
 		
 		En effet, $f$ admet un minimum local en $\bar{x} \Rightarrow \exists \alpha >0$ tel que $|x-\bar{x}|<\alpha \Rightarrow f(x) \geq f(\bar{x})$.
 		
@@ -343,10 +353,10 @@
 		On divise par $h^2 \ne 0$, et on obtient : $\displaystyle 0 \leq \frac{f(\bar{x}+h) - f(\bar{x}) }{ h^2 } = \frac{1}{2} f''(\bar{x}) + o(1) $, et $o(1) \sim \epsilon(h)$ tel que $\lim_{h \rightarrow 0} \epsilon(h) = 0$.
 		Prendre la limite quand $h\rightarrow 0$ : $\frac{1}{2} f''(\bar{x}) \geq 0$.
 		
-		
-		Théorème (condition suffisante) :
+		\begin{theoreme} (condition suffisante) :
 		
 		$f : [a, b] \R$ continue et deux fois dérivable sur $]a, b[$. Soit $\bar{x} \in ]a, b[$ tel que $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$. ALors $\bar{x}$ réalise un minimum local strict de $f$ sur $[a, b]$.
+		\end{theoreme}
 		
 		En effet,par Taylor-Young, on a: $f(\bar{x}+h) -f(\bar{x}) = \frac{1}{2} h^2 f''(\bar{x}) + h^2 \epsilon(h)$ et $signe( f(\bar{x}+h) - f(\bar{x}) ) = signe( \frac{1}{2} f''(\bar{x}) + \epsilon(h))$.
 		
@@ -359,13 +369,13 @@
 		
 		\subsection{2ème partie : fonction de plusieurs variables}
 		
-		Théorème :
-		
+		\begin{theoreme}		
 		Soit $f : B(\bar{x}, \alpha) \rightarrow \R$,  (où $B(\bar{x}, \alpha) \subset \R^n$ est la boule de rayon $\alpha$ centrée sur $\bar{x}$) continue et différentiable sur $B(\bar{x}, \alpha)$.
 		
 		On suppose que $f$ admet un minimum local en $\bar{x}$, alors $\nabla f(\bar{x}) = 0$ (condition d'optimalité du premier ordre.
+		\end{theoreme}
 		
-		Preuve : (exercice)
+		\textbf{Preuve} (en exercice)
 		
 		Par Taylor-Young on a : $f(\bar{x}+h)-f(\bar{x}) = < \nabla f(\bar{x}) ,h> + ||h|| \epsilon(h)$ avec $\lim_0 \epsilon = 0$.
 		
@@ -375,28 +385,25 @@
 		$f:X\rightarrow \R$ où $X$ est un compact de $R^n$.
 		Si $f$ est continue sur $X$, alors $f$ y atteint ses bornes.
 		
-		Théorème : 
-		
+		\begin{theoreme} : 
 		Soit $f:R^n \R$ continue et c\oe rcive, alors $f$ admet un minimum global.
+		\end{theoreme}
 		
-		Théorème : 
-		
-		(Condition Nécessaire)
-		
+		\begin{theoreme} (Condition Nécessaire)
 		Soit $f : B(\bar{x}, \alpha) \subset \R^n \R$ continue et deux fois différentiable.
 		
 		Si $\bar{x}$ réalise un minimum local, alors $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ est semi-définie positive.
+		\end{theoreme}
 		
-		(Condition Suffisante)
-		
+		\begin{theoreme} (Condition Suffisante)
 		Soit $\bar{x}$ tel que $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ soit définie positive, alors $\bar{x}$ réalise un minimum local de $f$.
+		\end{theoreme}
 		
 		\begin{exemple}
-		
 		On veut minimiser la fonction quadratique $f(x) = <Ax, x> +2<b, x> +c$ où $A$ est symétrique définie positive $\forall x \in \R^n$.
 		($\nabla f(\bar{x}) = 2A\bar{x} +2b$)
 		
-		$f$ est un polynome de degré 2 en $x_i$ $\Rightarrow f$ est continue sur $\R^n$.
+		$f$ est un polynôme de degré 2 en $x_i$ $\Rightarrow f$ est continue sur $\R^n$.
 		
 		$f$ est c\oe rcive et donc 
 	 	$ f(x) = <Ax, x>  +2<b, x> +c \geq \lambda ||x||^2 + 2<b, x> +c \geq \lambda ||x||^2 - 2||b|| \cdot ||x|| +c $
@@ -413,10 +420,9 @@
 		$\nabla f(\bar{x}) = 2A\bar{x} +2b = 0 \Rightarrow \bar{x} = A^{-1} b$, et comme $A$ est symétrique définie positive, $\Rightarrow A$ est inversible.
 		
 		$f(x) = <Ax, x> +2<b, x> +c$ est strictement convexe $\Rightarrow$ il y a unicité de la solution.
-		
 		\end{exemple}
 		
-		\begin{exemple}%[droite de régression]
+		\begin{exemple} (droite de régression)
 		
 		Soient $N$ points $\{(x_i, y_i), 1\leq i \leq N\}$ d'abscisses strictement croissantes.
 		
@@ -455,7 +461,7 @@ Il s'agit de trouver $\bar{x} \in K$ tel que \[ f(\bar{x}) = \inf f(x) \]
 
 Généralement $K$ est définie par des fonctions $h_i$, $1 \leq i \leq p$, de la manière suivante : \[ TODO \]
 
-On parle de contraintes de type égualité.
+On parle de contraintes de type égalité.
 
 %TODO
 
@@ -662,76 +668,87 @@ Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $
 
 \begin{proposition}
 
-Soit $A \in Mn(\R)$ S.D.P., $b\in\R^n$ et $:\R^n\ra\R$, $x\mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x>$.
+Soit $A \in Mn(\R)$ S.D.P., $b\in\R^N$ et $:\R^N\ra\R$, $x\mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x>$.
 
 Soit $(x^{(n)})$ définie positive comme suit :
-%TODO
 
-$w^{(n)} \ne 0$ est une direction de descente stricte de $f$ en $(x^{(n)})$.
+\textsc{Initialisation :}
+\[x^{(0)}\in\R\]
 
-$\rho^{(n)})$ est optimal dans la direction $(w^{(n)})$.
+\textsc{Itération :}
+$x^{(n)}$ connu, on pose $x^{(n+1)}=x^{(n)}+\rho_n w^{(n)}$ où :
+\begin{enumerate}
+\item $w^{(n)} \ne 0$ est une direction de descente stricte de $f$ en $x^{(n)}$.
+\item $\rho_n$ est optimal dans la direction $w^{(n)}$.
+\end{enumerate}
 
-Si la famille $(w^{(0n)}, w^{(1)}, \dots, w^{(n-1)})$ est une famille A-conjugué, alors on a :
-\[ x^{(n)}=\bar{x} \textit{ avec } A\bar{x}=b \]
-\[ f(\bar{x})=\inf_{\R^n} f \]
+Si la famille $(w^{(0n)}, w^{(1)}, \dots, w^{(N-1)})$ est une famille A-conjugué, alors on a :
+\[ x^{(N)}=\bar{x} \textit{ avec } A\bar{x}=b \]
+\[ f(\bar{x})=\inf_{\R^N} f \]
 
 \end{proposition}
 
-Les grandes lignes de la preuve :\\
+\textbf{Les grandes lignes de la preuve}\\
 Tout revient à prouver que :
-\[<Ax^{(n)}-b,w^{(p)}> = 0, \forall p \in \{0,1,\dots,n-1\}\]
+\[<Ax^{(N)}-b,w^{(p)}> = 0, \forall p \in \{0,1,\dots,N-1\}\]
 
-Cas $p=n-1$, on doit montrer que :
-\[<Ax^{(n)}-b,w^{(n-1)}> = 0\]
-mais \[ x^{(n)}=x^{(n-1)}+\rho_{n-1}w^{(n-1)} \]
-avec \[ \rho_{n-1} \textit{ optimal dans la direction } w^{(n-1)} \] 
-\[ Ax^{(n)}-b=\nabla f(x^{(n)}) = \nabla f(x^{(n-1)}+\rho_{n-1}w^{(n-1)}) \]
-Donc \[ <Ax^{(n)}-b,w^{(n-1)}> = <\nabla f(x^{(n-1)}+\rho_{n-1}w^{(n-1)}), w^{(n-1)}>=\phi '(\rho_{n-1}) \]
-Où \[ \phi (t)=f(x^{(n-1)}+tw^{(n-1)}) \]
-\[ \phi'(t)=<\nabla f(x^{(n-1)}+tw^{(n-1)}, w^{(n-1)}>\]
-\[ (\phi' \textit{ optimal }) \Ra \phi'(\rho_{n-1})=0 \]
-Donc \[ <Ax^{(n)}-b,w^{(n-1)}>=0 \]
+Cas $p=N-1$, on doit montrer que :
+\[<Ax^{(N)}-b,w^{(N-1)}> = 0\]
+mais \[ x^{(N)}=x^{(N-1)}+\rho_{N-1}w^{(N-1)} \]
+avec \[ \rho_{N-1} \textit{ optimal dans la direction } w^{(N-1)} \] 
+\[ Ax^{(N)}-b=\nabla f(x^{(N)}) = \nabla f(x^{(N-1)}+\rho_{N-1}w^{(N-1)}) \]
+Donc \[ <Ax^{(N)}-b,w^{(N-1)}> = <\nabla f(x^{(N-1)}+\rho_{N-1}w^{(N-1)}), w^{(N-1)}>=\phi '(\rho_{N-1}) \]
+Où \[ \phi (t)=f(x^{(N-1)}+tw^{(N-1)}) \]
+\[ \phi'(t)=<\nabla f(x^{(N-1)}+tw^{(N-1)}, w^{(N-1)}>\]
+\[ (\rho_{N-1} \textit{ optimal }) \Ra \phi'(\rho_{N-1})=0 \]
+Donc \[ <Ax^{(N)}-b,w^{(N-1)}>=0 \]
 
-Cas $0\leq p \leq n-1$, montrons que :
-\[ <Ax^{(n)}-b,w^{(p)}>=0 \]
-or \[ Ax^{(n)}-b=A(x^{(n-1)}+\rho_{n-1}w^{(n-1)})-b \]
-\[ =Ax^{(n-1)}-b+\rho_{n-1}Aw^{(n-1)} \]
-\[ =A(x^{(n-2)}+\rho_{n-2}w^{(n-2)})-b+\rho_{n-1}Aw^{(n-1)} \]
-\[ =(Ax^{(n-2)}-b)+\rho_{n-1}Aw^{(n-1)}+\rho_{n-2}Aw^{(n-2)} \]
+Cas $0\leq p \leq N-1$, montrons que :
+\[ <Ax^{(N)}-b,w^{(p)}>=0 \]
+or \[ Ax^{(N)}-b=A(x^{(N-1)}+\rho_{N-1}w^{(N-1)})-b \]
+\[ =Ax^{(N-1)}-b+\rho_{N-1}Aw^{(N-1)} \]
+\[ =A(x^{(N-2)}+\rho_{N-2}w^{(N-2)})-b+\rho_{N-1}Aw^{(N-1)} \]
+\[ =(Ax^{(N-2)}-b)+\rho_{N-1}Aw^{(N-1)}+\rho_{N-2}Aw^{(N-2)} \]
 Par itération on obtient :
-\[ Ax^{(n)}-b=Ax^{(p+1)}-b+\sum_{j=p+1}^{n-1}\rho_jw^{(j)} \]
-Donc \[ <Ax^{(n)}-b,w^{(p)}>=<Ax^{(p+1)}-b,w^{(p)}>+\sum_{j=p+1}^{n-1}\rho_j<Aw^{(j)},w^{(p)}>=0 \]
-\[(\textit{cf plus haut avec }\phi), ((w^{(0)}, \dots, w^{(n-1)}) \textit{ est A-conjuguée}) \]
-Donc $Ax^{(n)}-b$ est orthogonal à la famille $(w^{(0)}, \dots, w^{(n-1)}$, or d'après la proposition précédente, la famille $(w^{(0)}, \dots, w^{(n-1)}$ est une base de $\R^n$ (car A-conjugué et contient $n$ vecteurs).
+\[ Ax^{(N)}-b=Ax^{(p+1)}-b+\sum_{j=p+1}^{N-1}\rho_jw^{(j)} \]
+Donc \[ <Ax^{(N)}-b,w^{(p)}>=<Ax^{(p+1)}-b,w^{(p)}>+\sum_{j=p+1}^{N-1}\rho_j<Aw^{(j)},w^{(p)}>=0 \]
+\[(\textit{cf plus haut avec }\phi), ((w^{(0)}, \dots, w^{(N-1)}) \textit{ est A-conjuguée}) \]
+Donc $Ax^{(N)}-b$ est orthogonal à la famille $(w^{(0)}, \dots, w^{(N-1)}$, or d'après la proposition précédente, la famille $(w^{(0)}, \dots, w^{(N-1)}$ est une base de $\R^N$ (car A-conjugué et contient $N$ vecteurs).
 
-On en déduit que : $Ax^{(n)}-b$ est orthogonal à $\R^n$, $\Ra Ax^{(n)}-b=0 \Ra Ax^{(n)}=b \Ra x^{(n)}=\bar{x}$ (unicité de la solution de $Ax=b$ car $A$ SDP $\Ra A$ inversible).
+On en déduit que : $Ax^{(N)}-b$ est orthogonal à $\R^N$, $\Ra Ax^{(N)}-b=0 \Ra Ax^{(N)}=b \Ra x^{(N)}=\bar{x}$ (unicité de la solution de $Ax=b$ car $A$ SDP $\Ra A$ inversible).
 
 \begin{remarque}
-Cette proposition suggère le principe suivant : si on connait $x^{(0)}, x^{(1)}, \dots, x^{(n)}$ et $w^{(0)}, w^{(1)}, \dots, w^{(n)}$, on cherche ... %TODO
+Cette proposition suggère le principe suivant : si on connait $x^{(0)}, x^{(1)}, \dots, x^{(n)}$ et $w^{(0)}, w^{(1)}, \dots, w^{(n)}$, on cherche $w^{(n)}$ de la manière suivante :
+\begin{enumerate}
+\item $w^{(n)}$ est une direction de descente de $f$ en $x^{(n)}$
+\item $w^{(n)}$ est A-conjugué avec tous les $w^{(n)}, p<n$
+\end{enumerate}
+Avec un tel $w^{(n)}$, on pose $x^{(n+1)}=x^{(n)}+\rho_nw^{(n)}$ avec $\rho_N$ optimal dans la direction de descente $w^{(n)}$. On a $x^{(N)}=\bar{x}$ avec $A\bar{x}=b$.
 \end{remarque}
 
-L'algorithme du gradient conjugué :
+\subsection{L'algorithme du gradient conjugué}
 
-\[f:\R^n\ra \R \]
+\[f:\R^N\ra \R \]
 \[x \mapsto f(x)=\frac{1}{2}<Ax,x>-<b,x> \]
 
-Initialisation :
+\textsc{Initialisation}
 
 Soit $x^{(0)} \in \R$ et $r^{(0)}=b-Ax^{(0)}=-\nabla f(x^{(0)})$
 \begin{enumerate}
-\item si $r^{(0)}=0$, alors $Ax^{(0)}-b$ et ... %TODO
-\item 
+\item si $r^{(0)}=0$, alors $Ax^{(0)}=b$ et $x^{(0)}=\bar{x}$, l'algorithme s'arrête ;
+\item si $x^{(0)}\ne0$, alors on pose $w^{(0)}=r^{(0)}$ et on choisit $\rho_0$ optimal dans la direction $w^{(n)}$
 \end{enumerate}
+On pose $w^{(1)}=w^{(0)}+\rho_0w^{(0)}$.
 
-Iteration :
-%TODO
+\textsc{Iteration}
 
+$1\leq n\leq N-1$, on suppose $x^{(0)},x^{(1)},\dots,x^{(n)}$ et $w^{(0)},w^{(1)},\dots,w^{(n)}$ connus, on pose $r^{(n)}=b-Ax^{(n)}$
 \begin{enumerate}
-\item %TODO
-\item 
+\item si $r^{(n)}=0$, alors $Ax^{(n)}=b$ et $x^{(n)}=\bar{x}$, l'algorithme s'arrête ;
+\item si $r^{(n)}\ne0$, alors on pose $w^{(n)}=r^{(n)}+\lambda_{n-1}w^{(n-1)}$ avec $\lambda_{n-1}$ tel que $<w^{(n)},Aw^{(n-1)}=0$ et on choisit $h$ optimal dans la direction $w^{(n)}$ et on pose $x^{(n+1)}=x^{(n)}+\rho_nw^{(n)}$
 \end{enumerate}
 
-Preuve : admise\\
+\textbf{Preuve :} admise\\
 La suite $x^{(n)} \ra \bar{x}=x^{(N)}$.
 
 \begin{exemple}
@@ -746,16 +763,102 @@ C'est une méthode de gradient conjugué pour une fonction qui n'est pas nécess
 \item Montrer que $\sp(\nabla^2f)$ est borné.
 \end{enumerate}
 
-Soit $x$ et $y$ dans $\R^N$, d'après Taylor-Lagrange, on a : \[ f(y)=f(x)+<\nabla f(x),y-x>+\frac{1}{2}<\nabla^2 f(x+\theta(y-x))(y-x),y-x> \quad (0<\theta<1) \]
-\[ f(y)\geq f(x)+<\nabla f(x),y-x>+\frac{\alpha}{2}|y-x|^2 \quad (*)\quad \Ra f \textit{ est strictement convexe}\]
+1) Soit $x$ et $y$ dans $\R^N$, d'après Taylor-Lagrange, on a : \[ f(y)=f(x)+<\nabla f(x),y-x>+\frac{1}{2}<\nabla^2 f(x+\theta(y-x))(y-x),y-x> \quad (0<\theta<1) \]
+\[ f(y)\geq f(x)+<\nabla f(x),y-x>+\frac{\alpha}{2}|y-x|^2 \quad (*)\quad \Ra f \textit{ est fortement convexe}\]
 On fixe $x$ et on prend la limite quand $||y|| \ra \infty$ dans $(*)$ : \[ \lim_{||y|| \ra \infty} f(y) \geq f(x)+\lim_{||y|| \ra \infty}(-|\nabla f(x)||y_x|+\frac{\alpha}{2}|y_-x|^2)=+\infty \]
 \[ \Ra \lim_{||y|| \ra \infty} f(y) = +\infty \quad \Ra f \textit{ est c\oe rcive} \]
 
+% 04/04
+2) Montrer que le spectre de $\nabla^2f$ est borné.\\
+Par hypothèse :
+\[ \alpha|y|^2 \leq <\nabla^2 f(x)y,y> \leq \beta|y|^2, \quad \forall x, y\in\R^N \]
+Doit $\lambda \in sp(\nabla^2f(y))$, soit $y\in\R^N$ le vecteur propre associé à la valeur propre $\lambda$. On a :$\nabla^2f(x)y=\lambda y$
+\[ \alpha|y|^2 \leq |<\nabla^2 f(y),y>| \leq \beta|y|^2 \]
+\[ \alpha|y|^2 \leq |<\lambda y,y>| \leq \beta|y|^2 \]
+\[ \alpha|y|^2 \leq |\lambda| <y,y> \leq \beta|y|^2 \]
+\[ \alpha|y|^2 \leq |\lambda| |y|^2 \leq \beta|y|^2 \quad (*)\]
+Or $y\ne0$ (car $y$ est un vecteur propre), donc $(*) \Ra \alpha\le |\lambda|\leq \beta \Ra$ le spectre de $\nabla^2f(x)$ est borné.
+
+\begin{remarque}
+Comme $f\in C^2(\R^N-\R)$, la matrice hessienne $\nabla^2f(x)$ est symétrique (Lemme de Schwartz). Or toute matrice symétrique de $Mn(\R)$ est diagonalisable sur $\R \Ra \R^N$ admet une base de vecteurs propres de $\nabla^2f(x)\Ra$ un vecteur propre $y$ est un élément de $\R^N$.
+\end{remarque}
+
+\[ \Ra\exists!\; \bar{x} \textit{ tel que } \quad f(\bar{x})=\inf_{x\in\R^N}(x) \]
+
 \end{exemple}
+
+\textsc{Initialisation}
+
+$x^{(0)}\in\R^N$, on pose $g^{(0)}=-\nabla f(x^{(0)})$
+\begin{itemize}
+\item $g^{(0)}=0$, on s'arrête,
+\item $g^{(0)}\ne0$, on pose $w^{(0)}=g^{(0)}$ et $x^{(1)}=x^{(0)}+\rho_0w^{(0)}$ avec $\rho_0$ optimal dans la direction $w^{(0)}$
+\end{itemize}
+
+\textsc{Itération}
+
+$x^{(n)}, w^{(n-1)}$ connus, on pose $g(n)=-\nabla f(x^{(n)})$
+\begin{itemize}
+\item si $g^{(n)}=0$, on s'arrête,
+\item si $g^{(n)}\ne0$, on pose :
+\end{itemize}
+\[ \lambda_{n-1} = \frac{ <g^{(n)},(g^{(n)}-g^{(n-1)})> }{ <g^{(n-1)},g^{(n-1)}> }\]
+\[ w^{(n)}=g^{(n)}+\lambda^{(n-1)}w^{(n-1)} \]
+\[ x^{(n+1)}=x^{(n)}+\lambda_nw^{(n)} \quad \textit{ avec } \lambda_n \textit{optimal dans la direction de descente }w^{(n)} \]
+Dans la suite, on suppose $g^{(n)}\ne0$.
+
+2) Montrer que $<g^{(n+1)},w^{(n)}>=0$ et $<g^{(n)},g^{(n)}>=<g^{(n)},w^{(n)}>$.
+On le fait par récurrence sur $n$ :
+
+\textbf{Cas $n=0$ :}
+
+$g^{(1)}=-\nabla f(x^{(1)})$, donc $<g^{(1)},w^{(0)}>=-<\nabla f(x^{(1)}),w^{(0)}>=-<\nabla f(x^{(0)}+\rho_0w^{(0)},w^{(0)}>=-\phi'(\rho_0)=0$ (car $\rho_0$ est optimal) ; et $<g^{(0)},g^{(0)}>=<g^{(0)},w^{(0)}>$ par définition.
+
+On suppose la propriété vrai à l'ordre $(n-1)$ et on montre qu'elle l'est toujours à l'ordre $n$.
+
+\textbf{Cas $n$ :}
+
+$<g^{(n)},w^{(n)}>=<g^{(n)},g^{(n)}+\lambda_{n-1}w^{(n-1)}>=<g^{(n)},g^{(n)}>+\lambda_{n-1}<g^{(n)},w^{(n-1)}>=<g^{(n)},g^{(n)}>$ 
+
+$<g^{(n+1)},w^{(n)}>=<-\nabla f(x^{(n+1)}),w^{(n)}>=<-\nabla f(x^{(n)}+\rho_nw^{(n)}),w^{(n)}>=0$ par optimalité de $\rho_n$.
+
+3) On pose \[ J^{(n)}=\int_0^1 \nabla^2 f(x^{(n)}+\rho_nw^{(n)})dt \]
+Montrer que \[ g^{(n+1)}=g^{(n)}-\rho_nJ^{(n)}w^{(n)} \] et que \[ \rho_n = \frac{ <-g^{(n)},w^{(n-1)}> }{ <J^{(n)}w^{(n)},w^{(n)}>},\quad \forall n\in N \]
+
+$g^{(n+1)}-g^{(n)}=\nabla f(x^{(n)})-\nabla f(x^{(n+1)})$
+Posons $\psi(t)=\nabla f(x^{(n)}+t\rho_nw^{(n)})$, $\psi'(t)=\nabla^2 f(x^{(n)}+t\rho_nw^{(n)})\rho_nw^{(n)}$, $\psi(1)-\psi(0)=\int_0^1 \psi'(t)dt \Ra \nabla f(x^{(n)}+\rho_nw^{(n)})-\nabla f(x^{(n)})=(\int_0^1\nabla^2 f(x^{(n)}+\rho_nw^{(n)}))\rho_nw^{(n)}==\rho_nJ^{(n)}w^{(n)}$, (car $g^{(n)}-g^{(n+1)}=\rho_nJ^{(n)}w^{(n)}$)
+
+On prend le produit scalaire par $w^{(n)}$ : $(0=)<g^{(n+1)},w^{(n)}>=<g^{(n)},w^{(n)}>-J_n<J^{(n)}w^{(n)},w^{(n)}>$
+\[ \Ra\rho_n = \frac{ <-g^{(n)},w^{(n-1)}> }{ <J^{(n)}w^{(n)},w^{(n)}>} \]
+\[ <J^{(n)}w^{(n)},w^{(n)}> >0 \textit{ car } \nabla f \textit{ est SDP}\]
+
+4) Montrer que $|w^{(n)}| \leq (1+\frac{\alpha}{\beta})|g^{(n)}|$,
+5) Montrer que $x_n$ converge.
+
+\begin{exemple}
+Soit $f:\R^2\ra\R$, $x\mapsto f(x)=x_1^2+x_2^2+4x_1x_2+2x_1-3x_2+7$, soit $x_0=(0,0)$.
+
+Décrire la méthode du gradient à pas optimal pour calculer $\bar{x}$ tel que $\displaystyle f(\bar{x})=\inf_{x\in\R^2} f(x), \quad x=(x_1,x_2)$
+
+On remarque que $f(x)=<Ax,x>-<b,x>+7$ où $A=\begin{pmatrix}1 & 2\\ 2 & 1\\ \end{pmatrix}$ et $b=\begin{pmatrix}-2\\ 3\\ \end{pmatrix}$
+
+$q(x)=x_1^2+x_2^2+4x_1x_2 \Ra \phi(x, y)=x_1y_1+x_2y_2+2(x_1y_2+x_2y_1)=x_1(y_1+2y_2)+x_2(2y_1y2)=<x,Ay>$
+
+$\nabla f(x)=2Ax-b$, $w^{(0)}=-\nabla f(x^{(0)})=-\nabla f(0)$, donc $w^{(0)}=b\ne 0 \Ra x^{(1)}=x^{(0)}+\rho_0w^{(0)}$ avec $\rho_0$ optimal dans la direction $w^{(0)}$.
+
+On pose $\phi(t)=f(x^{(0)}+tw^{(0)})=f(tb)=<Atb,tb>-<b,tb>+7=t^2<Ab,b>-t<b,b>+7=\alpha t^2-\beta t+7$, $\phi'(t)=2\alpha t-\beta$
+
+$\phi'(t)=0 \Lra t=\frac{\beta}{2\alpha}$ avec $\begin{cases} \beta=||b||^2 \\ \alpha=<Ab,b> \end{cases}$
+$x^{(1)}=\frac{||b||^2}{2<Ab,b>}b$
+
+$w^{(1)}=-\nabla f(x^{(1)})=-2Ax^{(1)}+b=-\frac{||b||^2}{<Ab,b>}Ab=+b= ...$
+
+\end{exemple}
+
+
 
 %\sectionEt{Conclusion}
 %====================%
-
 
 
 %Pour approfondir voir les références \cite{minoux} \cite{bierlaine} \cite{luenberger}
