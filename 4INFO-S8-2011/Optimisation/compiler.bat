@@ -1,0 +1,10 @@
+pdflatex Optimisation_cours
+bibtex Optimisation_cours
+pdflatex Optimisation_cours
+pdflatex Optimisation_cours
+del *.aux
+del *.bbl
+del *.blg
+del *.log
+del *.toc
+del *.out
