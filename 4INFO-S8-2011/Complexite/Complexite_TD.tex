@@ -748,5 +748,182 @@ return tab(p);
 
 \end{exercice}
 
+\section{TD6}
+
+\paragraph{Solution récursive naïve}
+
+\begin{verbatim}
+Appel initial :
+
+int Dist(char *A, char *B, int i, int j){
+   if(j==0){
+      if(i==0)
+         return 0;
+      else{
+         return(D(A[i])+Dist(A,B,i-A,j));
+      }
+   }else if (i==n)
+      return(T(B[j] + Dist(A,B,i,j-1))
+   else
+      return Min(S(A[i],B[j])+Dist(A,B,i-1,j-1),
+         D(A[i]) + Dist(A,B,i-1,j),
+         I(B[j])+Dist(A,B,i,j-1));
+}
+\end{verbatim}        	
+	
+\paragraph{Graphe des appels}
+
+\includegraphics[width=15cm]{Photo0090}
+
+\paragraph{Elimination des redondances}
+
+\begin{itemize}
+\item On élimine les calculs redondants à l'aide d'une technique de marquage.
+\item On utilise un tableau auxilliaire TabDist de taille \textit{n} x \textit{m} (la taille est égale au nombre de sommets du graphe des appels).
+\item On prend comme convention de l'initialiser à -1 pour indiquer qu'un sommet n'est pas marqué.
+\end{itemize}
+
+\paragraph{Algorithme sans les redondances}
+\begin{verbatim}
+
+int Dist(char *A, char *B, int i, int j){
+   if(TabDist[i][j] != -1)
+      return TabDist[i][j];
+   else{
+      if(j==0){
+         if(i==0){
+            TabDist[i][j] = 0;
+            return TabDist[i][j];
+         }
+         else{
+            TabDist[i][j] = D(A[i])+Dist(A,B,i-A,j);
+            return TabDist[i][j];
+         }
+      }else if (i==n){
+         TabDist[i][j] = T(B[j] + Dist(A,B,i,j-1)
+         return TabDist[i][j];
+      }else{
+         TabDist[i][j] = Min(S(A[i],B[j])+Dist(A,B,i-1,j-1),
+            D(A[i]) + Dist(A,B,i-1,j),
+            I(B[j])+Dist(A,B,i,j-1));
+         return TabDist[i][j];
+      }
+   }
+}
+\end{verbatim}
+\paragraph{Calcul du coût}
+
+\includegraphics[width=15cm]{Photo0090}
+voir les traits rouges et verts.
+
+
+\paragraph{Solution itérative}
+On remarque que les rôles de n et m sont symétriques. On peut donc :
+\begin{itemize}
+\item Remonter le long des colonnes(n=< m)
+\item Remonter le long des lignes (n>m)
+\end{itemize}
+Le stockage mémoire est limité à min(n,m) (dernière colonne ou ligne calculée
+
+
+\paragraph{Algorithme itératif}
+
+\begin{verbatim}
+On suppose (n=<m)
+
+int Dist(char *A, char *B, int i, int j){
+   int TabDist[n+1];
+   int aux,tmp;
+   TabDist[0]=0;
+   for(i=1 ; i<=n ; i++){
+      TabDist[i] = TabDist[i-1] + D(A[i]);
+      //calcul de la 1ère colonne
+   }
+   for(j=1 ; j<=m ; j++){
+      aux = TabDist[0];
+      for(i=1 ; i<=n ; i++){
+         tmp = TabDist[i];
+         TabDist[i][j] = Min(S(A[i],B[j])+aux,
+            D(A[i]) + TabDist[i-1],
+            I(B[j])+tmp);
+         aux = tmp;
+      }
+   }
+   return TabDist[n];
+}
+\end{verbatim}
+
+\paragraph{Reconnaissance de chaines de caractères bruités : exemple}
+
+\includegraphics[width=15cm]{Photo0089}
+
+\includegraphics[width=15cm]{Photo0091}
+
+On prend le chemin depuis (n,m) en utilisant S.
+
+\paragraph{Un premier exemple}
+
+1) ((M1 M2) M3) M4\\
+   100x1x50 + 100x50x20 + 100x20x1 = 17 000\\
+   
+2) (M1 (M2 M3)) M4\\
+   5 000\\
+   
+3) (M1 M2)(M3 M4)\\
+   11 000\\
+
+4) M1 (M2 (M3 M4))\\
+   1150\\
+
+5) M1 ((M2 M3) M4)\\
+   1120\\
+   
+Cout minimum : 5) avec 1120
+ 
+\paragraph{Solution récursive naïve}
+
+\begin{verbatim}
+Appel initial : Mult(1,n).
+
+int Mult(int i, int j){
+   int min, tmp;
+   if(i==j)
+      return 0;
+   else{
+      min = Mult(i,j) + Mult(i+1,j + d[i] d[i+1] d[j+1];
+      for(k=i+1 ; k<j ; k++){
+         tmp = Mult(i,k)+Mult(k+1,j) + d[i] d[k+1] d[j+1];
+         if(tmp<min) min = tmp;
+      }
+      return min;
+   }
+}
+\end{verbatim}
+\paragraph{Calcul du cout de la solution naïve}
+\includegraphics[width=15cm]{Photo0092}
+On utilise une matrice (n,n) pour les calculs redondants.
+
+\paragraph{Elimination des calculs redondants}
+\begin{verbatim}
+Appel initial : Mult(1,n).
+
+int Mult(int i, int j){
+   int min, tmp;
+   if(TabMult[i][j] == -1)
+      if(i==j){
+         TabMult[i][j]=0
+         return 0;
+      }
+      else{
+         min = Mult(i,j) + Mult(i+1,j + d[i] d[i+1] d[j+1];
+         for(k=i+1 ; k<j ; k++){
+            tmp = Mult(i,k)+Mult(k+1,j) + d[i] d[k+1] d[j+1];
+            if(tmp<min) min = tmp;
+         }
+         TabMult[i][j] = min;
+   }
+   return TabMult[i][j];
+}
+\end{verbatim}
 
 \end{document}
