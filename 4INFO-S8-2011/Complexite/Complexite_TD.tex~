@@ -1017,7 +1017,7 @@ procedure MultOpt( D[1..n], S[1..n][1..n], TabMult[1..n][1..n]){
 \includegraphics[width=15cm]{avaler}
 
 \paragraph{}
-Pour ceux qui n'ont pas pu récupérer le poly de TD 7, vous pouvez vous en procurer
+Pour ceux qui n'ont pas pu récupérer le poly de TD n°7, vous pouvez vous en procurer
 au tarif de 2 euros au DB415.
 
 \subsection{Premier exemple: traversée de la matrice}
