@@ -1016,10 +1016,6 @@ procedure MultOpt( D[1..n], S[1..n][1..n], TabMult[1..n][1..n]){
 \paragraph{}
 \includegraphics[width=15cm]{avaler}
 
-\paragraph{}
-Pour ceux qui n'ont pas pu récupérer le poly de TD 7, vous pouvez vous en procurer
-au tarif de 2 euros au DB415.
-
 \subsection{Premier exemple: traversée de la matrice}
 Réponses aux question (p.16):
 \begin{itemize}
@@ -1027,6 +1023,7 @@ Réponses aux question (p.16):
  \item Solution: (1,1), (1,2), (1,3), (2,3), (2,4), (3, 4), (4,4), cout: 61 (la meilleure solution a un cout de 47)
  \item On obtient toujours une solution (si on tombe sur la ligne 4 ou la colonne 4 il n'y a plus de choix mais il y a une solution).
 \end{itemize}
+
 
 
 
