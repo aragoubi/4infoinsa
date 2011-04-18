@@ -1028,6 +1028,44 @@ Réponses aux question (p.16):
  \item On obtient toujours une solution (si on tombe sur la ligne 4 ou la colonne 4 il n'y a plus de choix mais il y a une solution).
 \end{itemize}
 
+\subsection{Algorithme de Prim : application sur l'exemple}
+\[
+G' = {1,\empty}
+G' = {{1,2},{1\ra2}}
+G' = {{1,2,4},{1\ra2,2\ra4}}
+G' = {{1,2,4,6},{1\ra2,2\ra4,4\ra6}}
+G' = {{1,2,4,6,3},{1\ra2,2\ra4,4\ra6,6\ra3}}
+G' = {{1,2,4,6,3,5},{1\ra2,2\ra4,4\ra6,6\ra3,1\ra5}}
+\]
 
+\subsection{Algorithme de Prim : Complexité}
+Complexité : $O(mn)$
 
+Avec tas binaire : $O(m+nlogn)$
+
+\subsection{Algorithme de Kruskal : application sur l'exemple}
+\underline{Etape initiale :}
+
+$F={(2,4),(3,4),(3,6),(4,6),(1,2),(1,3),(1,5),(1,6),(2,3),(2,6),(4,5)}$
+
+\underline{Complexité de l'algo de Kruskal (avec M le nbre d'arêtes et n le nbre de sommets)}
+\begin{itemize}
+\item tri en O(mlog(m))
+\item Union des arbres nécessite la vérification des noeuds(pour éviter que les deux extrémités soient dans le même arbre) 
+dans la liste de n noeuds au pire : coût en O(log(n))
+\item Avec m unions : O(mlog(n))
+\item Coût total : O(Mlog(n))
+\end{itemize}
+
+\subsection{Exemple du voyageur de commerce}
+Question 1 : ?
+
+Question 2 : ?
+
+\section{TD8}
+
+\subsection{Labyrinthe : arbre de recherche par essais successifs}
+%voir poly diapo 26
+
+	
 \end{document}
