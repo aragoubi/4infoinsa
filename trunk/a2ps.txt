@@ -2,3 +2,7 @@ a2ps -o - --toc --left-footer="" --header="TP 4info 2010" --title="TP 4info 2010
 
 voila un exemple d'utilisation de a2ps pour faire un pdf de tous vos tps situe dans tous les sous repertoires du repertoire cpoo, avec une table des matieres à la fin ...
 le parametre --file-align=fill permet de toujours avoir 2 minipages par pages
+
+ajout des numeros de lignes et gestion des profondeurs variables
+a2ps -o - --toc --left-footer="" --header="TP 4info 2010" --title="TP 4info 2010" --left-title="" --file-align=fill --line-numbers=1 `find -iname *.java|sort`|ps2pdf12 -sPAPERSIZE=a4 - resul.pdf
+
