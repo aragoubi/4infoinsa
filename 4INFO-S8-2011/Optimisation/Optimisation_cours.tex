@@ -78,13 +78,13 @@
 		%-------------------------------------------%
 		
 	\[f(x, y) = x^3 - y^3 + 3(y-x), (x, y) \quad\in R^2\]
-	\[inf_{(x, y) \in R^2} f(xn y) = -\infty \]
+	\[inf_{(x, y) \in R^2} f(x,y) = -\infty \]
 	Étude des extremum locaux de $f$ :
 	\[\nabla f(x, y) = (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y})^t = (3x^2-3, -3y^2 +3)=-3(x^2-1 , 1-y^2)\]
 	Recherche de points stationnaires (critiques) $\nabla f(x, y) = ( 0, 0) \quad\Ra\quad x^2 = 1 , y^2 = 1$ \\
 	Les points stationnaires de $f$ sont $(-1, -1), (-1, 1), (1, -1) et (1, 1)$.
 	\[\nabla^2 f(x, y) = \begin{pmatrix} \frac{\partial^2 f}{\partial x^2} &\frac{\partial^2 f}{\partial x \partial y} \\ \frac{\partial^2 f}{\partial y \partial x} & \frac{\partial^2 f}{\partial y^2} \end{pmatrix} 
-	= \begin{pmatrix} 32x & 0 \\ 0 & -2y \end{pmatrix}
+	= \begin{pmatrix} 6x & 0 \\ 0 & -6y \end{pmatrix}
 	= 6\begin{pmatrix} x & 0 \\ 0 & -y\end{pmatrix} 
 	= \begin{pmatrix} r & s \\ s & t\end{pmatrix}\]
 
@@ -106,12 +106,12 @@
 		
 		\begin{theoreme} (Lagrange)
 		
-		Si $(x_0, y_0)$ réalise in minimum local sur $E$ et que $\nabla \neq 0$ alors il existe un réel $\lambda$ tel que $\nabla f + \lambda \nabla h = $
+		Si $(x_0, y_0)$ réalise in minimum local sur $E$ et que $\nabla \neq 0$ alors il existe un réel $\lambda$ tel que $\nabla f + \lambda \nabla h = 0 $
 		$\lambda$ s'appelle un multiplicateur de Lagrange.
 		\end{theoreme}
 		
 		($E = {(x, y) \in \R^2 | h(x, y) = 0}$)\\
-		\[\begin{cases} \nabla f(x, y) = ( x, y) \\ \nabla h(x, y) = (8x, 2y)\\ \nabla f + \lambda \nabla h = 0 \end{cases} \] \\
+		\[\begin{cases} \nabla f(x, y) = ( y, x) \\ \nabla h(x, y) = (8x, 2y)\\ \nabla f + \lambda \nabla h = 0 \end{cases} \] \\
 		\[\begin{cases} y+8\lambda x=0 \quad(1) \\ x+2\lambda y=0 \quad(2) \\ 4x^2+y^2-4=0 \quad(3)\end{cases}\] \\
 		$(2) => x = -2\lambda y$ \\
 		$(1) => y+8\lambda (-2\lambda y) = 0 => y(1-16 \lambda^2) = 0 => y=0$ ou $\lambda = \pm \frac{1}{4}$ \\
@@ -191,7 +191,7 @@
 	
 		\begin{exemple}
 		
-		Soit $f:\Omega \ra \R^n$, ($\omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
+		Soit $f:\Omega \ra \R^n$, ($\Omega$ ouvert de $R^n$), $x|-> f(x) = A \dot x +b$ où $A \in Mn(R)$ et $b \in R^n$.
 		\[\textit{Soit }\bar{x} \in \Omega, \; f(\bar{x} +h) = A (\bar{x}+h) + b = A \bar{x} + b + Ah = f(\bar{x}) + Ah + ||h|| 0 = f(\bar{x}) + Ah + ||h|| \epsilon (h), \textit{ où } \epsilon (h) = 0\]
 		
 		Donc $f$ est différentiable en $\bar{x}$ et $\nabla f(\bar{x}) = A$.
@@ -284,17 +284,17 @@
 	
 		\subsubsection{Condition d'optimalité}
 		
-		Soit $f : [a, b] \R$ continue et dérivable sur $[a,  b]$.
+		Soit $f : [a, b] \in \R$ continue et dérivable sur $[a,  b]$.
 		Soit $\bar{x} \in [a, b]$ tel que $\bar{x}$ réalise un minimum local de $f$.
 		
 		\begin{theoreme} (condition d'optimalité du 1er ordre)
 		
-		Avec les hypothèses vues plus haut, on a $f'(x) = 0$.
+		Avec les hypothèses vues plus haut, on a $f'(\bar{x}) = 0$.
 		\end{theoreme}
 		
 		\textbf{Preuve} (faite)
 		
-		Attention : $f'(x) = 0$ n'est qu'une condition nécessaire, elle n'est pas suffisante ! (ex : $f(x) = x^3$)
+		Attention : $f'(\bar{x}) = 0$ n'est qu'une condition nécessaire, elle n'est pas suffisante ! (ex : $f(x) = x^3$)
 		
 		\begin{theoreme} (Weierstrass) :
 
@@ -306,12 +306,12 @@
 		
 		\begin{definition}
 		
-		Soit $f : R \R$, on dit que $f$ est c\oe rcive si \[ \lim_{|x| \rightarrow \infty} f(x) = + \infty \]
+		Soit $f : \R \rightarrow \R$, on dit que $f$ est c\oe rcive si \[ \lim_{|x| \rightarrow \infty} f(x) = + \infty \]
 		\end{definition}
 		
 		(ex : $|f(x)| \geq c|x|^\alpha$, avec $\alpha > 0$)
 		
-		Soit $f : R \R$ continue et c\oe rcive, alors $f$ atteint un minimum global.\\
+		Soit $f : \R \rightarrow \R$ continue et c\oe rcive, alors $f$ atteint un minimum global.\\
 		
 		\textbf{Rappel} : $\displaystyle \lim_{x \rightarrow x_0} = l$ ssi ($\forall \epsilon >0$) $\exists \alpha >0$ tel que $|x-x_0| \Rightarrow |f(x) - l| < \epsilon$\\
 		
@@ -330,11 +330,11 @@
 		
 		\subsubsection{Conditions d'optimalité du second ordre}
 		
-		Soit $f : [a, b] \R$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
+		Soit $f : [a, b] \in \R$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
 		
 		\begin{theoreme} (conditions nécessaire) : 
 		
-		Soit $\bar{x} \in ]a, b[$ tel que $\bar{x}$ réalise un minimum local de $f$. ALors $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$.
+		Soit $\bar{x} \in ]a, b[$ tel que $\bar{x}$ réalise un minimum local de $f$. Alors $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$.
 		\end{theoreme}
 		
 		En effet, $f$ admet un minimum local en $\bar{x}$ \[\Rightarrow \exists \alpha >0 \quad\textit{ tel que }|x-\bar{x}|<\alpha \Rightarrow f(x) \geq f(\bar{x})\]
@@ -346,7 +346,7 @@
 		
 		\begin{theoreme} (condition suffisante) :
 		
-		$f : [a, b] \R$ continue et deux fois dérivable sur $]a, b[$. Soit $\bar{x} \in ]a, b[$ tel que $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$. ALors $\bar{x}$ réalise un minimum local strict de $f$ sur $[a, b]$.
+		$f : [a, b] \in \R$ continue et deux fois dérivable sur $]a, b[$. Soit $\bar{x} \in ]a, b[$ tel que $f'(\bar{x}) = 0$ et $f''(\bar{x}) \geq 0$. Alors $\bar{x}$ réalise un minimum local strict de $f$ sur $[a, b]$.
 		\end{theoreme}
 		
 		En effet,par Taylor-Young, on a: $f(\bar{x}+h) -f(\bar{x}) = \frac{1}{2} h^2 f''(\bar{x}) + h^2 \epsilon(h)$ et $signe( f(\bar{x}+h) - f(\bar{x}) ) = signe( \frac{1}{2} f''(\bar{x}) + \epsilon(h))$.
@@ -363,7 +363,7 @@
 		\begin{theoreme}		
 		Soit $f : B(\bar{x}, \alpha) \rightarrow \R$,  (où $B(\bar{x}, \alpha) \subset \R^n$ est la boule de rayon $\alpha$ centrée sur $\bar{x}$) continue et différentiable sur $B(\bar{x}, \alpha)$.
 		
-		On suppose que $f$ admet un minimum local en $\bar{x}$, alors $\nabla f(\bar{x}) = 0$ (condition d'optimalité du premier ordre.
+		On suppose que $f$ admet un minimum local en $\bar{x}$, alors $\nabla f(\bar{x}) = 0$ (condition d'optimalité du premier ordre).
 		\end{theoreme}
 		
 		\textbf{Preuve} (en exercice)
@@ -384,11 +384,11 @@
 		Si $f$ est continue sur $X$, alors $f$ y atteint ses bornes.
 		
 		\begin{theoreme} : 
-		Soit $f:R^n \R$ continue et c\oe rcive, alors $f$ admet un minimum global.
+		Soit $f: \R^n \rightarrow \R$ continue et c\oe rcive, alors $f$ admet un minimum global.
 		\end{theoreme}
 		
 		\begin{theoreme} (Condition Nécessaire)
-		Soit $f : B(\bar{x}, \alpha) \subset \R^n \R$ continue et deux fois différentiable.
+		Soit $f : B(\bar{x}, \alpha) \rightarrow \R$ continue et deux fois différentiable.
 		
 		Si $\bar{x}$ réalise un minimum local, alors $\nabla f(\bar{x}) = 0$ et $\nabla^2 f(\bar{x})$ est semi-définie positive.
 		\end{theoreme}
@@ -463,9 +463,9 @@ Si $f$ et $\mathcal{K}$ sont convexe, on parlera de problème convexe.
 	Graphiquement, l'ensemble des contraintes est le cercle de centre 0 et de rayon : $\sqrt 2$ \[ \mathcal{K} = C(0, \sqrt(2)) \]
 	On considère les droites $(\Delta_a)$ d'équation $f(x)=a, \; a\in\R$, \textit{ie} $x_1+x_2=a \Ra x_2=a-x_1$.\\
 	Les droites $(\Delta_a)$ se déplacent vers le \og sud-ouest \fg. $f$ atteint donc son minimum en $\bar{x} = (-1, -1)$.
-	En $\bar{x}$, on a $\displaystyle \nabla f(\bar{x}) = \begin{pmatrix} 1\\ 1\\ \end{pmatrix} $ et $\displaystyle \nabla h(\bar{x}) \begin{pmatrix} 1\\ 1\\ \end{pmatrix}  $ où $h(x) = x_1^2 + x_2^2 - 2$.\\
+	En $\bar{x}$, on a $\displaystyle \nabla f(\bar{x}) = \begin{pmatrix} 1\\ 1\\ \end{pmatrix} $ et $\displaystyle \nabla h(\bar{x}) \begin{pmatrix} -2\\ -2\\ \end{pmatrix}  $ où $h(x) = x_1^2 + x_2^2 - 2$.\\
 	On remarque que \[ \nabla h( \bar{x} ) = -2  \nabla f(\bar{x}) \Ra \nabla f(\bar{x})+\frac{1}{2}\nabla h(\bar{x})=0 \Ra \nabla f(\bar{x})+\lambda\nabla h(\bar{x})=0, \quad\textit{ où }\lambda=\frac{1}{2}\]
-	Cela marche aussi avec $\lambda=\frac{1}{2}$ et le point $\tilde{x}=(1,1)$
+	Cela marche aussi avec $\lambda= -\frac{1}{2}$ et le point $\tilde{x}=(1,1)$
 	\[ 0=g(x_1))=h(x_1,\psi(x_1)) \]
 	\[ 0=g'(x_1))=\frac{\partial h}{\partial x_1}(x_1,\psi(x_1))+\frac{\partial h}{\partial x_2}(x_1,\psi(x_1))\psi'(x_1) \]
 	\[ \begin{pmatrix} \frac{\partial h}{\partial x_1}\\ \frac{\partial h}{\partial x_2}\\ \end{pmatrix} \cdot \begin{pmatrix} 1\\ \psi'(x_1)\\ \end{pmatrix}=0 \quad \Ra \vec{\nabla h} \perp \vec{T} \]
@@ -545,9 +545,9 @@ On a $z'\in\mathcal{S}(0,1)$, on peut écrire \[z'_1, \dots,z_n' \leq \sqrt{n} \
 \begin{exemple}
 	Reprenons le problème $(P1)$ avec une contrainte d'inégalité.
 	\[ (\mathcal{P}) : \min f(x) = x_1 + x_2 \]
-	sachant que $g(x) = x_1+x_2 -2 \leq 0$.
+	sachant que $g(x) = x_1^2+x_2^2 -2 \leq 0$.
 	
-	$S = \{ g(x) = 0 \}$ est le cercle $C(0, \sqrt{0})$ qui est compact. $f$ étant continue, $f$ atteint son minimum en un point $\bar{x} \in S$
+	$S = \{ g(x) = 0 \}$ est le cercle $C(0, \sqrt{2})$ qui est compact. $f$ étant continue, $f$ atteint son minimum en un point $\bar{x} \in S$
 	
 	$\bar{x} \in S$(avec un rond : intérieur de S) sinon $\nabla f$ serait nul, ce qui n'est pas le cas.
 	
@@ -585,12 +585,12 @@ La condition de KKT devient \[ \nabla f(\bar{x}) + \sum_{j \in J(x)} \mu _j \nab
 
 \begin{theoreme} (CS d'optimalité de KKT pour les problèmes convexes)
 
-Supposons $f$ et $g_j$ convexes définies sur un convexe $C$ de $\R^n$. Si les conditions de KKt sont satisfaites en $\bar{x}$, alors $\bar{x}$ réalise un minimum global.
+Supposons $f$ et $g_j$ convexes définies sur un convexe $C$ de $\R^n$. Si les conditions de KKT sont satisfaites en $\bar{x}$, alors $\bar{x}$ réalise un minimum global.
 \end{theoreme}
 
 \subsection{Optimisation avec contraintes mixtes}
 
-Considérons le problème d'optimisation suivant avec les deux types de contraintes : \[ (\mathcal{P}) \begin{cases}\min f(x) \\ h_i(x) = 0 , \quad 1 \leq j \leq n \\ g_j(x) \leq 0 , \quad i \leq j \leq p \end{cases} \]
+Considérons le problème d'optimisation suivant avec les deux types de contraintes : \[ (\mathcal{P}) \begin{cases}\min f(x) \\ h_i(x) = 0 , \quad 1 \leq i \leq n \\ g_j(x) \leq 0 , \quad 1 \leq j \leq p \end{cases} \]
 
 On désigne par $J(\bar{x})=\{j \in \{1, \dots , p\}; g_j(\bar{x}) = 0\}$.
 On ajoute les hypothèses suivantes de qualification de contraintes :
@@ -615,7 +615,7 @@ Si $\bar{x}$ réalise un minimum local de $f$, alors $\exists \lambda \in \R^n \
 
 \begin{theoreme} (CS d'optimalité dans le cas convexe)
 
-Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. ALors si les conditions de KKT sont satisfaites au point $\bar{x}$, alors ce point est un minimum de $f$.
+Supposons que $f$ et $g_j$ soient convexes et que les $h_i$ soient affines. Alors si les conditions de KKT sont satisfaites au point $\bar{x}$, alors ce point est un minimum de $f$.
 \end{theoreme}
 \begin{exemple} %1
 
@@ -659,7 +659,7 @@ Cela implique que : \[ \exists \alpha>0 \text{ tel que la boule } B(\bar{x},\alp
 $f$ est différentiable sur un voisinage de $\bar{x}$ et atteint son minimum en $\bar{x}$.
 	
 	$\Ra \nabla f(\x) = 0$
-	Or $\nabla f(\x) = \not 2A\x$
+	Or $\nabla f(\x) = 2A\x$
 	on aurait $2A\x = 0 \Lra A\x = 0$ qui est interdit car $0 \not \in sp(A)$
 	Donc $\x \in \partial C \text{(bord de C)} \Ra g(\x) = 0 \Ra$ la contrainte est active en $\x$.
 	
@@ -671,7 +671,7 @@ $f$ est différentiable sur un voisinage de $\bar{x}$ et atteint son minimum en 
 Cela implique que $\bar{x}$ est un vecteur propre associé à la valeur propre $-\lambda$. $\bar{x}$ est à chercher dans l'ensemble des vecteurs propres unitaires associés à des valeurs propres négatives.
 	
 	$f(\x) = <A\x, \x> = <-\lambda \x, \x> = -\lambda <\x, \x> = - \lambda$ \\
-	Donc pour minimiser $f$f, on prend $\x$, un vecteur propre unitaire associé à $\lambda_1$.\\
+	Donc pour minimiser $f$, on prend $\x$, un vecteur propre unitaire associé à $\lambda_1$.\\
 	On aura au préalable montré que la contrainte est qualifiée en $\x$ : on a $\nabla g(\x) = 2\x \ne 0$ (car $||\x||=1$).
 	
 \end{exemple}
@@ -706,7 +706,7 @@ On suppose $x_n$ connu, on calcul $w_n=-\nabla f(x_n)$.
 \item sinon, on prend $\rho_n>0$ tel que $f(x_n+\rho_nw_n)<f(x_n)$ et on pose $x_{n+1}=x_n+\rho_nw_n$
 \end{itemize}
 
-La preuve du théotème de convergence est similaire à celle du théorème de convergence du gradient à pas optimal.
+La preuve du théorème de convergence est similaire à celle du théorème de convergence du gradient à pas optimal.
 
 \begin{theoreme}
 Soit $f\in\mathcal{C}^1(\R^n,\R)$ c\oe rcive, alors :
@@ -714,7 +714,7 @@ Soit $f\in\mathcal{C}^1(\R^n,\R)$ c\oe rcive, alors :
 \item on peut définir une suite $(x_n)$ comme dans l'itération de l'algorithme,
 \item la suite $(x_n)$ est bornée,
 \item si $x_{n_k}\ra x$ et si $\nabla f(x_{n_k})\ra_{k\ra \infty}0$ alors $\nabla f(x)=0$,\\
-si de pluis $f$ est convexe, alors $\displaystyle f(x)=\inf_{y\in\R^N} f(y)$,
+si de plus $f$ est convexe, alors $\displaystyle f(x)=\inf_{y\in\R^N} f(y)$,
 \item si $\nabla f(x_n)\ra 0$ et $f$ est strictement convexe, alors toute la suite $(x_n)$ converge vers une limite $\bar{x}$ qui vérifie $\displaystyle f(\bar{x})=\inf_{y\in\R^N} f(y)$
 \end{enumerate}
 \end{theoreme}
