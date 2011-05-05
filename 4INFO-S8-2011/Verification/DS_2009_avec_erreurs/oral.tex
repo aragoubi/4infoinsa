@@ -1,0 +1,57 @@
+\documentclass{beamer}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage[hang]{caption}
+\usepackage{multirow}
+%\usepackage{stmaryrd}
+\usetheme{Frankfurt}
+\usecolortheme[RGB={91,59,17}]{structure}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{title page}[default][colsep=-4bp,rounded=true,shadow=true]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.65\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.35\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle \hspace{\fill}\insertframenumber{}/\inserttotalframenumber
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\title{Oraux Verification}
+\subtitle{Sujet 2009}
+\author[ADDAR \and BLAJ \and CHAMPETIER \and DRAGUSIN \and ESCOLIVET \and GUYOT \and MEDA \and VIOU]{ 
+					Mehdi \textsc{Addar} \\
+					Andra \textsc{Blaj} \\
+					Etienne \textsc{Champetier} \\
+					Diana \textsc{Dragusin} \\
+					Emeline \textsc{Escolivet} \\
+					Maxime \textsc{Guyot} \\
+					Ugo \textsc{Meda} \\
+					Valentin \textsc{Viou}}
+\institute{}
+\date{13/04/11}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Partie 1 : Questions de cours}
+\input{part1}
+
+\section{Partie 2 : Démonstration dans le système dérivé}
+\input{part2}
+
+\section{Partie 3 : Machines abstraites}
+\input{part3}
+
+\end{document}
