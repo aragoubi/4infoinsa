@@ -1,0 +1,9 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Classes de r\IeC {\'e}seau}{2}
+\contentsline {section}{\numberline {2}Table de routage RIP}{2}
+\contentsline {subsection}{\numberline {2.1}\'Evolution pour le routeur 2}{2}
+\contentsline {subsection}{\numberline {2.2}Panne du routeur 4}{2}
+\contentsline {paragraph}{D\IeC {\'e}tection de la panne :}{2}
+\contentsline {section}{\numberline {3}D\IeC {\'e}coupage en sous-r\IeC {\'e}seaux}{2}
+\contentsline {paragraph}{Masque de sous-r\IeC {\'e}seau :}{2}
+\contentsline {paragraph}{Remarque :}{2}
