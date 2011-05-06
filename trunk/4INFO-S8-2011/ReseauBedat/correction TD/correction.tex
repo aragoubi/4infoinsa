@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage{listings}
+\usepackage{supertabular}
+
+\begin{document}
+
+\title{
+		Réseau Laurent Bedat - Correction TD
+	}
+\author{Guillaume Pannetier}
+\date{\today}
+
+\maketitle
+
+%---------------------
+%  Classes de réseau
+%---------------------
+\section{Classes de réseau}
+
+\begin{center}
+	\begin{supertabular}{|c|l|}
+		\hline
+		\textbf{Classe} & \textbf{Caractéristiques} \\
+		
+		\hline
+		Classe A & Seul le $1^{er}$ octet indique le réseau (de 1 à 126, 127 = boucle locale) \\
+		
+		\hline
+		Classe B & Les deux premiers octets pour le réseau. Le premier octet va de 128 à 192 \\
+		
+		\hline
+		Classe C & Les trois premiers octets pour le réseau.\\
+
+		\hline		
+	\end{supertabular}
+\end{center}
+
+
+%--------------------
+% Routage RIP
+%--------------------
+\section{Table de routage RIP}
+\subsection{\'Evolution pour le routeur 2}
+\begin{supertabular}{|rrll|}
+	\hline
+
+	\textbf{Temps} & & \textbf{Routes} & \textbf{Co\^ut} \\
+	
+	\hline
+
+	$T_{0}$ & R & 24.0.0.0 & 0 \\
+	& R & 113.0.0.0 & 0 \\
+	& R & 114.2.0.0 255.255.0.0 & 0 \\
+	
+	\hline
+	
+	$T_{1}$ & +R & 193.57.96.0 gw router1 & 1 \\
+	& & 193.57.97.0 gw router1 & 1 \\
+	& +R & 114.3.0.0 gw routerCentral & 1 \\
+	& & 114.1.0.0 gw routerCentral & 1 \\
+	& & 114.250.0.0 gw routerCentral & 1 \\
+	
+	\hline
+	
+	$T_{2}$ & +R & 163.44.0.0 gw routerCentral & 2 \\
+	
+	\hline
+	
+	$T_{3}$ & & Tout le réseau est connu & \\
+	
+	\hline
+\end{supertabular}
+
+\subsection{Panne du routeur 4}
+\paragraph{Détection de la panne :}
+\begin{itemize}
+	\item Soit le routeur voisin sait qu'il n'y a plus d'informations venant de ce routeur et supprime alors les routes qui y passent.
+	\item En réalité, une durée de vie est fixée pour les entrées des tables de routage.
+\end{itemize}
+
+\section{Découpage en sous-réseaux}
+On souhaite découper le réseau 163.44.0.0 en 16 sous-réseaux.\\
+$\underbrace{163.44}.\underbrace{0.0}$ peut adresser 65 000 machines.\\
+
+Il va donc falloir prendre 4 bits pour identifier le sous réseau.
+
+\paragraph{Masque de sous-réseau :} $\underbrace{1111 1111.1111 1111.1111} \underbrace{0000.0000 0000}$ = 255.255.240.0
+
+\paragraph{Remarque :}Le 0 et le 255 étant réservés dans les adresses pour l'adresse réseau et l'adresse broadcast, il faut toujours retirer 2 au nombre de machines adressables.
+
+\end{document}
