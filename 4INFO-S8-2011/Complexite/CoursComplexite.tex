@@ -1,0 +1,236 @@
+\providecommand{\VarRectoVerso}{\oneside}
+\input{./preambule}
+\title{Complexité}
+\author{Danielle Quichaud}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Les séries génératrices pour résoudre les équations de récurrence}
+\subsection{Séries génératrices}
+Elles permettent de réprésenter une suite infinie de nombres par une fonction. Si de plus, la suite est définie par une équation de récurrence, celle-ci va alors se traduire par un équation fonctionnelle.
+
+\definition{Soit la suite de nombres $(u_n)_{n>=0}$, la série génératrice de $(u_n)_{n>=0}$ est $A(x)=\sum_{n>=0}^{} u_n x^n)$}
+
+x est une variable quelconque, dont les puissances permettent de distinguer les éléments de la suite.
+On définit un certain nombre d'opérations sur ces séries indépendamment de leur convergence.
+
+\remarque{Pour les fonctions admettant un dévellopement en séries entière, ce développement est la série génératrice d'une suite.}
+
+\exemple
+Developpement en série entière de $e^x$
+\\$e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!} + ... + + \frac{x^n}{n!}$
+\\
+C\'est la série génératrice de la suite $(u_n)_{n>=0} où u_n = \frac{1}{n!} pour n>=0$
+
+\subsubsection{Somme de 2 séries}
+
+Soit $A(x)=\sum_{n>=0}^{} a_n x^n$ la série génératrice de $(a_n)_{n>=0}$\\
+Soit $B(x)=\sum_{n>=0}^{} b_n x^n$ la série génératrice de $(b_n)_{n>=0}$
+
+La somme de $A(x) + B(x) = \sum_{n>=0}^{} (a_n + b_n)x^n$
+
+C'est la série génératrice de la suite de $(c_n)_{n>=0}$ avec $c_n = a_n + b_n$
+
+\subsubsection{Produit de cauchy ou produit des convolution}
+
+$A(x)B(x) = \sum_{n>=0}^{} (\sum_{i=0}^{n} a_i b_{n-i})x^n$
+
+C'est la série génératrice de la suite $(c_n)_{n>=0}$ où $c_n = \sum_{i=0}^na_ib_{n-i}$
+
+$a_0 b_0,a_0 b_1 + a_1 b_0, a_0 b_2 + a_1 b_1 + a_2 b_0$
+
+%ce sont des crochets double barre
+Si on note $C[x]$ l'ensemble des séries génératrices à coefficient dans C
+
+$C[x]$ muni de ces 2 opérations, somme et produit de Cauchy est un anneau intègre.
+\\ \\
+\underline{Cas particulier}
+%partie 1
+$A(x).B(x) = A(x)x^k= \sum_{n>=k}^{} a_{n-k}x^n$
+
+Série génératrice de la suite $(c_n)_{n>=0}$ où
+\[ \begin{cases}c_n=0 pour n<k \\
+c_n = a_{n-k} pour n>=k \end{cases}\]
+
+$a_0,a_1,...,a_k,...$
+
+$0,0,...    ,a_0,a_1,...$
+
+Décalage de la suite vers la droite
+
+1) $B(x) = x^k$ série génératrice de $(b_n)_{n>=0} où b_k = 1$ et $b_i =0 $ pour  i = k
+ 
+2) $B(x) = 1+ x \Ra $ Série génératrice de $(b_n)_{n>=0}$ avec
+\[ \begin{cases}
+b_0 = b_1 = 1\\
+b_n = 0 pour n >=2
+\end{cases}
+\\
+A(x) ( 1+x) = a + \sum_{n>=1}(a_n + a_{n-1})x^n
+\]
+C'est la série génératrice de la suite 
+\[(c_n)_{n>=0} avec \begin{cases}c_0 = a_0\\c_n = a_n + a_{n-1} pour n >=1\end{cases}\]
+
+%partie 3
+$B(x) = 1-x$
+
+Série génératrice de la suite $(b_n)_{n>=0}$ avec 
+\[
+\begin{cases}
+b_0 = 1\\
+b_1 = -1\\
+b_n = 0 pour n>=2
+\end{cases}
+\]
+
+$A(x)(1-x) = a_0 + \sum_{n>=1}^{}(a_n - a_{n-1})x^n$
+
+si on prend $(a_n)_{n>=0}$ telle que $a_n=1$ pour $n>=0$ 
+
+alors $A(x) = \sum_{n>=1}^{}x^n$
+
+ et donc $A(x)(1-x)= 1$
+ 
+\subsubsection{Somme partielle}
+$\frac{A(x)}{1-x} = (\sum_{n>=0} x^n)(\sum_{n>=0} a_n x^n)$
+
+$\frac{A(x)}{1-x} = \sum_{n>=0} (\sum_{i=0}^n a_{n-i}) x^n$
+ 
+\subsection{Dérivation et intégration}
+$\ra$ la série dérivée est obtenue en dérivant terme à terme.
+
+$A(x) = \sum_{n>=0} a_n x^n$ série génératrice de $(a_n)_{n>=0}$
+
+$= a_0 + a_1x + a_2x^2 + a_3x^3 + ...$
+
+$\ra a_1 + 2a_2x + 3a_3x^2 + ....$
+
+$\Ra A'(x) = \sum_{n>=0}(n+1)a_{n+1}x^n$
+
+C'est la série génératrice de la suite \[(c_n)_{n>=0}\] 
+
+où \[c_n = (n+1) a_{n+1}\]
+
+L'intégration se fait de la même façon, terme à terme
+
+\[a_0x + \frac{a}{2}x^2 + \frac{a_2}{3}x^3 +... \]
+
+$\int_{0}^x A(t)dt = \sum_{n>=1}^{}\frac{a_{n-1}}{n}x^n$
+
+C'est la série génératrice de la suite $(c_n)_{n>=0}$ où
+\[
+\begin{cases}
+c_0 = 0\\
+c_n = \frac{a_{n-1}}{n} pour n>= 1
+\end{cases}
+\]
+
+\remarque{Si les séries ont un rayon de convergence non nulle, on démontre que ces opérations coincident avec celles de m nom sur les fonctions.}
+
+\exercice
+1) Montrer que
+\[ \frac{1}{(1-x)^2} = \sum_{n>=0}(n+1)x^n\]
+%resolution de Q
+2)
+$ log \frac{1}{1-x} = \sum_{n>=1} \frac{x^n}{n}$
+
+$(log \frac{1}{1-x}) est la primitive de \frac{1}{1-x} = \sum_{n>=0} x^n$
+
+$\Ra log \frac{1}{A-x} = \int_O^x (\sum_{n>=0}t^n)dt$
+
+$= \sum_{n>=1}\frac{x^n}{n}$
+
+3) $\frac{1}{1-x}log \frac{1}{1-x} = \sum_{n>=0}H_nx^n$
+
+en effet
+
+$\frac{1}{1-x}log \frac{1}{1-x} = (\sum_{n>=0}x^n)(\sum_{n>=1}\frac{x^n}{n})
+= \sum_{n>=0}(\sum_{i>=1}^n \frac{A}{i})x^n = \sum_{n>=0}H_nx^n$
+
+$\ra \frac{1}{(1-x)^2} = \frac{1}{1-x} * \frac{1}{1-x} = (\sum_{n>=0}^{}x^n)(\sum_{n>=0}^{}x^n) = \sum_{n>=0}^{}(\sum_{i=0}^{}1)x^n = \sum_{n>=0}^{}(n+1)x^n$
+
+
+en utilisant la dérivée
+
+$\ra \frac{1}{(1-x)^2}$ est la dérivée de $\frac{1}{1-x} = \sum_{n>=0}^{}(n+1)x^n$\\
+
+$\frac{1}{(1-x)^2} = (\sum_{n>=0}^{}x^n)' = \sum_{n>=0}^{}(n+1)x^n$
+
+%VOIR exercices GEP
+\section{II - Utilisation des séries génératrices pour la résolution des équations de récurrence}
+
+\exemple
+\[\begin{cases}
+u_n = u_{n-1} +1\\
+u_0 = 0
+\end{cases}\]
+\underline{Multiplier équation par $x^n$}
+$u_nx^n = u_{n-1}x^n + x^n $ pour n>=1
+
+\underline{Sommer ces équations} pour faire apparaître la série génératrice des $(u_n)_{n>=0}$
+
+Cette série génératrice est $u(x) = \sum_{n>=0}^{}u_nx^n$
+$\sum_{n>=1}^{}u_nx^n = \sum_{n>=1}^{}u_nx^n  + \sum_{n>=1}^{}x^n$
+
+%Indenter les suites d'équation
+$u(x) - u_0 = x \sum_{n>=1}^{}u_{n-1}x^{n-1} + \sum_{n>=1}^{}x^{n}$
+
+$= x \sum_{n>=0}^{}u_{n}x^{n} + \sum_{n>=1}^{}x^{n}$
+
+$= xu(x) + \sum_{n>=1}^{}x^{n}$
+
+$= xu(x) + \sum_{n>=0}^{}x^{n}-1$
+
+\exemple{Suite de Fibonacci}
+%FAIRE L'INDENTATION
+\[\begin{cases}
+u_n = u_{n-1} + u_{n-2}\\
+u_0 = 0, u_1 = 1
+\end{cases}\]
+
+\underline{Multiplier équation par $x^n$}
+$u_nx^n = u_{n-1}x^n + u_{n-2}x^n$ pour n>=2
+
+\underline{Sommer}
+$\sum_{n>=2}u_nx^n = \sum_{n>=2}u_{n-1}x^n + \sum_{n>=2}u_{n-2}x^n$
+
+\underline{Faire apparître la série génératrice}
+$u(x) - u_0 - u_1x = x \sum_{n>=2}u_{n-1}x^{n-1} + x^2 \sum_{n>=2}u_{n-2}x^{n-2}$
+
+$= x \sum_{n>=1}u_{n}x^{n} + x^2\sum_{n>=0}u_{n}x^{n}$
+
+$= x (u(x) - u_0) + x^2u(x)$
+
+$(x^2 + x -1)u(x) = -u_0 -u_1x + u_0x$
+
+$u(x) = \frac{(u_0 - u_1)x-u_0}{x^2+x-1}$
+
+%voir GEP pour la fin de cet exemple
+
+%fin après GEP
+$a = \frac{-r_1}{r_1-r_2} = \frac{\frac{1-\sqrt{5}}{2}}{\sqrt{5}}$
+
+multiplier par $(x - r_2)$ puis faire $x=r_2$
+
+$b = \frac{-r_2}{r_2-r_1} = \frac{r_2}{r_1-r_2} = \frac{\frac{-1-\sqrt{5}}{2}}{\sqrt{5}} = \frac{-1-\sqrt{5}}{2\sqrt{5}}$
+
+$u(x) = \frac{a}{x-r_1} + \frac{b}{x-r_2} = \frac{-a}{r_1(1-\frac{x}{r_1})} - \frac{b}{r_2(1-\frac{x}{r_2})}$
+
+en utilisant $\frac{1}{1-cz} = \sum_{n>=0}c^nz^n$
+
+on obtient $u(x) = \frac{-a}{r_1} \sum_{n>=0}(\frac{1}{r_1})^n x^n - \frac{b}{r2} \sum_{n>=0}(\frac{1}{r_2})^n x^n$\\
+on a $r_1r_2 = -1 <=> r_1 = -\frac{1}{r_2} et r_2 = -\frac{1}{r_1}$\\
+$\Ra u(x) = a r_2 \sum_{n>=0}(-r_2)^nx^n + br_1 \sum_{n>=0}(-r_A)^nx^n
+\Ra u(x) = \sum_{n>=0}u_nx^n = \sum_{n>=0}[ar_2(-r_2)^n + br_1(-r_1)^n] x^n$
+
+$ar_2 = -\frac{r_1r_2}{\sqrt{5}} = \frac{1}{\sqrt{5}}$
+
+$br_1 = \frac{r_1r_2}{\sqrt{5}} = -\frac{1}{\sqrt{5}}$
+
+$u_n = \frac{1}{\sqrt{5}}((\frac{1+\sqrt{5}}{2})^n-(\frac{1-\sqrt{5}}{2})^n)$ pour n>=0
+
+\end{document}
+
+
+
+
