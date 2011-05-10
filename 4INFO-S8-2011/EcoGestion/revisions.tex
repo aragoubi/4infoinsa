@@ -1,0 +1,130 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage{listings}
+\usepackage{supertabular}
+
+\begin{document}
+
+\title{
+		\'Eco - gestion
+	}
+\author{Guillaume Pannetier}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\input{1.comptaGenerale.tex}
+
+\section{Gestion financière - Les techniques de  l'actuariat}
+
+\subsection{Les taux d'intér\^et}
+\subsubsection{Taux d'intér\^et simple et composé (ou capitalisé)}
+
+\begin{enumerate}
+	\item[a)] \textbf{Intér\^ets simples}\\
+	Soit \textbf{i} le taux d'intér\^et. Une somme \textbf{$S_{0}$} rapporte au bout d'un an : $S_{0}$ * i, et au bout de T années : $S_{0} * T * i$\\
+	La somme disponible sera : $S_{T} = S_{0} + S_{0} * T * i = S_{0}(1 + T * i)$.\\
+	
+	\item[b)] \textbf{Intér\^ets capitalisés}\\
+	Les intér\^ets sont remplacés à chaque période et sont naturellement rénmunérés.\\
+	Dans le cas le plus simple, celui d'intér\^ets payés annuellement, une somme $S_{0}$ donnera :
+	\begin{itemize}
+		\item au bout d'un an : $S_{1} = S_{0}(1 + i)$
+		\item 2 ans : $S_{2} = S_{0}(1+i)(1+i)$
+		\item T ans : $S_{T} = S_{0}(1+i)^{T}$\\
+	\end{itemize}
+	
+	On dit que $S_{T}$ est la \textbf{valeur future} de $S_{0}$.
+	
+\end{enumerate}
+
+\subsection{L'actualisation}
+Pour pouvoir comparer les recettes futures à des dépenses actuelles, il faut \textbf{actualiser} les recettes futures.\\
+
+$S_{T} = S_{0}(1+i)^{T}$ $\Longleftarrow$ \textbf{CAPITALISATION}\\
+$S_{0} = S_{T}(1+i)^{-T}$ $\Longleftarrow$ \textbf{ACTUALISATION}\\
+
+Pour évaluser la rentabilité d'un projet, il faut tenir compte de :
+\begin{itemize}
+	\item la \textbf{durée du projet}
+	
+	\item le \textbf{flux monétaire}
+	
+	\item le \textbf{taux d'actualisation}\\
+	C'est le taux de rentabilité exigé par l'entreprise. Il tient essentiellement compte :
+	\begin{itemize}
+		\item du \textbf{taux du marché financier}
+		\item du \textbf{taux de rendement} exigé par les associés/actionnaires
+		\item du \textbf{co\^ut de l'endettement}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{La Valeur Actuelle Nette (VAN)}
+
+\paragraph{Définition:} La valeur actuelle nette est la différence, à la date de réalisation de l'investissement, entre :
+\begin{itemize}
+	\item La valeur actuelle des recettes prévues (VA);
+	\item et le montant du capital engagé dans le projet.\\
+\end{itemize}
+
+Un investissement est \textbf{rentable} si la $VAN > 0$.\\
+
+Pour \^etre comparée au capital que l'on investi immédiatement, la valeur des recettes doit bien s\^ur \^etre actualisée :\\
+$VAN = R_{1}(1+i)^{-1} + R_{2}(1+i)^{-2} + ... + R_{n}(1+i)^{-n} + V(1+i)_{-n} - C$\\
+
+\subsubsection{Le taux interne de rentabilité (TIR)}
+Taux propre de rentabilité d'un projet, en \%.\\
+\paragraph{Définition:} Le TIR est le taux d'actualisation qui égalise le capital investi et la somme actualisée des flux futurs, ie \textbf{le taux d'actualisation pour lequel la VAN = 0}.\\
+
+Ces deux critères de rentabilité sont équivalents :
+\begin{itemize}
+	\item $VAN > 0$
+	\item $TIR > i$ \textit{(objectf de rentabilité minimum)}
+\end{itemize}
+
+\subsubsection{Le délai de récupération du capital investi}
+\paragraph{Définition:} Le délai de récupération (ou délai de retour sur investissement) est le temps nécessaire pour que \textbf{le cumul des recettes nettes soit égal au montant investi}.\\
+
+Pour que ce calcul soit pertinent, il faut actualiser les recettes futures.\\
+
+\textbf{Plus le délai de récupération est long, plus le projet est risqué.}
+
+\subsection{\'Evaluation du co\^ut d'un emprunt (calcul du TEG)}
+\subsubsection{Emprunt à amortissements constants}
+Soit un emprunt dont les caractéristiques sont les suivantes :
+
+\begin{itemize}
+	\item Capital emprunté : C = 100 000 EUR
+	\item Taux d'intér\^et : i = 6\%
+	\item Durée : n = 5 ans\\
+\end{itemize}
+
+
+$\Rightarrow$\textbf{amortissement de l'emprunt = 100 000 / 5 = 20 000}
+
+
+\paragraph{Principe:} On rembourse tous les ans $1/5^{eme}$ du capital et on paie les intér\^ets sur le capital restant d\^u durant l'année.
+
+\subsubsection{Emprunt à annuités constantes}
+Vous payez tous les ans la m\^eme chose mais à condition que l'annuité constante A soit telle que :
+\begin{itemize}
+	\item $A_{1} = A_{2} = ... = A_{n}$
+	\item $A_{1} = A(1+i)^{-1}$
+	\item $A_{2} = A(1+i)^{-2}$
+	\item ...
+	\item $A_{n} = A(1+i)^{n}$\\
+\end{itemize}
+
+Dans notre exemple, $100 000 = A*(1-(1+i)^{-n})/i$\\
+\paragraph{Annuité de remboursement:} $A = 100 000 * 6\% / [1-(1+6\%)-n] = 23 740 EUR$\\
+
+\subsubsection{Taux Effectif Global (TEG)}
+\paragraph{Définition:} Le TEG d'un emprunt est le \textbf{taux actuariel} de cet emprunt. Il permet la comparaison de différents emprunts et doit obligatoirement être communiqué par la banque.
+
+\end{document}
